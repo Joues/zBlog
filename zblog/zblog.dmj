@@ -1,0 +1,596 @@
+{
+  "RootName": "DataModels",
+  "CTVER": "43543232",
+  "TableCount": 8,
+  "Count": 1,
+  "items": [{
+    "ID": 1,
+    "Name": "zblog",
+    "Caption": "博客",
+    "CreateDate": "2020/8/22 16:47:20",
+    "OrderNo": 1,
+    "DefDbEngine": "MYSQL",
+    "DbConnectStr": "TCtMetaMysqlDb",
+    "Tables": {
+      "Count": 8,
+      "items": [
+        {
+          "Name": "blog",
+          "OrderNo": 1,
+          "GraphDesc": "Left=10.00\r\nTop=10.00",
+          "MetaFields": {
+            "Count": 12,
+            "items": [
+              {
+                "ID": 1,
+                "Name": "id",
+                "Memo": "主键id",
+                "CreateDate": "2020/8/22 16:47:49",
+                "OrderNo": 1,
+                "DataType": 2,
+                "KeyFieldType": 1,
+                "DataLength": 50
+              },
+              {
+                "ID": 2,
+                "Name": "title",
+                "Memo": "标题",
+                "CreateDate": "2020/8/22 16:47:49",
+                "OrderNo": 2,
+                "DataType": 1,
+                "Nullable": true,
+                "DataLength": 255
+              },
+              {
+                "ID": 3,
+                "Name": "created_time",
+                "Memo": "发布时间",
+                "CreateDate": "2020/8/22 16:47:49",
+                "OrderNo": 3,
+                "DataType": 4,
+                "Nullable": true,
+                "DataScale": 6
+              },
+              {
+                "ID": 4,
+                "Name": "update_time",
+                "Memo": "修改时间",
+                "CreateDate": "2020/8/22 16:47:49",
+                "OrderNo": 4,
+                "DataType": 4,
+                "Nullable": true,
+                "DataScale": 6
+              },
+              {
+                "ID": 5,
+                "Name": "user_id",
+                "Memo": "作者id（外键）",
+                "CreateDate": "2020/8/22 16:47:49",
+                "OrderNo": 5,
+                "DataType": 1,
+                "Nullable": true,
+                "DataLength": 50
+              },
+              {
+                "ID": 6,
+                "Name": "summary",
+                "Memo": "文章概要",
+                "CreateDate": "2020/8/22 16:47:49",
+                "OrderNo": 6,
+                "DataType": 1,
+                "Nullable": true,
+                "DataLength": 500
+              },
+              {
+                "ID": 7,
+                "Name": "poll_count",
+                "Memo": "点赞数（冗余）",
+                "CreateDate": "2020/8/22 16:47:49",
+                "OrderNo": 7,
+                "DataType": 2,
+                "Nullable": true,
+                "DataLength": 50
+              },
+              {
+                "ID": 8,
+                "Name": "comment_count",
+                "Memo": "评论数（冗余）",
+                "CreateDate": "2020/8/22 16:47:49",
+                "OrderNo": 8,
+                "DataType": 2,
+                "Nullable": true,
+                "DataLength": 50
+              },
+              {
+                "ID": 9,
+                "Name": "read_count",
+                "Memo": "阅读数",
+                "CreateDate": "2020/8/22 16:47:49",
+                "OrderNo": 9,
+                "DataType": 2,
+                "Nullable": true,
+                "DataLength": 100
+              },
+              {
+                "ID": 10,
+                "Name": "class_id",
+                "Memo": "分类ID（外键）",
+                "CreateDate": "2020/8/22 16:47:49",
+                "OrderNo": 10,
+                "DataType": 2,
+                "KeyFieldType": 3,
+                "RelateTable": "category",
+                "RelateField": "id",
+                "IndexType": 2,
+                "Nullable": true,
+                "DataLength": 50,
+                "GraphDesc": "P1=955.00,53.00\r\nP2=592.00,53.00\r\nP3=592.00,53.00\r\nP4=228.00,53.00\r\nHookP1=20.00,43.00\r\nHookP2=198.00,43.00\r\nMod_OP1=0\r\nMod_OP2=0\r\nMod_CP=0\r\nHorz1=1\r\nHorz2=1"
+              },
+              {
+                "ID": 11,
+                "Name": "is_top",
+                "Memo": "是否置顶",
+                "CreateDate": "2020/8/22 16:47:49",
+                "OrderNo": 11,
+                "DataType": 6,
+                "DefaultValue": "0",
+                "Nullable": true,
+                "DataLength": 1
+              },
+              {
+                "ID": 12,
+                "Name": "is_essence",
+                "Memo": "是否热门",
+                "CreateDate": "2020/8/22 16:47:49",
+                "OrderNo": 12,
+                "DataType": 6,
+                "DefaultValue": "0",
+                "Nullable": true,
+                "DataLength": 1
+              }
+            ]
+          }
+        },
+        {
+          "Name": "blog_comment",
+          "OrderNo": 2,
+          "GraphDesc": "Left=290.00\r\nTop=10.00",
+          "MetaFields": {
+            "Count": 6,
+            "items": [
+              {
+                "ID": 1,
+                "Name": "id",
+                "Memo": "主键",
+                "CreateDate": "2020/8/22 16:47:49",
+                "OrderNo": 1,
+                "DataType": 2,
+                "KeyFieldType": 1,
+                "DataLength": 50
+              },
+              {
+                "ID": 2,
+                "Name": "blog_id",
+                "Memo": "博客id（外键）",
+                "CreateDate": "2020/8/22 16:47:49",
+                "OrderNo": 2,
+                "DataType": 2,
+                "KeyFieldType": 3,
+                "RelateTable": "blog",
+                "RelateField": "id",
+                "IndexType": 2,
+                "Nullable": true,
+                "DataLength": 50,
+                "GraphDesc": "P1=228.00,69.00\r\nP2=259.00,69.00\r\nP3=259.00,69.00\r\nP4=290.00,69.00\r\nHookP1=190.00,59.00\r\nHookP2=20.00,59.00\r\nMod_OP1=0\r\nMod_OP2=0\r\nMod_CP=0\r\nHorz1=1\r\nHorz2=1"
+              },
+              {
+                "ID": 3,
+                "Name": "time",
+                "Memo": "评论时间",
+                "CreateDate": "2020/8/22 16:47:49",
+                "OrderNo": 3,
+                "DataType": 4,
+                "Nullable": true
+              },
+              {
+                "ID": 4,
+                "Name": "content",
+                "Memo": "评论内容",
+                "CreateDate": "2020/8/22 16:47:49",
+                "OrderNo": 4,
+                "DataType": 1,
+                "Nullable": true,
+                "DataLength": 225
+              },
+              {
+                "ID": 5,
+                "Name": "name",
+                "Memo": "评论人",
+                "CreateDate": "2020/8/22 16:47:49",
+                "OrderNo": 5,
+                "DataType": 1,
+                "Nullable": true,
+                "DataLength": 50
+              },
+              {
+                "ID": 6,
+                "Name": "e-mail",
+                "Memo": "电子邮箱",
+                "CreateDate": "2020/8/22 16:47:49",
+                "OrderNo": 6,
+                "DataType": 1,
+                "Nullable": true,
+                "DataLength": 50
+              }
+            ]
+          }
+        },
+        {
+          "Name": "blog_detail",
+          "OrderNo": 3,
+          "GraphDesc": "Left=500.00\r\nTop=10.00",
+          "MetaFields": {
+            "Count": 3,
+            "items": [
+              {
+                "ID": 1,
+                "Name": "id",
+                "Memo": "主键id",
+                "CreateDate": "2020/8/22 16:47:49",
+                "OrderNo": 1,
+                "DataType": 2,
+                "KeyFieldType": 1,
+                "DataLength": 50
+              },
+              {
+                "ID": 2,
+                "Name": "blog_id",
+                "Memo": "外键",
+                "CreateDate": "2020/8/22 16:47:49",
+                "OrderNo": 2,
+                "DataType": 2,
+                "KeyFieldType": 3,
+                "RelateTable": "blog",
+                "RelateField": "id",
+                "IndexType": 2,
+                "Nullable": true,
+                "DataLength": 50,
+                "GraphDesc": "P1=228.00,45.00\r\nP2=364.00,45.00\r\nP3=364.00,45.00\r\nP4=500.00,45.00\r\nHookP1=182.00,35.00\r\nHookP2=20.00,35.00\r\nMod_OP1=0\r\nMod_OP2=0\r\nMod_CP=0\r\nHorz1=1\r\nHorz2=1"
+              },
+              {
+                "ID": 3,
+                "Name": "content",
+                "Memo": "博客",
+                "CreateDate": "2020/8/22 16:47:49",
+                "OrderNo": 3,
+                "DataType": 7,
+                "Nullable": true,
+                "DataLength": -1
+              }
+            ]
+          }
+        },
+        {
+          "Name": "blog_poll",
+          "OrderNo": 4,
+          "GraphDesc": "Left=710.00\r\nTop=10.00",
+          "MetaFields": {
+            "Count": 4,
+            "items": [
+              {
+                "ID": 1,
+                "Name": "id",
+                "Memo": "主键",
+                "CreateDate": "2020/8/22 16:47:49",
+                "OrderNo": 1,
+                "DataType": 2,
+                "KeyFieldType": 1,
+                "DataLength": 50
+              },
+              {
+                "ID": 2,
+                "Name": "time",
+                "Memo": "点赞时间",
+                "CreateDate": "2020/8/22 16:47:49",
+                "OrderNo": 2,
+                "DataType": 4,
+                "Nullable": true,
+                "DataScale": 6
+              },
+              {
+                "ID": 3,
+                "Name": "blog_id",
+                "Memo": "博客id（外键）",
+                "CreateDate": "2020/8/22 16:47:49",
+                "OrderNo": 3,
+                "DataType": 2,
+                "KeyFieldType": 3,
+                "RelateTable": "blog",
+                "RelateField": "id",
+                "IndexType": 2,
+                "Nullable": true,
+                "DataLength": 50,
+                "GraphDesc": "P1=228.00,53.00\r\nP2=469.00,53.00\r\nP3=469.00,53.00\r\nP4=710.00,53.00\r\nHookP1=174.00,43.00\r\nHookP2=20.00,43.00\r\nMod_OP1=0\r\nMod_OP2=0\r\nMod_CP=0\r\nHorz1=1\r\nHorz2=1"
+              },
+              {
+                "ID": 4,
+                "Name": "create_name",
+                "Memo": "发表人",
+                "CreateDate": "2020/8/22 16:47:49",
+                "OrderNo": 4,
+                "DataType": 1,
+                "Nullable": true,
+                "DataLength": 50
+              }
+            ]
+          }
+        },
+        {
+          "Name": "category",
+          "OrderNo": 5,
+          "GraphDesc": "Left=955.00\r\nTop=10.00",
+          "MetaFields": {
+            "Count": 4,
+            "items": [
+              {
+                "ID": 1,
+                "Name": "id",
+                "Memo": "主键",
+                "CreateDate": "2020/8/22 16:47:49",
+                "OrderNo": 1,
+                "DataType": 2,
+                "KeyFieldType": 1,
+                "DataLength": 50
+              },
+              {
+                "ID": 2,
+                "Name": "name",
+                "Memo": "分类名",
+                "CreateDate": "2020/8/22 16:47:49",
+                "OrderNo": 2,
+                "DataType": 1,
+                "Nullable": true,
+                "DataLength": 50
+              },
+              {
+                "ID": 3,
+                "Name": "pid",
+                "Memo": "父分类id",
+                "CreateDate": "2020/8/22 16:47:49",
+                "OrderNo": 3,
+                "DataType": 2,
+                "Nullable": true,
+                "DataLength": 50
+              },
+              {
+                "ID": 4,
+                "Name": "subscribe",
+                "Memo": "描述",
+                "CreateDate": "2020/8/22 16:47:49",
+                "OrderNo": 4,
+                "DataType": 1,
+                "Nullable": true,
+                "DataLength": 250
+              }
+            ]
+          }
+        },
+        {
+          "Name": "tag",
+          "OrderNo": 6,
+          "GraphDesc": "Left=290.00\r\nTop=210.00",
+          "MetaFields": {
+            "Count": 4,
+            "items": [
+              {
+                "ID": 1,
+                "Name": "id",
+                "Memo": "主键",
+                "CreateDate": "2020/8/22 16:47:49",
+                "OrderNo": 1,
+                "DataType": 2,
+                "KeyFieldType": 1,
+                "DataLength": 50
+              },
+              {
+                "ID": 2,
+                "Name": "name",
+                "Memo": "标签名",
+                "CreateDate": "2020/8/22 16:47:49",
+                "OrderNo": 2,
+                "DataType": 1,
+                "Nullable": true,
+                "DataLength": 50
+              },
+              {
+                "ID": 3,
+                "Name": "blog_id",
+                "Memo": "外键（博客id）",
+                "CreateDate": "2020/8/22 16:47:49",
+                "OrderNo": 3,
+                "DataType": 2,
+                "KeyFieldType": 3,
+                "RelateTable": "blog",
+                "RelateField": "id",
+                "IndexType": 2,
+                "Nullable": true,
+                "DataLength": 50,
+                "GraphDesc": "P1=228.00,172.00\r\nP2=259.00,172.00\r\nP3=259.00,230.00\r\nP4=290.00,230.00\r\nHookP1=166.00,162.00\r\nHookP2=20.00,20.00\r\nMod_OP1=0\r\nMod_OP2=0\r\nMod_CP=0\r\nHorz1=1\r\nHorz2=1"
+              },
+              {
+                "ID": 4,
+                "Name": "subscribe",
+                "Memo": "描述",
+                "CreateDate": "2020/8/22 16:47:49",
+                "OrderNo": 4,
+                "DataType": 1,
+                "Nullable": true,
+                "DataLength": 250
+              }
+            ]
+          }
+        },
+        {
+          "Name": "user",
+          "OrderNo": 7,
+          "GraphDesc": "Left=535.00\r\nTop=210.00",
+          "MetaFields": {
+            "Count": 3,
+            "items": [
+              {
+                "ID": 1,
+                "Name": "id",
+                "Memo": "主键",
+                "CreateDate": "2020/8/22 16:47:49",
+                "OrderNo": 1,
+                "DataType": 2,
+                "KeyFieldType": 1,
+                "RelateTable": "blog",
+                "RelateField": "id",
+                "DefaultValue": "{auto_increment}",
+                "DataLength": 50,
+                "GraphDesc": "P1=228.00,164.00\r\nP2=382.00,164.00\r\nP3=382.00,230.00\r\nP4=535.00,230.00\r\nHookP1=158.00,154.00\r\nHookP2=20.00,20.00\r\nMod_OP1=0\r\nMod_OP2=0\r\nMod_CP=0\r\nHorz1=1\r\nHorz2=1"
+              },
+              {
+                "ID": 2,
+                "Name": "username",
+                "Memo": "用户名（账户）",
+                "CreateDate": "2020/8/22 16:47:49",
+                "OrderNo": 2,
+                "DataType": 1,
+                "Nullable": true,
+                "DataLength": 50
+              },
+              {
+                "ID": 3,
+                "Name": "password",
+                "Memo": "密码",
+                "CreateDate": "2020/8/22 16:47:49",
+                "OrderNo": 3,
+                "DataType": 1,
+                "Nullable": true,
+                "DataLength": 50
+              }
+            ]
+          }
+        },
+        {
+          "Name": "user_details",
+          "OrderNo": 8,
+          "GraphDesc": "Left=780.00\r\nTop=210.00",
+          "MetaFields": {
+            "Count": 10,
+            "items": [
+              {
+                "ID": 1,
+                "Name": "id",
+                "Memo": "主键id",
+                "CreateDate": "2020/8/22 16:47:49",
+                "OrderNo": 1,
+                "DataType": 2,
+                "KeyFieldType": 1,
+                "DefaultValue": "{auto_increment}",
+                "DataLength": 50
+              },
+              {
+                "ID": 2,
+                "Name": "user_id",
+                "CreateDate": "2020/8/22 16:47:49",
+                "OrderNo": 2,
+                "DataType": 2,
+                "KeyFieldType": 3,
+                "RelateTable": "user",
+                "RelateField": "id",
+                "IndexType": 2,
+                "Nullable": true,
+                "DataLength": 50,
+                "GraphDesc": "P1=718.00,253.00\r\nP2=749.00,253.00\r\nP3=749.00,253.00\r\nP4=780.00,253.00\r\nHookP1=155.00,43.00\r\nHookP2=20.00,43.00\r\nMod_OP1=0\r\nMod_OP2=0\r\nMod_CP=0\r\nHorz1=1\r\nHorz2=1"
+              },
+              {
+                "ID": 3,
+                "Name": "nickname",
+                "Memo": "昵称",
+                "CreateDate": "2020/8/22 16:47:49",
+                "OrderNo": 3,
+                "DataType": 1,
+                "Nullable": true,
+                "DataLength": 50
+              },
+              {
+                "ID": 4,
+                "Name": "avator",
+                "Memo": "头像",
+                "CreateDate": "2020/8/22 16:47:49",
+                "OrderNo": 4,
+                "DataType": 1,
+                "Nullable": true,
+                "DataLength": 100
+              },
+              {
+                "ID": 5,
+                "Name": "age",
+                "Memo": "年龄",
+                "CreateDate": "2020/8/22 16:47:49",
+                "OrderNo": 5,
+                "DataType": 2,
+                "Nullable": true,
+                "DataLength": 50
+              },
+              {
+                "ID": 6,
+                "Name": "phone",
+                "Memo": "联系方式",
+                "CreateDate": "2020/8/22 16:47:49",
+                "OrderNo": 6,
+                "DataType": 1,
+                "Nullable": true,
+                "DataLength": 11
+              },
+              {
+                "ID": 7,
+                "Name": "e-mail",
+                "Memo": "邮箱",
+                "CreateDate": "2020/8/22 16:47:49",
+                "OrderNo": 7,
+                "DataType": 1,
+                "Nullable": true,
+                "DataLength": 50
+              },
+              {
+                "ID": 8,
+                "Name": "qr_code",
+                "Memo": "二维码",
+                "CreateDate": "2020/8/22 16:47:49",
+                "OrderNo": 8,
+                "DataType": 1,
+                "Nullable": true,
+                "DataLength": 50
+              },
+              {
+                "ID": 9,
+                "Name": "address",
+                "Memo": "地址",
+                "CreateDate": "2020/8/22 16:47:49",
+                "OrderNo": 9,
+                "DataType": 1,
+                "Nullable": true,
+                "DataLength": 255
+              },
+              {
+                "ID": 10,
+                "Name": "flag",
+                "Memo": "状态",
+                "CreateDate": "2020/8/22 16:47:49",
+                "OrderNo": 10,
+                "DataType": 2,
+                "DefaultValue": "0",
+                "Nullable": true,
+                "DataLength": 2
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }]
+}

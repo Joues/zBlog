@@ -1,0 +1,48 @@
+#服务端配置
+server:
+  port: 8086
+#生产环境配置
+#  profiles:
+#    active: dev
+
+  servlet:
+    context-path: /api/zblog  #添加接口api
+
+
+#数据库配置
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    username: root
+    password: 123456
+    url: jdbc:mysql://localhost:3306/zblog?useUnicode=true&characterEncoding=utf8
+
+#开启热部署
+    devtools:
+      restart:
+        enabled: true  #设置开启热部署
+        additional-paths: src/main/java #重启目录
+        exclude: WEB-INF/**
+    freemarker:
+      cache: false    #页面不加载缓存，修改即时生效
+  cache:
+    #redis 配置
+    redis:
+      host: localhost
+      port: 6379
+#      password: 123456
+      lettuce:
+        pool:
+          max-active: 100
+          min-idle: 5
+          max-wait: 5000
+          max-idle: 10
+      database: 1
+
+#  profiles:
+#    active: dev
+
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*Mapper.xml,classpath*:cn/ityihang/zblog/**/xml/*Mapper.xml
+  #实体扫描，多个package用逗号或者分号分隔
+  typeAliasesPackage: cn.ityihang.zblog.entity
