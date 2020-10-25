@@ -46,3 +46,7 @@ mybatis-plus:
   mapper-locations: classpath:/mapper/*Mapper.xml,classpath*:cn/ityihang/zblog/**/xml/*Mapper.xml
   #实体扫描，多个package用逗号或者分号分隔
   typeAliasesPackage: cn.ityihang.zblog.entity
+
+yihang:
+  shiro:
+    excludeUrls: /sys/login,/sys/randomImage
