@@ -2,13 +2,12 @@ package cn.ityihang.zblog.controller;
 
 import cn.hutool.core.util.RandomUtil;
 import cn.hutool.core.util.StrUtil;
-import cn.ityihang.zblog.common.RespResult;
 import cn.ityihang.zblog.common.RestResponse;
 import cn.ityihang.zblog.constant.CacheConstant;
 import cn.ityihang.zblog.constant.CommonConstant;
-import cn.ityihang.zblog.model.LoginUser;
-import cn.ityihang.zblog.model.SysLoginModel;
-import cn.ityihang.zblog.model.SysUser;
+import cn.ityihang.zblog.entity.LoginUser;
+import cn.ityihang.zblog.entity.SysLoginModel;
+import cn.ityihang.zblog.entity.SysUser;
 import cn.ityihang.zblog.service.ILoginUserService;
 import cn.ityihang.zblog.service.ISysLogService;
 import cn.ityihang.zblog.service.ISysUserService;
@@ -84,21 +83,20 @@ public class LoginController {
         }
 
         //2. 校验用户名或密码是否正确
-        String userpassword = PasswordUtil.encrypt(username, password, sysUser.getSalt());
+//        String userpassword = PasswordUtil.encrypt(username, password, sysUser.getSalt());
 
         String syspassword = sysUser.getPassword();
-        if (!syspassword.equals(userpassword)) {
+//        if (!syspassword.equals(userpassword)) {
+        if (!syspassword.equals(password)) {
             result.setMsg("用户名或密码错误");
             return result;
         }
 
         //用户登录信息
         userInfo(sysUser, result);
-        //update-begin--Author:wangshuai  Date:20200714  for：登录日志没有记录人员
         LoginUser loginUser = new LoginUser();
         BeanUtils.copyProperties(sysUser, loginUser);
         sysLogSerivce.addLog("用户名: " + username + ",登录成功！", CommonConstant.LOG_TYPE_1, null,loginUser);
-        //update-end--Author:wangshuai  Date:20200714  for：登录日志没有记录人员
         return result;
     }
 
