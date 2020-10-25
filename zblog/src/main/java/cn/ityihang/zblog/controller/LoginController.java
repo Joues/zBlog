@@ -47,7 +47,7 @@ public class LoginController {
 
     private static final String BASE_CHECK_CODES = "qwertyuiplkjhgfdsazxcvbnmQWERTYUPLKJHGFDSAZXCVBNM1234567890";
 
-    @ApiOperation(value = "登录接口")
+    @ApiOperation(value = "登录login")
     @PostMapping(value = "/login")
     public RestResponse Login(@RequestBody SysLoginModel user, HttpServletRequest request) {
 

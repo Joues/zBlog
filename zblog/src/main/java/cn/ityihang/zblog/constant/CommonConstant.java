@@ -271,4 +271,11 @@ public interface CommonConstant {
      */
     public static final String SIGN_PATCH_BIZ_STATUS_1 = "1";
     public static final String SIGN_PATCH_BIZ_STATUS_2 = "2";
+
+    public static final String LOGIN_STATES_FAILED = "Current user not found!";
+
+    /**
+     * 微服务读取配置文件属性 服务地址
+     */
+    public final static String CLOUD_SERVER_KEY = "spring.cloud.nacos.discovery.server-addr";
 }
