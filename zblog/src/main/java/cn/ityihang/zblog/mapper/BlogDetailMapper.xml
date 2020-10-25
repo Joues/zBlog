@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="cn.ityihang.zblog.mapper.BlogDetailMapper" >
-  <resultMap id="BaseResultMap" type="cn.ityihang.zblog.model.BlogDetail" >
+  <resultMap id="BaseResultMap" type="cn.ityihang.zblog.entity.BlogDetail" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="blog_id" property="blogId" jdbcType="INTEGER" />
   </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="cn.ityihang.zblog.model.BlogDetail" extends="BaseResultMap" >
+  <resultMap id="ResultMapWithBLOBs" type="cn.ityihang.zblog.entity.BlogDetail" extends="BaseResultMap" >
     <result column="content" property="content" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
@@ -26,13 +26,13 @@
     delete from blog_detail
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="cn.ityihang.zblog.model.BlogDetail" >
+  <insert id="insert" parameterType="cn.ityihang.zblog.entity.BlogDetail" >
     insert into blog_detail (id, blog_id, content
       )
     values (#{id,jdbcType=INTEGER}, #{blogId,jdbcType=INTEGER}, #{content,jdbcType=LONGVARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="cn.ityihang.zblog.model.BlogDetail" >
+  <insert id="insertSelective" parameterType="cn.ityihang.zblog.entity.BlogDetail" >
     insert into blog_detail
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -57,7 +57,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.ityihang.zblog.model.BlogDetail" >
+  <update id="updateByPrimaryKeySelective" parameterType="cn.ityihang.zblog.entity.BlogDetail" >
     update blog_detail
     <set >
       <if test="blogId != null" >
@@ -69,13 +69,13 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.ityihang.zblog.model.BlogDetail" >
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.ityihang.zblog.entity.BlogDetail" >
     update blog_detail
     set blog_id = #{blogId,jdbcType=INTEGER},
       content = #{content,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="cn.ityihang.zblog.model.BlogDetail" >
+  <update id="updateByPrimaryKey" parameterType="cn.ityihang.zblog.entity.BlogDetail" >
     update blog_detail
     set blog_id = #{blogId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}

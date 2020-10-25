@@ -1,4 +1,4 @@
-package cn.ityihang.zblog.utils;
+package cn.ityihang.zblog.constant;
 
 
 /**

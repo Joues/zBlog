@@ -1,6 +1,6 @@
 package cn.ityihang.zblog.mapper;
 
-import cn.ityihang.zblog.model.SysUserDetails;
+import cn.ityihang.zblog.entity.SysUserDetails;
 
 public interface SysUserDetailsMapper {
     int deleteByPrimaryKey(Integer id);

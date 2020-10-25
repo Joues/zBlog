@@ -1,6 +1,6 @@
 package cn.ityihang.zblog.mapper;
 
-import cn.ityihang.zblog.model.BlogPoll;
+import cn.ityihang.zblog.entity.BlogPoll;
 
 public interface BlogPollMapper {
     int deleteByPrimaryKey(Integer id);

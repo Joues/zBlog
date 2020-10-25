@@ -1,6 +1,6 @@
 package cn.ityihang.zblog.mapper;
 
-import cn.ityihang.zblog.model.Tag;
+import cn.ityihang.zblog.entity.Tag;
 
 public interface TagMapper {
     int deleteByPrimaryKey(Integer id);

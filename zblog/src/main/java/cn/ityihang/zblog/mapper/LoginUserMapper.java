@@ -1,6 +1,6 @@
 package cn.ityihang.zblog.mapper;
 
-import cn.ityihang.zblog.model.LoginUser;
+import cn.ityihang.zblog.entity.LoginUser;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;

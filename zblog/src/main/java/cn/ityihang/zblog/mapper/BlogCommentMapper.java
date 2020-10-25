@@ -1,7 +1,7 @@
 package cn.ityihang.zblog.mapper;
 
-import cn.ityihang.zblog.model.Blog;
-import cn.ityihang.zblog.model.BlogComment;
+import cn.ityihang.zblog.entity.Blog;
+import cn.ityihang.zblog.entity.BlogComment;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;

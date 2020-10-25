@@ -1,6 +1,6 @@
 package cn.ityihang.zblog.mapper;
 
-import cn.ityihang.zblog.model.Category;
+import cn.ityihang.zblog.entity.Category;
 
 public interface CategoryMapper {
     int deleteByPrimaryKey(Integer id);

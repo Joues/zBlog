@@ -1,4 +1,4 @@
-package cn.ityihang.zblog.model;
+package cn.ityihang.zblog.entity;
 
 import java.util.Date;
 

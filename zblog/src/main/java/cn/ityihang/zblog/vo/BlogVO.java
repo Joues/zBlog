@@ -1,6 +1,6 @@
 package cn.ityihang.zblog.vo;
 
-import cn.ityihang.zblog.model.Blog;
+import cn.ityihang.zblog.entity.Blog;
 import lombok.Data;
 
 import java.util.List;

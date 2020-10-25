@@ -1,8 +1,8 @@
 package cn.ityihang.zblog.service.impl;
 
 import cn.ityihang.zblog.mapper.BlogCommentMapper;
-import cn.ityihang.zblog.model.Blog;
-import cn.ityihang.zblog.model.BlogComment;
+import cn.ityihang.zblog.entity.Blog;
+import cn.ityihang.zblog.entity.BlogComment;
 import cn.ityihang.zblog.service.IBlogCommentService;
 import cn.ityihang.zblog.common.RespPageBean;
 import cn.ityihang.zblog.common.RespResult;

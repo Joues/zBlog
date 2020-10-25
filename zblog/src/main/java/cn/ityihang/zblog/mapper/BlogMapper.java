@@ -1,8 +1,7 @@
 package cn.ityihang.zblog.mapper;
 
-import cn.ityihang.zblog.model.Blog;
+import cn.ityihang.zblog.entity.Blog;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;

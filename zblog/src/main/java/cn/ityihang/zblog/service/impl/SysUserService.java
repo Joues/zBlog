@@ -2,9 +2,8 @@ package cn.ityihang.zblog.service.impl;
 
 import cn.ityihang.zblog.common.RestResponse;
 import cn.ityihang.zblog.constant.CommonConstant;
-import cn.ityihang.zblog.mapper.SysLogMapper;
 import cn.ityihang.zblog.mapper.SysUserMapper;
-import cn.ityihang.zblog.model.SysUser;
+import cn.ityihang.zblog.entity.SysUser;
 import cn.ityihang.zblog.service.ISysLogService;
 import cn.ityihang.zblog.service.ISysUserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="cn.ityihang.zblog.mapper.BlogCommentMapper" >
-  <resultMap id="BaseResultMap" type="cn.ityihang.zblog.model.BlogComment" >
+  <resultMap id="BaseResultMap" type="cn.ityihang.zblog.entity.BlogComment" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="blog_id" property="blogId" jdbcType="INTEGER" />
     <result column="time" property="time" jdbcType="TIMESTAMP" />
@@ -22,7 +22,7 @@
     delete from blog_comment
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="cn.ityihang.zblog.model.BlogComment" >
+  <insert id="insert" parameterType="cn.ityihang.zblog.entity.BlogComment" >
     insert into blog_comment (id, blog_id, time, 
       content, name, eMail
       )
@@ -30,7 +30,7 @@
       #{content,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{eMail,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="cn.ityihang.zblog.model.BlogComment" >
+  <insert id="insertSelective" parameterType="cn.ityihang.zblog.entity.BlogComment" >
     insert into blog_comment
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -73,7 +73,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.ityihang.zblog.model.BlogComment" >
+  <update id="updateByPrimaryKeySelective" parameterType="cn.ityihang.zblog.entity.BlogComment" >
     update blog_comment
     <set >
       <if test="blogId != null" >
@@ -94,7 +94,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="cn.ityihang.zblog.model.BlogComment" >
+  <update id="updateByPrimaryKey" parameterType="cn.ityihang.zblog.entity.BlogComment" >
     update blog_comment
     set blog_id = #{blogId,jdbcType=INTEGER},
       time = #{time,jdbcType=TIMESTAMP},
@@ -103,7 +103,7 @@
       eMail = #{eMail,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <select id="getBlogCommentList" resultType="cn.ityihang.zblog.model.Blog">
+  <select id="getBlogCommentList" resultType="cn.ityihang.zblog.entity.Blog">
     SELECT
     id, blog_id, TIME, content, NAME, eMail
     FROM

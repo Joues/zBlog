@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="cn.ityihang.zblog.mapper.CategoryMapper" >
-  <resultMap id="BaseResultMap" type="cn.ityihang.zblog.model.Category" >
+  <resultMap id="BaseResultMap" type="cn.ityihang.zblog.entity.Category" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="pid" property="pid" jdbcType="INTEGER" />
@@ -21,13 +21,13 @@
     delete from category
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="cn.ityihang.zblog.model.Category" >
+  <insert id="insert" parameterType="cn.ityihang.zblog.entity.Category" >
     insert into category (id, name, pid, 
       subscribe,idBlog)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{pid,jdbcType=INTEGER}, 
       #{subscribe,jdbcType=VARCHAR},#{idBlog,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="cn.ityihang.zblog.model.Category" >
+  <insert id="insertSelective" parameterType="cn.ityihang.zblog.entity.Category" >
     insert into category
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -64,7 +64,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.ityihang.zblog.model.Category" >
+  <update id="updateByPrimaryKeySelective" parameterType="cn.ityihang.zblog.entity.Category" >
     update category
     <set >
       <if test="name != null" >
@@ -82,7 +82,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="cn.ityihang.zblog.model.Category" >
+  <update id="updateByPrimaryKey" parameterType="cn.ityihang.zblog.entity.Category" >
     update category
     set name = #{name,jdbcType=VARCHAR},
       pid = #{pid,jdbcType=INTEGER},

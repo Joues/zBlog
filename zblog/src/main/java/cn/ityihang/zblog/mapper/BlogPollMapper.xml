@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="cn.ityihang.zblog.mapper.BlogPollMapper" >
-  <resultMap id="BaseResultMap" type="cn.ityihang.zblog.model.BlogPoll" >
+  <resultMap id="BaseResultMap" type="cn.ityihang.zblog.entity.BlogPoll" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="time" property="time" jdbcType="TIMESTAMP" />
     <result column="blog_id" property="blogId" jdbcType="INTEGER" />
@@ -20,13 +20,13 @@
     delete from blog_poll
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="cn.ityihang.zblog.model.BlogPoll" >
+  <insert id="insert" parameterType="cn.ityihang.zblog.entity.BlogPoll" >
     insert into blog_poll (id, time, blog_id, 
       create_name)
     values (#{id,jdbcType=INTEGER}, #{time,jdbcType=TIMESTAMP}, #{blogId,jdbcType=INTEGER}, 
       #{createName,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="cn.ityihang.zblog.model.BlogPoll" >
+  <insert id="insertSelective" parameterType="cn.ityihang.zblog.entity.BlogPoll" >
     insert into blog_poll
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -57,7 +57,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.ityihang.zblog.model.BlogPoll" >
+  <update id="updateByPrimaryKeySelective" parameterType="cn.ityihang.zblog.entity.BlogPoll" >
     update blog_poll
     <set >
       <if test="time != null" >
@@ -72,7 +72,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="cn.ityihang.zblog.model.BlogPoll" >
+  <update id="updateByPrimaryKey" parameterType="cn.ityihang.zblog.entity.BlogPoll" >
     update blog_poll
     set time = #{time,jdbcType=TIMESTAMP},
       blog_id = #{blogId,jdbcType=INTEGER},

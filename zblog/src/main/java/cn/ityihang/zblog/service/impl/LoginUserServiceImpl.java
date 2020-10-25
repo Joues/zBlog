@@ -1,7 +1,7 @@
 package cn.ityihang.zblog.service.impl;
 
 import cn.ityihang.zblog.mapper.LoginUserMapper;
-import cn.ityihang.zblog.model.LoginUser;
+import cn.ityihang.zblog.entity.LoginUser;
 import cn.ityihang.zblog.service.ILoginUserService;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;

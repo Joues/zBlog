@@ -2,7 +2,7 @@ package cn.ityihang.zblog.service.impl;
 
 import cn.ityihang.zblog.constant.CommonConstant;
 import cn.ityihang.zblog.mapper.BlogMapper;
-import cn.ityihang.zblog.model.Blog;
+import cn.ityihang.zblog.entity.Blog;
 import cn.ityihang.zblog.service.IBlogService;
 import cn.ityihang.zblog.common.RespPageBean;
 import cn.ityihang.zblog.common.RespResult;
