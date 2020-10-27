@@ -6,9 +6,12 @@ import cn.ityihang.zblog.mapper.SysUserMapper;
 import cn.ityihang.zblog.entity.SysUser;
 import cn.ityihang.zblog.service.ISysLogService;
 import cn.ityihang.zblog.service.ISysUserService;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Map;
 
 /**
  * @Author: yihangjou(周逸航)
@@ -26,7 +29,9 @@ public class SysUserService extends ServiceImpl<SysUserMapper, SysUser> implemen
 
     @Override
     public SysUser getUserByName(String username) {
-        return null;
+        LambdaQueryWrapper<SysUser> sysUserLambdaQueryWrapper = new LambdaQueryWrapper<>();
+        sysUserLambdaQueryWrapper.eq(SysUser::getUsername, username);
+        return sysUserMapper.selectOne(sysUserLambdaQueryWrapper);
     }
 
     /**
