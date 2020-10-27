@@ -29,7 +29,7 @@ public class BlogController {
     IBlogService blogService;
 
     @ApiOperation(value = "全部查询")
-    @GetMapping(value = "/all")
+    @GetMapping(value = "/getBlogs")
     public List<Blog> getAllBlogs() {
         return blogService.getAllBlogs();
     }
