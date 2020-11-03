@@ -74,7 +74,6 @@ public class PasswordUtil {
      *
      * @param salt
      *            盐值
-     * @param username
      * @param plaintext
      *            待加密的明文字符串
      * @param password
@@ -82,17 +81,16 @@ public class PasswordUtil {
      * @return 加密后的密文字符串
      * @throws Exception
      */
-//    public static String encrypt(String plaintext, String password, String salt) {
-    public static String encrypt(String username, String plaintext, String password) {
+    public static String encrypt(String plaintext, String password, String salt) {
 
         Key key = getPBEKey(password);
         byte[] encipheredData = null;
-//        PBEParameterSpec parameterSpec = new PBEParameterSpec(salt.getBytes(), ITERATIONCOUNT);
+        PBEParameterSpec parameterSpec = new PBEParameterSpec(salt.getBytes(), ITERATIONCOUNT);
         try {
             Cipher cipher = Cipher.getInstance(ALGORITHM);
 
-//            cipher.init(Cipher.ENCRYPT_MODE, key, parameterSpec);
-            //update-begin-author:sccott date:20180815 for:中文作为用户名时，加密的密码windows和linux会得到不同的结果 gitee/issues/IZUD7
+            cipher.init(Cipher.ENCRYPT_MODE, key, parameterSpec);
+//            update-begin-author:sccott date:20180815 for:中文作为用户名时，加密的密码windows和linux会得到不同的结果 gitee/issues/IZUD7
             encipheredData = cipher.doFinal(plaintext.getBytes("utf-8"));
             //update-end-author:sccott date:20180815 for:中文作为用户名时，加密的密码windows和linux会得到不同的结果 gitee/issues/IZUD7
         } catch (Exception e) {

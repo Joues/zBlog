@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @Author: yihangjou(周逸航)
@@ -42,8 +43,8 @@ public class BlogController {
 
     @ApiOperation(value = "分页查询")
     @GetMapping(value = "/list")
-    public RespPageBean getBlogList(@RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer pageSize, Blog blog) {
-        return blogService.getBlogList(page, pageSize, blog);
+    public RespPageBean getBlogList(@RequestParam(defaultValue = "1") Integer pageNumber, @RequestParam(defaultValue = "10") Integer pageSize, Blog blog) {
+        return blogService.getBlogList(pageNumber, pageSize, blog);
     }
 
     @ApiOperation(value = "根据id删除")

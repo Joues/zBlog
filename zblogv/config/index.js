@@ -9,25 +9,29 @@ module.exports = {
 
         // Paths
         assetsSubDirectory: 'static',
-        assetsPublicPath: './',
-        // proxyTable: {},
+        assetsPublicPath: '/',
+        proxyTable: {
+            '/': {
+                target: 'http://localhost:8086/api/zblog',
+                changeOrigin: true,
+                pathRewrite: {
+                    '^/': ''
+                }
+            },
+            '/dev/*': {
+                target: 'dev://127.0.0.1:8086',
+                dev: true
+            }
+        },
 
         // Various Dev Server settings
         host: 'localhost', // can be overwritten by process.env.HOST
-        port: 8082, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
+        port: 8085, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
         autoOpenBrowser: false,
         errorOverlay: true,
         notifyOnErrors: true,
         poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-
-        proxyTable: {
-            '/api': {
-                target: 'http://localhost:8083', //后端接口地址
-                changeOrigin: true, //是否允许跨越
-                pathRewrite: {
-                    '^/api': '/api', //重写,
-                }
-            }
-        },
+
 
         /**
          * Source Maps
@@ -41,7 +45,7 @@ module.exports = {
         // https://vue-loader.vuejs.org/en/options.html#cachebusting
         cacheBusting: true,
 
-        cssSourceMap: false
+        cssSourceMap: true
     },
 
     build: {
@@ -51,13 +55,13 @@ module.exports = {
         // Paths
         assetsRoot: path.resolve(__dirname, '../dist'),
         assetsSubDirectory: 'static',
-        assetsPublicPath: './',
+        assetsPublicPath: '/',
 
         /**
          * Source Maps
          */
 
-        productionSourceMap: false,
+        productionSourceMap: true,
         // https://webpack.js.org/configuration/devtool/#production
         devtool: '#source-map',
 

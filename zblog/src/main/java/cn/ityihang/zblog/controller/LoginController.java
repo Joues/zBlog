@@ -83,11 +83,10 @@ public class LoginController {
         }
 
         //2. 校验用户名或密码是否正确
-//        String userpassword = PasswordUtil.encrypt(username, password, sysUser.getSalt());
+        String userpassword = PasswordUtil.encrypt(username, password, sysUser.getSalt());
 
         String syspassword = sysUser.getPassword();
-//        if (!syspassword.equals(userpassword)) {
-        if (!syspassword.equals(password)) {
+        if (!syspassword.equals(userpassword)) {
             result.setMsg("用户名或密码错误");
             return result;
         }

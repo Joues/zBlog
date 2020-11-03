@@ -1,19 +1,31 @@
 package cn.ityihang.zblog.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import java.io.Serializable;
+import java.util.Date;
+
 @Data
-public class SysUser {
+public class SysUser implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+    @TableId(type = IdType.AUTO)
     private Integer id;
 
     private String username;
 
-    private String password;
+    private java.lang.String password;
 
     @ApiModelProperty("数据软删除标识")
     private Integer delFlag;
+
+    private Date createTime;
 
     private Integer status;
 
