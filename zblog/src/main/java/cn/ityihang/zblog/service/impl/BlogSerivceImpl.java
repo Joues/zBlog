@@ -1,5 +1,6 @@
 package cn.ityihang.zblog.service.impl;
 
+import cn.ityihang.zblog.common.RestResponse;
 import cn.ityihang.zblog.constant.CommonConstant;
 import cn.ityihang.zblog.mapper.BlogMapper;
 import cn.ityihang.zblog.entity.Blog;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Author: yihangjou(周逸航)
@@ -59,6 +61,11 @@ public class BlogSerivceImpl extends ServiceImpl<BlogMapper, Blog> implements IB
     }
 
     @Override
+    public List<Map<String, Object>> getBlogNews(Integer sizeNumber) {
+        return blogMapper.getBlogNews(sizeNumber);
+    }
+
+    @Override
     public RespResult deleteBlogById(Integer id) {
         int i = blogMapper.deleteByPrimaryKey(id);
         if (i == 1) {
@@ -68,15 +75,15 @@ public class BlogSerivceImpl extends ServiceImpl<BlogMapper, Blog> implements IB
     }
 
     @Override
-    public RespPageBean getBlogList(Integer page, Integer pageSize, Blog blog) {
+    public RestResponse getBlogList(Integer page, Integer pageSize, Blog blog) {
         if (page != null && pageSize != null) {
             page = (page - 1) * pageSize;
         }
         List<Blog> data = blogMapper.getBlogList(page, pageSize, blog);
         Long total = blogMapper.getTotal(blog);
-        RespPageBean bean = new RespPageBean();
+        RestResponse bean = new RestResponse();
         bean.setData(data);
-        bean.setTotal(total);
+//        bean.set(total);
         return bean;
     }
 

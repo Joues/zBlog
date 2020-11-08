@@ -22,32 +22,32 @@
           return {}
         }
       },
-      // query: {
-      //   type: Object,
-      //   default() {
-      //     return {}
-      //   }
-      // }
+      query: {
+        type: Object,
+        default() {
+          return {}
+        }
+      }
     },
     watch: {
-      // 'query': {
-      //   handler() {
-      //     this.noData = false
-      //     this.articles = []
-      //     this.innerPage.pageNumber = 1
-      //     this.getArticles()
-      //   },
-      //   deep: true
-      // },
-      // 'page': {
-      //   handler() {
-      //     this.noData = false
-      //     this.articles = []
-      //     this.innerPage = this.page
-      //     this.getArticles()
-      //   },
-      //   deep: true
-      // }
+      'query': {
+        handler() {
+          this.noData = false
+          this.articles = []
+          this.innerPage.pageNumber = 1
+          this.getArticles()
+        },
+        deep: true
+      },
+      'page': {
+        handler() {
+          this.noData = false
+          this.articles = []
+          this.innerPage = this.page
+          this.getArticles()
+        },
+        deep: true
+      }
     },
     created() {
       this.getArticles()
@@ -56,12 +56,12 @@
       return {
         loading: false,
         noData: false,
-        // innerPage: {
-          // pageSize: 5,
-          // pageNumber: 1,
-          // name: 'a.createDate',
-          // sort: 'desc'
-        // },
+        innerPage: {
+          pageSize: 5,
+          pageNumber: 1,
+          name: 'a.createDate',
+          sort: 'desc'
+        },
         articles: []
       }
     },
@@ -76,22 +76,12 @@
         let that = this
         that.loading = true
 
-        getArticles().then(res => {
+        getArticles(that.query, that.innerPage).then(data => {
 
-          let newArticles = res.data.data
-
+          let newArticles = data.data
           if (newArticles && newArticles.length > 0) {
-            // that.innerPage.pageNumber += 1
-            console.log("3333333333")
-            console.log("444444444444")
-            // console.log(that.innerPage.pageNumber)
+            that.innerPage.pageNumber += 1
             that.articles = that.articles.concat(newArticles)
-
-
-            console.log("555555555555555")
-            
-            console.log("666666666666"+that.articles.concat(newArticles))
-            console.log(that.articles)
           } else {
             that.noData = true
           }

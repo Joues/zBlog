@@ -1,9 +1,13 @@
 package cn.ityihang.zblog.controller;
 
+import cn.ityihang.zblog.common.RestResponse;
+import cn.ityihang.zblog.constant.CommonConstant;
 import cn.ityihang.zblog.entity.Blog;
 import cn.ityihang.zblog.service.IBlogService;
 import cn.ityihang.zblog.common.RespPageBean;
 import cn.ityihang.zblog.common.RespResult;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import io.lettuce.core.Limit;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -12,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -41,10 +46,45 @@ public class BlogController {
         return blogService.getBlogById(id);
     }
 
+    /**
+     * 博客分页查询
+     * @param pageNumber
+     * @param pageSize
+     * @param blog
+     * @return
+     */
     @ApiOperation(value = "分页查询")
     @GetMapping(value = "/list")
-    public RespPageBean getBlogList(@RequestParam(defaultValue = "1") Integer pageNumber, @RequestParam(defaultValue = "10") Integer pageSize, Blog blog) {
+    public RestResponse getBlogList(@RequestParam(defaultValue = "1") Integer pageNumber,
+                                    @RequestParam(defaultValue = "10") Integer pageSize, Blog blog) {
         return blogService.getBlogList(pageNumber, pageSize, blog);
+    }
+
+
+    @ApiOperation(value = "最新博客")
+    @GetMapping(value = "/new")
+    public RestResponse getBlogNews(@RequestParam(defaultValue = "5") Integer sizeNumber) {
+        try {
+            List<Map<String, Object>> blogNews = blogService.getBlogNews(sizeNumber);
+            return RestResponse.ok(blogNews, CommonConstant.TODO_SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.warn("异常信息：" + e.getMessage());
+            return RestResponse.failed(CommonConstant.TODO_FAILED);
+        }
+    }
+
+    @ApiOperation(value = "最新博客")
+    @GetMapping(value = "/hot")
+    public RestResponse getBlogHots(@RequestParam(defaultValue = "5") Integer sizeNumber) {
+        try {
+            List<Map<String, Object>> blogNews = blogService.getBlogNews(sizeNumber);
+            return RestResponse.ok(blogNews, CommonConstant.TODO_SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.warn("异常信息：" + e.getMessage());
+            return RestResponse.failed(CommonConstant.TODO_FAILED);
+        }
     }
 
     @ApiOperation(value = "根据id删除")

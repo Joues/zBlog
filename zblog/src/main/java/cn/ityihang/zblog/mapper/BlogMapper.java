@@ -1,5 +1,6 @@
 package cn.ityihang.zblog.mapper;
 
+import cn.ityihang.zblog.common.RestResponse;
 import cn.ityihang.zblog.entity.Blog;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Param;
@@ -7,6 +8,7 @@ import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public interface BlogMapper extends BaseMapper<Blog> {
@@ -30,4 +32,11 @@ public interface BlogMapper extends BaseMapper<Blog> {
     Long getTotal(Blog blog);
 
     int deleteBlogBatchs(@Param("ids") List<String> asList);
+
+
+    @Select("select id,title from blog s\n" +
+            "ORDER BY ABS(NOW() - s.created_time) ASC\n" +
+            "limit #{sizeNumber};")
+    List<Map<String, Object>> getBlogNews(Integer sizeNumber);
+
 }

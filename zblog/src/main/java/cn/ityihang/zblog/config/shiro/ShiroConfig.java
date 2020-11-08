@@ -78,6 +78,8 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/blog/getBlogs", "anon"); //获取博客信息接口排除
         filterChainDefinitionMap.put("/blog/list", "anon"); //获取博客分页信息接口排除
         filterChainDefinitionMap.put("/blog/id", "anon"); //根据id获取博客信息接口排除
+        filterChainDefinitionMap.put("/blog/new", "anon"); //获取最新博客信息接口排除
+        filterChainDefinitionMap.put("/blog/hot", "anon"); //获取最新博客信息接口排除
 
         filterChainDefinitionMap.put("/user/register", "anon"); //添加用戶接口
         filterChainDefinitionMap.put("/user/userInfo", "anon"); //获取用户信息接口

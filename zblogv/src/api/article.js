@@ -1,44 +1,41 @@
 import request from '@/request'
 
 
-export function getArticles() {
+export function getArticles(query, page) {
     return request({
         url: '/blog/list',
         method: 'get',
-        // params: {
-        // pageNumber: page.pageNumber,
-        // pageSize: page.pageSize,
-        // name: page.name,
-        // sort: page.sort,
-        // year: query.year,
-        // month: query.month,
-        // tagId: query.tagId,
-        // categoryId: query.categoryId
-        // }
+        params: {
+            pageNumber: page.pageNumber,
+            pageSize: page.pageSize,
+            name: page.name,
+            sort: page.sort,
+            year: query.year,
+            month: query.month,
+            tagId: query.tagId,
+            categoryId: query.categoryId
+        }
     })
 }
 
 export function getHotArtices() {
     return request({
-        url: '/articles/hot',
+        url: '/blog/hot',
         method: 'get'
     })
 }
 
 export function getNewArtices() {
     return request({
-        url: '/articles/new',
+        url: '/blog/new',
         method: 'get'
     })
 }
 
 export function viewArticle(id) {
     return request({
-        url: `/blog/id`,
-        method: 'get',
-        params: {
-            id: id,
-        }
+        url: `/articles/view/${id}`,
+        method: 'get'
     })
 }
 
