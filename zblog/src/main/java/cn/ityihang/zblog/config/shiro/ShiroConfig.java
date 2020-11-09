@@ -2,7 +2,7 @@ package cn.ityihang.zblog.config.shiro;
 
 import cn.hutool.core.util.StrUtil;
 import cn.ityihang.zblog.config.JwtFilter;
-import cn.ityihang.zblog.constant.CommonConstant;
+import cn.ityihang.zblog.common.constant.CommonConstant;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.mgt.DefaultSessionStorageEvaluator;
 import org.apache.shiro.mgt.DefaultSubjectDAO;
@@ -80,6 +80,7 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/blog/id", "anon"); //根据id获取博客信息接口排除
         filterChainDefinitionMap.put("/blog/new", "anon"); //获取最新博客信息接口排除
         filterChainDefinitionMap.put("/blog/hot", "anon"); //获取最新博客信息接口排除
+        filterChainDefinitionMap.put("/zblog/tag/hot", "anon"); //获取最熱博客信息接口排除
 
         filterChainDefinitionMap.put("/user/register", "anon"); //添加用戶接口
         filterChainDefinitionMap.put("/user/userInfo", "anon"); //获取用户信息接口

@@ -1,17 +1,17 @@
 package cn.ityihang.zblog.mapper;
 
+
 import cn.ityihang.zblog.entity.Tag;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
-public interface TagMapper {
-    int deleteByPrimaryKey(Integer id);
+/**
+ * <p>
+ *  Mapper 接口
+ * </p>
+ *
+ * @author jobob
+ * @since 2020-11-09
+ */
+public interface TagMapper extends BaseMapper<Tag> {
 
-    int insert(Tag record);
-
-    int insertSelective(Tag record);
-
-    Tag selectByPrimaryKey(Integer id);
-
-    int updateByPrimaryKeySelective(Tag record);
-
-    int updateByPrimaryKey(Tag record);
 }

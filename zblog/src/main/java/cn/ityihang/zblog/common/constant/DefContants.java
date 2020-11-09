@@ -1,4 +1,4 @@
-package cn.ityihang.zblog.constant;
+package cn.ityihang.zblog.common.constant;
 
 /**
  * @Author: yihangjou(周逸航)

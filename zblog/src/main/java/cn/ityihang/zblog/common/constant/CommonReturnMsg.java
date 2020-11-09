@@ -1,4 +1,4 @@
-package cn.ityihang.zblog.constant;
+package cn.ityihang.zblog.common.constant;
 
 
 public enum CommonReturnMsg {

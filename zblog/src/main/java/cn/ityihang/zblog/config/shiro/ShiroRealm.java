@@ -2,7 +2,7 @@ package cn.ityihang.zblog.config.shiro;
 
 import cn.hutool.core.util.StrUtil;
 import cn.ityihang.zblog.config.JwtToken;
-import cn.ityihang.zblog.constant.CommonConstant;
+import cn.ityihang.zblog.common.constant.CommonConstant;
 import cn.ityihang.zblog.entity.LoginUser;
 import cn.ityihang.zblog.entity.SysUser;
 import cn.ityihang.zblog.service.ISysUserService;
@@ -22,7 +22,6 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
-import java.util.Set;
 
 import static cn.ityihang.zblog.service.impl.SysLogServiceImpl.getIpAddr;
 

@@ -1,7 +1,7 @@
 package cn.ityihang.zblog.service.impl;
 
 import cn.ityihang.zblog.common.RestResponse;
-import cn.ityihang.zblog.constant.CommonConstant;
+import cn.ityihang.zblog.common.constant.CommonConstant;
 import cn.ityihang.zblog.mapper.SysUserMapper;
 import cn.ityihang.zblog.entity.SysUser;
 import cn.ityihang.zblog.service.ISysLogService;
@@ -10,8 +10,6 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Map;
 
 /**
  * @Author: yihangjou(周逸航)

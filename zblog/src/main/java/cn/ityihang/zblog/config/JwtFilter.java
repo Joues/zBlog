@@ -1,6 +1,6 @@
 package cn.ityihang.zblog.config;
 
-import cn.ityihang.zblog.constant.CommonConstant;
+import cn.ityihang.zblog.common.constant.CommonConstant;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.web.filter.authc.BasicHttpAuthenticationFilter;

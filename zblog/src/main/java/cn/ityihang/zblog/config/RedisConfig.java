@@ -1,6 +1,6 @@
 package cn.ityihang.zblog.config;
 
-import cn.ityihang.zblog.constant.CacheConstant;
+import cn.ityihang.zblog.common.constant.CacheConstant;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;

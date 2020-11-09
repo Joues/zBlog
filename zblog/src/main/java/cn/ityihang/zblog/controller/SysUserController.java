@@ -1,14 +1,11 @@
 package cn.ityihang.zblog.controller;
 
 import cn.ityihang.zblog.common.RestResponse;
-import cn.ityihang.zblog.common.ResultCode;
-import cn.ityihang.zblog.constant.CommonConstant;
+import cn.ityihang.zblog.common.constant.CommonConstant;
 import cn.ityihang.zblog.entity.SysUser;
-import cn.ityihang.zblog.entity.SysUserDetails;
 import cn.ityihang.zblog.service.ISysUserDetailsService;
 import cn.ityihang.zblog.service.ISysUserService;
 import cn.ityihang.zblog.utils.PasswordUtil;
-import cn.ityihang.zblog.utils.UserUtils;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import io.swagger.annotations.Api;

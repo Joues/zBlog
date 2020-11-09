@@ -1,5 +1,5 @@
 <template>
-  <div v-title data-title="ForFun Find Yourself">
+  <div v-title data-title="zBlogv For You">
     <el-container>
 
       <el-main class="me-articles">
@@ -80,7 +80,7 @@
       getHotTags() {
         let that = this
         getHotTags().then(data => {
-          that.hotTags = data.data
+          that.hotTags = data.data.records
         }).catch(error => {
           if (error !== 'error') {
             that.$message({type: 'error', message: '最热标签加载失败!', showClose: true})

@@ -1,43 +1,42 @@
 package cn.ityihang.zblog.entity;
 
-public class Tag {
-    private Integer id;
+import java.io.Serializable;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
+/**
+ * <p>
+ * 
+ * </p>
+ *
+ * @author jobob
+ * @since 2020-11-09
+ */
+@Data
+@EqualsAndHashCode(callSuper = false)
+public class Tag implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+    /**
+     * 标签名
+     */
     private String name;
 
+    /**
+     * 外键（博客id）
+     */
     private Integer blogId;
 
+    /**
+     * 描述
+     */
     private String subscribe;
 
-    public Integer getId() {
-        return id;
-    }
+    /**
+     * 图标
+     */
+    private String avatar;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
-    }
-
-    public Integer getBlogId() {
-        return blogId;
-    }
-
-    public void setBlogId(Integer blogId) {
-        this.blogId = blogId;
-    }
-
-    public String getSubscribe() {
-        return subscribe;
-    }
-
-    public void setSubscribe(String subscribe) {
-        this.subscribe = subscribe == null ? null : subscribe.trim();
-    }
 }
