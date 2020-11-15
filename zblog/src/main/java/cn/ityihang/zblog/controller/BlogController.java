@@ -100,11 +100,11 @@ public class BlogController {
         }
     }
 
-    @ApiOperation(value = "最新博客")
+    @ApiOperation(value = "最热博客")
     @GetMapping(value = "/hot")
     public RestResponse getBlogHots(@RequestParam(defaultValue = "5") Integer sizeNumber) {
         try {
-            List<Map<String, Object>> blogNews = blogService.getBlogNews(sizeNumber);
+            List<Map<String, Object>> blogNews = blogService.getBlogHots(sizeNumber);
             return RestResponse.ok(blogNews, CommonConstant.TODO_SUCCESS);
         } catch (Exception e) {
             e.printStackTrace();

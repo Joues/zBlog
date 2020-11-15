@@ -72,14 +72,14 @@ public class TagController {
         return RestResponse.ok("批量删除成功！");
     }
 
-    @ApiOperation(value = "添加博客", notes = "添加博客")
+    @ApiOperation(value = "添加标签", notes = "添加标签")
     @PostMapping(value = "/add")
     public RestResponse<?> addBlog(@RequestBody Tag tag) {
         tagService.save(tag);
         return RestResponse.ok("添加成功！");
     }
 
-    @ApiOperation(value = "修改博客信息", notes = "修改博客信息")
+    @ApiOperation(value = "修改标签信息", notes = "修改标签信息")
     @PutMapping(value = "/edit")
     public RestResponse<?> updateBlog(@RequestBody Tag tag) {
         tagService.updateById(tag);

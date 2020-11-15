@@ -39,7 +39,16 @@ public class BlogSerivceImpl extends ServiceImpl<BlogMapper, Blog> implements IB
         return blogMapper.getBlogNews(sizeNumber);
     }
 
-
+    /**
+     * 最热博客
+     *
+     * @param sizeNumber
+     * @return
+     */
+    @Override
+    public List<Map<String, Object>> getBlogHots(Integer sizeNumber) {
+        return blogMapper.getBlogHts(sizeNumber);
+    }
 
 
 }

@@ -71,14 +71,14 @@ public class BlogPollController {
         return RestResponse.ok("批量删除成功！");
     }
 
-    @ApiOperation(value = "添加博客", notes = "添加博客")
+    @ApiOperation(value = "添加点赞", notes = "添加点赞")
     @PostMapping(value = "/add")
     public RestResponse<?> addBlog(@RequestBody BlogPoll blogPoll) {
         blogPollService.save(blogPoll);
         return RestResponse.ok("添加成功！");
     }
 
-    @ApiOperation(value = "修改博客信息", notes = "修改博客信息")
+    @ApiOperation(value = "修改点赞信息", notes = "修改点赞信息")
     @PutMapping(value = "/edit")
     public RestResponse<?> updateBlog(@RequestBody BlogPoll blogPoll) {
         blogPollService.updateById(blogPoll);

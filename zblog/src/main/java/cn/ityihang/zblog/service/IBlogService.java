@@ -17,5 +17,18 @@ import java.util.Map;
  */
 public interface IBlogService extends IService<Blog> {
 
+    /**
+     * 最新博客
+     * @param sizeNumber
+     * @return
+     * @throws ParseException
+     */
     List<Map<String, Object>> getBlogNews(Integer sizeNumber) throws ParseException;
+
+    /**
+     * 最热博客
+     * @param sizeNumber
+     * @return
+     */
+    List<Map<String, Object>> getBlogHots(Integer sizeNumber);
 }
