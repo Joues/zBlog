@@ -1,5 +1,7 @@
-package cn.ityihang.zblog.common;
+package cn.ityihang.zblog.common.result;
 
+import cn.ityihang.zblog.common.IResultCode;
+import cn.ityihang.zblog.common.ResultCode;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;

@@ -1,4 +1,4 @@
-package cn.ityihang.zblog.common;
+package cn.ityihang.zblog.common.result;
 
 import java.util.List;
 

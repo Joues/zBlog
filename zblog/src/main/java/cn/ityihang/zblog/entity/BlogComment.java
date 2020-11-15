@@ -1,68 +1,52 @@
 package cn.ityihang.zblog.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
+import java.time.LocalDateTime;
+import com.baomidou.mybatisplus.annotation.TableField;
+import java.io.Serializable;
 import java.util.Date;
 
-public class BlogComment {
-    private Integer id;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
+/**
+ * <p>
+ * 
+ * </p>
+ *
+ * @author jobob
+ * @since 2020-11-11
+ */
+@Data
+@EqualsAndHashCode(callSuper = false)
+public class BlogComment implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+    /**
+     * 博客id（外键）
+     */
     private Integer blogId;
 
-    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss", timezone = "Asia/Shanghai")
+    /**
+     * 评论时间
+     */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Shanghai")
     private Date time;
 
+    /**
+     * 评论内容
+     */
     private String content;
 
+    /**
+     * 评论人
+     */
     private String name;
 
+    /**
+     * 电子邮箱
+     */
+    @TableField("eMail")
     private String eMail;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Integer getBlogId() {
-        return blogId;
-    }
-
-    public void setBlogId(Integer blogId) {
-        this.blogId = blogId;
-    }
-
-    public Date getTime() {
-        return time;
-    }
-
-    public void setTime(Date time) {
-        this.time = time;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content == null ? null : content.trim();
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
-    }
-
-    public String geteMail() {
-        return eMail;
-    }
-
-    public void seteMail(String eMail) {
-        this.eMail = eMail == null ? null : eMail.trim();
-    }
 }

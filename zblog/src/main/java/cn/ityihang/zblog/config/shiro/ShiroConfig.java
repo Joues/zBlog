@@ -75,12 +75,49 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/sys/randomImage/**", "anon"); //登录验证码接口排除
         filterChainDefinitionMap.put("/sys/checkCaptcha", "anon"); //登录验证码接口排除
 
-        filterChainDefinitionMap.put("/blog/getBlogs", "anon"); //获取博客信息接口排除
-        filterChainDefinitionMap.put("/blog/list", "anon"); //获取博客分页信息接口排除
-        filterChainDefinitionMap.put("/blog/id", "anon"); //根据id获取博客信息接口排除
-        filterChainDefinitionMap.put("/blog/new", "anon"); //获取最新博客信息接口排除
-        filterChainDefinitionMap.put("/blog/hot", "anon"); //获取最新博客信息接口排除
-        filterChainDefinitionMap.put("/zblog/tag/hot", "anon"); //获取最熱博客信息接口排除
+        filterChainDefinitionMap.put("/list", "anon");
+        filterChainDefinitionMap.put("/id", "anon");
+        filterChainDefinitionMap.put("/delete", "anon");
+        filterChainDefinitionMap.put("/add", "anon");
+        filterChainDefinitionMap.put("/edit", "anon");
+        filterChainDefinitionMap.put("/deleteBatch", "anon");
+        filterChainDefinitionMap.put("/new", "anon");
+        filterChainDefinitionMap.put("/hot", "anon");
+
+        filterChainDefinitionMap.put("/blogDetail/list", "anon");
+        filterChainDefinitionMap.put("/blogDetail/id", "anon");
+        filterChainDefinitionMap.put("/blogDetail/delete", "anon");
+        filterChainDefinitionMap.put("/blogDetail/add", "anon");
+        filterChainDefinitionMap.put("/blogDetail/edit", "anon");
+        filterChainDefinitionMap.put("/blogDetail/deleteBatch", "anon");
+
+        filterChainDefinitionMap.put("/blogPoll/list", "anon");
+        filterChainDefinitionMap.put("/blogPoll/id", "anon");
+        filterChainDefinitionMap.put("/blogPoll/delete", "anon");
+        filterChainDefinitionMap.put("/blogPoll/add", "anon");
+        filterChainDefinitionMap.put("/blogPoll/edit", "anon");
+        filterChainDefinitionMap.put("/blogPoll/deleteBatch", "anon");
+
+        filterChainDefinitionMap.put("/category/list", "anon");
+        filterChainDefinitionMap.put("/category/id", "anon");
+        filterChainDefinitionMap.put("/category/delete", "anon");
+        filterChainDefinitionMap.put("/category/add", "anon");
+        filterChainDefinitionMap.put("/category/edit", "anon");
+        filterChainDefinitionMap.put("/category/deleteBatch", "anon");
+
+        filterChainDefinitionMap.put("/tag/list", "anon");
+        filterChainDefinitionMap.put("/tag/id", "anon");
+        filterChainDefinitionMap.put("/tag/delete", "anon");
+        filterChainDefinitionMap.put("/tag/add", "anon");
+        filterChainDefinitionMap.put("/tag/edit", "anon");
+        filterChainDefinitionMap.put("/tag/deleteBatch", "anon");
+
+        filterChainDefinitionMap.put("/blogComment/list", "anon");
+        filterChainDefinitionMap.put("/blogComment/id", "anon");
+        filterChainDefinitionMap.put("/blogComment/delete", "anon");
+        filterChainDefinitionMap.put("/blogComment/add", "anon");
+        filterChainDefinitionMap.put("/blogComment/edit", "anon");
+        filterChainDefinitionMap.put("/blogComment/deleteBatch", "anon");
 
         filterChainDefinitionMap.put("/user/register", "anon"); //添加用戶接口
         filterChainDefinitionMap.put("/user/userInfo", "anon"); //获取用户信息接口

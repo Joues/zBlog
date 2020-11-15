@@ -1,6 +1,6 @@
 package cn.ityihang.zblog.service;
 
-import cn.ityihang.zblog.entity.BlogComment;
+import cn.ityihang.zblog.entity.BlogDetail;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @author jobob
  * @since 2020-11-11
  */
-public interface IBlogCommentService extends IService<BlogComment> {
+public interface IBlogDetailService extends IService<BlogDetail> {
 
 }

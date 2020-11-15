@@ -50,3 +50,8 @@ mybatis-plus:
 yihang:
   shiro:
     excludeUrls: /sys/login,/sys/randomImage
+
+# Logger Config
+logging:
+  level:
+    cn.ityihang.zblog.mapper: debug

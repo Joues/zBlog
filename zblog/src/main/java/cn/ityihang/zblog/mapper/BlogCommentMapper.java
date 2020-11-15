@@ -1,26 +1,16 @@
 package cn.ityihang.zblog.mapper;
 
-import cn.ityihang.zblog.entity.Blog;
 import cn.ityihang.zblog.entity.BlogComment;
-import org.apache.ibatis.annotations.Select;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
-import java.util.List;
+/**
+ * <p>
+ *  Mapper 接口
+ * </p>
+ *
+ * @author jobob
+ * @since 2020-11-11
+ */
+public interface BlogCommentMapper extends BaseMapper<BlogComment> {
 
-public interface BlogCommentMapper {
-    int deleteByPrimaryKey(Integer id);
-
-    int insert(BlogComment record);
-
-    int insertSelective(BlogComment record);
-
-    BlogComment selectByPrimaryKey(Integer id);
-
-    int updateByPrimaryKeySelective(BlogComment record);
-
-    int updateByPrimaryKey(BlogComment record);
-
-    @Select("select count(id) from blog_comment")
-    Long getTotal(Blog blog);
-
-    List<Blog> getBlogCommentList(Integer page, Integer pageSize, Blog blog);
 }

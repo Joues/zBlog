@@ -1,17 +1,16 @@
 package cn.ityihang.zblog.mapper;
 
 import cn.ityihang.zblog.entity.Category;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
-public interface CategoryMapper {
-    int deleteByPrimaryKey(Integer id);
+/**
+ * <p>
+ *  Mapper 接口
+ * </p>
+ *
+ * @author jobob
+ * @since 2020-11-11
+ */
+public interface CategoryMapper extends BaseMapper<Category> {
 
-    int insert(Category record);
-
-    int insertSelective(Category record);
-
-    Category selectByPrimaryKey(Integer id);
-
-    int updateByPrimaryKeySelective(Category record);
-
-    int updateByPrimaryKey(Category record);
 }

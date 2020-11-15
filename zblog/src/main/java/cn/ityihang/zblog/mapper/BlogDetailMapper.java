@@ -1,19 +1,16 @@
 package cn.ityihang.zblog.mapper;
 
 import cn.ityihang.zblog.entity.BlogDetail;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
-public interface BlogDetailMapper {
-    int deleteByPrimaryKey(Integer id);
+/**
+ * <p>
+ *  Mapper 接口
+ * </p>
+ *
+ * @author jobob
+ * @since 2020-11-11
+ */
+public interface BlogDetailMapper extends BaseMapper<BlogDetail> {
 
-    int insert(BlogDetail record);
-
-    int insertSelective(BlogDetail record);
-
-    BlogDetail selectByPrimaryKey(Integer id);
-
-    int updateByPrimaryKeySelective(BlogDetail record);
-
-    int updateByPrimaryKeyWithBLOBs(BlogDetail record);
-
-    int updateByPrimaryKey(BlogDetail record);
 }

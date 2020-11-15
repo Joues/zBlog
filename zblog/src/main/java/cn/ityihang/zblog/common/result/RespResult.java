@@ -1,4 +1,4 @@
-package cn.ityihang.zblog.common;
+package cn.ityihang.zblog.common.result;
 
 
 public class RespResult {

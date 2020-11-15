@@ -1,53 +1,42 @@
 package cn.ityihang.zblog.entity;
 
-public class Category {
-    private Integer id;
+import java.io.Serializable;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
+/**
+ * <p>
+ * 
+ * </p>
+ *
+ * @author jobob
+ * @since 2020-11-11
+ */
+@Data
+@EqualsAndHashCode(callSuper = false)
+public class Category implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+    /**
+     * 分类名
+     */
     private String name;
 
+    /**
+     * 父分类id
+     */
     private Integer pid;
 
+    /**
+     * 描述
+     */
     private String subscribe;
 
+    /**
+     * 博客表外键
+     */
     private Integer idBlog;
 
-    public Integer getIdBlog() {
-        return idBlog;
-    }
 
-    public void setIdBlog(Integer idBlog) {
-        this.idBlog = idBlog;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
-    }
-
-    public Integer getPid() {
-        return pid;
-    }
-
-    public void setPid(Integer pid) {
-        this.pid = pid;
-    }
-
-    public String getSubscribe() {
-        return subscribe;
-    }
-
-    public void setSubscribe(String subscribe) {
-        this.subscribe = subscribe == null ? null : subscribe.trim();
-    }
 }

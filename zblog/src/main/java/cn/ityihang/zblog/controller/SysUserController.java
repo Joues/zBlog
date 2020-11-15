@@ -1,6 +1,6 @@
 package cn.ityihang.zblog.controller;
 
-import cn.ityihang.zblog.common.RestResponse;
+import cn.ityihang.zblog.common.result.RestResponse;
 import cn.ityihang.zblog.common.constant.CommonConstant;
 import cn.ityihang.zblog.entity.SysUser;
 import cn.ityihang.zblog.service.ISysUserDetailsService;
@@ -24,10 +24,10 @@ import java.util.Random;
  * @Description:
  * @Version: 1.0
  */
-@Api(tags = "用户接口")
+@Api(tags = "用户表")
 @Slf4j
 @RestController
-@RequestMapping(value = "/user")
+@RequestMapping(value = "/")
 public class SysUserController {
 
     @Autowired

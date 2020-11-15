@@ -1,17 +1,17 @@
 package cn.ityihang.zblog.mapper;
 
+
 import cn.ityihang.zblog.entity.BlogPoll;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
-public interface BlogPollMapper {
-    int deleteByPrimaryKey(Integer id);
+/**
+ * <p>
+ *  Mapper 接口
+ * </p>
+ *
+ * @author jobob
+ * @since 2020-11-11
+ */
+public interface BlogPollMapper extends BaseMapper<BlogPoll> {
 
-    int insert(BlogPoll record);
-
-    int insertSelective(BlogPoll record);
-
-    BlogPoll selectByPrimaryKey(Integer id);
-
-    int updateByPrimaryKeySelective(BlogPoll record);
-
-    int updateByPrimaryKey(BlogPoll record);
 }

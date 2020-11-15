@@ -34,8 +34,11 @@ export function getNewArtices() {
 
 export function viewArticle(id) {
     return request({
-        url: `/articles/view/${id}`,
-        method: 'get'
+        url: `/blog/id`,
+        method: 'get',
+        params: {
+            id: id,
+        }
     })
 }
 

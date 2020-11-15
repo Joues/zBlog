@@ -2,7 +2,7 @@ package cn.ityihang.zblog.controller;
 
 import cn.hutool.core.util.RandomUtil;
 import cn.hutool.core.util.StrUtil;
-import cn.ityihang.zblog.common.RestResponse;
+import cn.ityihang.zblog.common.result.RestResponse;
 import cn.ityihang.zblog.common.constant.CacheConstant;
 import cn.ityihang.zblog.common.constant.CommonConstant;
 import cn.ityihang.zblog.entity.LoginUser;
@@ -11,7 +11,6 @@ import cn.ityihang.zblog.entity.SysUser;
 import cn.ityihang.zblog.service.ILoginUserService;
 import cn.ityihang.zblog.service.ISysLogService;
 import cn.ityihang.zblog.service.ISysUserService;
-import cn.ityihang.zblog.utils.*;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import io.swagger.annotations.Api;
@@ -21,6 +20,7 @@ import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import cn.ityihang.zblog.utils.RedisUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -34,7 +34,7 @@ import javax.servlet.http.HttpServletResponse;
 @Api(tags = "登录接口")
 @Slf4j
 @RestController
-@RequestMapping(value = "/sys")
+@RequestMapping(value = "/")
 public class LoginController {
     @Autowired
     ISysUserService sysUserService;
@@ -63,7 +63,7 @@ public class LoginController {
             return result;
         }
         String lowerCaseCaptcha = captcha.toLowerCase();
-        String realKey = MD5Util.MD5Encode(lowerCaseCaptcha+user.getCheckKey(), "utf-8");
+        String realKey = cn.ityihang.zblog.utils.MD5Util.MD5Encode(lowerCaseCaptcha+user.getCheckKey(), "utf-8");
         Object checkCode = redisUtil.get(realKey);
         if(checkCode==null || !checkCode.equals(lowerCaseCaptcha)) {
             result.setMsg("验证码错误");
@@ -83,7 +83,7 @@ public class LoginController {
         }
 
         //2. 校验用户名或密码是否正确
-        String userpassword = PasswordUtil.encrypt(username, password, sysUser.getSalt());
+        String userpassword = cn.ityihang.zblog.utils.PasswordUtil.encrypt(username, password, sysUser.getSalt());
 
         String syspassword = sysUser.getPassword();
         if (!syspassword.equals(userpassword)) {
@@ -114,7 +114,7 @@ public class LoginController {
         if(StrUtil.isEmpty(token)) {
             return RestResponse.failed("退出登录失败！");
         }
-        String username = JwtUtil.getUsername(token);
+        String username = cn.ityihang.zblog.utils.JwtUtil.getUsername(token);
         LoginUser sysUser = loginUserService.getUserByName(username);
         if(sysUser!=null) {
             //update-begin--Author:wangshuai  Date:20200714  for：登出日志没有记录人员
@@ -200,10 +200,10 @@ public class LoginController {
         String syspassword = SysUser.getPassword();
         String username = SysUser.getUsername();
         // 生成token
-        String token = JwtUtil.sign(username, syspassword);
+        String token = cn.ityihang.zblog.utils.JwtUtil.sign(username, syspassword);
         // 设置token缓存有效时间
         redisUtil.set(CommonConstant.PREFIX_USER_TOKEN + token, token);
-        redisUtil.expire(CommonConstant.PREFIX_USER_TOKEN + token, JwtUtil.EXPIRE_TIME*2 / 1000);
+        redisUtil.expire(CommonConstant.PREFIX_USER_TOKEN + token, cn.ityihang.zblog.utils.JwtUtil.EXPIRE_TIME*2 / 1000);
 
         // 获取用户部门信息
         JSONObject obj = new JSONObject();
@@ -236,9 +236,9 @@ public class LoginController {
         try {
             String code = RandomUtil.randomString(BASE_CHECK_CODES,4);
             String lowerCaseCode = code.toLowerCase();
-            String realKey = MD5Util.MD5Encode(lowerCaseCode+key, "utf-8");
+            String realKey = cn.ityihang.zblog.utils.MD5Util.MD5Encode(lowerCaseCode+key, "utf-8");
             redisUtil.set(realKey, lowerCaseCode, 60);
-            String base64 = RandImageUtil.generate(code);
+            String base64 = cn.ityihang.zblog.utils.RandImageUtil.generate(code);
             res.setSuccess(true);
             res.setData(base64);
         } catch (Exception e) {
@@ -261,7 +261,7 @@ public class LoginController {
             return RestResponse.failed("验证码无效");
         }
         String lowerCaseCaptcha = captcha.toLowerCase();
-        String realKey = MD5Util.MD5Encode(lowerCaseCaptcha+checkKey, "utf-8");
+        String realKey = cn.ityihang.zblog.utils.MD5Util.MD5Encode(lowerCaseCaptcha+checkKey, "utf-8");
         Object checkCode = redisUtil.get(realKey);
         if(checkCode==null || !checkCode.equals(lowerCaseCaptcha)) {
             return RestResponse.failed("验证码错误");

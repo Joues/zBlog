@@ -6,6 +6,7 @@
           <router-link to="/" class="me-login-design-color">ityihang</router-link>
         </strong>
       </p>
+      <!-- <h5 style="height: 15px;">Copyright © 2020 ityihang.cn All Right Reserved 鄂ICP备20004327号</h5> -->
     </div>
   </el-footer>
 
@@ -39,7 +40,7 @@
     text-align: center;
     line-height: 60px;
     font-family: 'Open Sans', sans-serif;
-    font-size: 18px;
+    font-size: 16px;
 
   }
 

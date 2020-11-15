@@ -1,6 +1,6 @@
 package cn.ityihang.zblog.service.impl;
 
-import cn.ityihang.zblog.common.RestResponse;
+import cn.ityihang.zblog.common.result.RestResponse;
 import cn.ityihang.zblog.common.constant.CommonConstant;
 import cn.ityihang.zblog.mapper.SysUserMapper;
 import cn.ityihang.zblog.entity.SysUser;

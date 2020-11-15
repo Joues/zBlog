@@ -1,6 +1,6 @@
 package cn.ityihang.zblog.service;
 
-import cn.ityihang.zblog.common.RestResponse;
+import cn.ityihang.zblog.common.result.RestResponse;
 import cn.ityihang.zblog.entity.SysUser;
 import com.baomidou.mybatisplus.extension.service.IService;
 

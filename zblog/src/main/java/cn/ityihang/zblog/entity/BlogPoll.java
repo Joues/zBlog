@@ -1,45 +1,38 @@
 package cn.ityihang.zblog.entity;
 
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.io.Serializable;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
-public class BlogPoll {
-    private Integer id;
+/**
+ * <p>
+ * 
+ * </p>
+ *
+ * @author jobob
+ * @since 2020-11-11
+ */
+@Data
+@EqualsAndHashCode(callSuper = false)
+public class BlogPoll implements Serializable {
 
-    private Date time;
+    private static final long serialVersionUID = 1L;
 
+    /**
+     * 点赞时间
+     */
+    private LocalDateTime time;
+
+    /**
+     * 博客id（外键）
+     */
     private Integer blogId;
 
+    /**
+     * 发表人
+     */
     private String createName;
 
-    public Integer getId() {
-        return id;
-    }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Date getTime() {
-        return time;
-    }
-
-    public void setTime(Date time) {
-        this.time = time;
-    }
-
-    public Integer getBlogId() {
-        return blogId;
-    }
-
-    public void setBlogId(Integer blogId) {
-        this.blogId = blogId;
-    }
-
-    public String getCreateName() {
-        return createName;
-    }
-
-    public void setCreateName(String createName) {
-        this.createName = createName == null ? null : createName.trim();
-    }
 }
