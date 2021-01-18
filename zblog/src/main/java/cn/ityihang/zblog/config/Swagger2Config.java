@@ -26,7 +26,7 @@ public class Swagger2Config {
     Docket docket() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("cn.ityihang.zblog.controller"))
+                .apis(RequestHandlerSelectors.basePackage("cn.ityihang.zblog.blog.controller"))
                 .paths(PathSelectors.any())
                 .build().apiInfo(new ApiInfoBuilder()
                         .description("接口文档的描述信息")

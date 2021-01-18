@@ -97,7 +97,7 @@ import {login} from '@/api/login'
       refreshImage(){
         this.currdatetime = new Date().getTime();
         this.userForm.checkKey = this.currdatetime;
-        getAction(`/sys/randomImage/${this.currdatetime}`).then(res=>{
+        getAction(`/randomImage/${this.currdatetime}`).then(res=>{
           if(res.data.success){
             this.randCodeImage = res.data.data
             this.requestCodeSuccess=true

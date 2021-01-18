@@ -26,21 +26,21 @@
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
         <!-- 生成映射文件的包名和位置-->
-        <sqlMapGenerator targetPackage="cn.ityihang.zblog.mapper.xml" targetProject="src/main/java">
+        <sqlMapGenerator targetPackage="cn.ityihang.zblog.blog.mapper.xml" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
         <!-- 生成DAO的包名和位置-->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="cn.ityihang.zblog.mapper" targetProject="src/main/java">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="cn.ityihang.zblog.blog.mapper" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
         <!--生成service,serviceImpl-->
-        <javaServiceGenerator targetPackage="cn.ityihang.zblog.service" targetProject="src/main/java"
-                              implementationPackage="cn.ityihang.zblog.service.impl">
+        <javaServiceGenerator targetPackage="cn.ityihang.zblog.blog.service" targetProject="src/main/java"
+                              implementationPackage="cn.ityihang.zblog.blog.service.impl">
         </javaServiceGenerator>
 
         <!--生成controller-->
-        <javaControllerGenerator targetPackage="cn.ityihang.zblog.controller" targetProject="src/main/java">
+        <javaControllerGenerator targetPackage="cn.ityihang.zblog.blog.controller" targetProject="src/main/java">
             <property name="superClass" value="cn.ityihang.zblog.BaseController"></property>
         </javaControllerGenerator>
 

@@ -9,7 +9,7 @@ export function login(username, password, captcha, checkKey) {
         checkKey,
     }
     return request({
-        url: '/sys/login',
+        url: '/login',
         method: 'post',
         data
     })
@@ -17,7 +17,7 @@ export function login(username, password, captcha, checkKey) {
 
 export function getRandomImage() {
     return request({
-        url: '/sys/randomImage',
+        url: '/randomImage',
         method: 'get'
     })
 }
@@ -25,14 +25,14 @@ export function getRandomImage() {
 
 export function logout() {
     return request({
-        url: '/sys/logout',
+        url: '/logout',
         method: 'get'
     })
 }
 
 export function getUserInfo() {
     return request({
-        url: '/user/userInfo',
+        url: '/userInfo',
         method: 'get'
     })
 }
@@ -44,7 +44,7 @@ export function register(username, nickname, password) {
         password
     }
     return request({
-        url: '/user/register',
+        url: '/register',
         method: 'post',
         data
     })

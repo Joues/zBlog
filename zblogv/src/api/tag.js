@@ -16,7 +16,7 @@ export function getAllTagsDetail() {
 
 export function getHotTags() {
     return request({
-        url: '/zblog/tag/hot',
+        url: '/tag/hot',
         method: 'get',
     })
 }

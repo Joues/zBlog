@@ -1,7 +1,7 @@
 package cn.ityihang.zblog.utils;
 
 import cn.ityihang.zblog.common.constant.Base;
-import cn.ityihang.zblog.entity.SysUser;
+import cn.ityihang.zblog.system.entity.SysUser;
 import org.apache.shiro.SecurityUtils;
 
 

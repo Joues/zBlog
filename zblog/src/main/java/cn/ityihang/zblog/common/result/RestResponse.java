@@ -1,7 +1,8 @@
 package cn.ityihang.zblog.common.result;
 
-import cn.ityihang.zblog.common.IResultCode;
-import cn.ityihang.zblog.common.ResultCode;
+
+import cn.ityihang.zblog.constant.enums.IResultCode;
+import cn.ityihang.zblog.constant.enums.ResultCode;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
@@ -95,4 +96,7 @@ public class RestResponse<T> {
         restResponse.setSuccess(success);
         return restResponse;
     }
+
+    @JsonIgnore
+    private String onlTable;
 }

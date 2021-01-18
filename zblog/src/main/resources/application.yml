@@ -45,7 +45,9 @@ spring:
 mybatis-plus:
   mapper-locations: classpath:/mapper/*Mapper.xml,classpath*:cn/ityihang/zblog/**/xml/*Mapper.xml
   #实体扫描，多个package用逗号或者分号分隔
-  typeAliasesPackage: cn.ityihang.zblog.entity
+  typeAliasesPackage: cn.ityihang.zblog.blog.entity
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
 yihang:
   shiro:
@@ -54,4 +56,4 @@ yihang:
 # Logger Config
 logging:
   level:
-    cn.ityihang.zblog.mapper: debug
+    cn.ityihang.zblog.*.mapper: debug

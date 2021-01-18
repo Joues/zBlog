@@ -3,9 +3,9 @@ package cn.ityihang.zblog.config.shiro;
 import cn.hutool.core.util.StrUtil;
 import cn.ityihang.zblog.config.JwtToken;
 import cn.ityihang.zblog.common.constant.CommonConstant;
-import cn.ityihang.zblog.entity.LoginUser;
-import cn.ityihang.zblog.entity.SysUser;
-import cn.ityihang.zblog.service.ISysUserService;
+import cn.ityihang.zblog.system.entity.LoginUser;
+import cn.ityihang.zblog.system.entity.SysUser;
+import cn.ityihang.zblog.system.service.ISysUserService;
 import cn.ityihang.zblog.utils.JwtUtil;
 import cn.ityihang.zblog.utils.RedisUtil;
 import cn.ityihang.zblog.utils.SpringContextUtils;
@@ -18,12 +18,13 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 
-import static cn.ityihang.zblog.service.impl.SysLogServiceImpl.getIpAddr;
+import static cn.ityihang.zblog.system.service.impl.SysLogServiceImpl.getIpAddr;
 
 /**
  * @Description: 用户登录鉴权和获取用户授权
@@ -42,7 +43,7 @@ public class ShiroRealm extends AuthorizingRealm {
     @Resource
     private RedisUtil redisUtil;
 
-    @Resource
+    @Autowired
     private ISysUserService sysUserService;
 
     /**

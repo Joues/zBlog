@@ -3,7 +3,7 @@ import request from '@/request'
 
 export function getArticles(query, page) {
     return request({
-        url: '/blog/list',
+        url: '/list',
         method: 'get',
         params: {
             pageNumber: page.pageNumber,
@@ -20,38 +20,35 @@ export function getArticles(query, page) {
 
 export function getHotArtices() {
     return request({
-        url: '/blog/hot',
+        url: '/hot',
         method: 'get'
     })
 }
 
 export function getNewArtices() {
     return request({
-        url: '/blog/new',
+        url: '/new',
         method: 'get'
     })
 }
 
 export function viewArticle(id) {
     return request({
-        url: `/blog/id`,
-        method: 'get',
-        params: {
-            id: id,
-        }
+        url: `/blogInfo/${id}`,
+        method: 'get'
     })
 }
 
 export function getArticlesByCategory(id) {
     return request({
-        url: `/articles/category/${id}`,
+        url: `/category/${id}`,
         method: 'get'
     })
 }
 
 export function getArticlesByTag(id) {
     return request({
-        url: `/articles/tag/${id}`,
+        url: `/tag/${id}`,
         method: 'get'
     })
 }
@@ -67,7 +64,7 @@ export function publishArticle(article) {
 
 export function listArchives() {
     return request({
-        url: '/articles/listArchives',
+        url: '/list',
         method: 'get'
     })
 }

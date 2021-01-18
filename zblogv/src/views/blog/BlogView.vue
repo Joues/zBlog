@@ -1,13 +1,13 @@
 <template>
   <div class="me-view-body" v-title :data-title="title">
     <el-container class="me-view-container">
-      <!-- <el-aside class="me-area"> -->
-        <!-- <ul class="me-operation-list"> -->
-          <!-- <li class="me-operation-item"> -->
-            <!-- <el-button type="primary" icon="el-icon-edit"></el-button> -->
-          <!-- </li> -->
-        <!-- </ul> -->
-      <!-- </el-aside> -->
+      <el-aside class="me-area"> 
+        <ul class="me-operation-list">
+          <li class="me-operation-item">
+            <el-button type="primary" icon="el-icon-edit"></el-button>
+          </li>
+        </ul>
+      </el-aside>
       <el-main>
 
         <div class="me-view-card">
@@ -173,7 +173,7 @@
       getArticle() {
         let that = this
         viewArticle(that.$route.params.id).then(res => {
-          Object.assign(that.article, res.data.data)
+          Object.assign(that.article, res.data)
           that.article.editor.value = res.data.body.content
 
           that.getCommentsByArticle()

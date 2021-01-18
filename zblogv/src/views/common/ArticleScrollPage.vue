@@ -78,7 +78,7 @@
 
         getArticles(that.query, that.innerPage).then(data => {
 
-          let newArticles = data.data
+          let newArticles = data.data.records
           if (newArticles && newArticles.length > 0) {
             that.innerPage.pageNumber += 1
             that.articles = that.articles.concat(newArticles)
