@@ -12,6 +12,7 @@ import cn.ityihang.zblog.utils.IPUtils;
 import cn.ityihang.zblog.utils.SpringContextUtils;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.PropertyFilter;
+import lombok.extern.log4j.Log4j;
 import org.apache.shiro.SecurityUtils;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -19,6 +20,8 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.LocalVariableTableParameterNameDiscoverer;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
@@ -43,6 +46,8 @@ public class AutoLogAspect {
     @Resource
     private BaseCommonService baseCommonService;
 
+    private static final Logger logger = LoggerFactory.getLogger(AutoLogAspect.class);
+
     @Pointcut("@annotation(cn.ityihang.zblog.aspect.annotation.AutoLog)")
     public void logPointCut() {
 
@@ -55,6 +60,7 @@ public class AutoLogAspect {
         Object result = point.proceed();
         //执行时长(毫秒)
         long time = System.currentTimeMillis() - beginTime;
+        logger.debug("获取JSON数据 耗时：" + time + "ms");
 
         //保存日志
         saveSysLog(point, time, result);

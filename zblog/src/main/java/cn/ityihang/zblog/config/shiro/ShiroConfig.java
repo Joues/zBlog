@@ -106,6 +106,7 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/category/deleteBatch", "anon");
 
         filterChainDefinitionMap.put("/tag/list", "anon");
+        filterChainDefinitionMap.put("/tag/hot", "anon");
         filterChainDefinitionMap.put("/tag/id", "anon");
         filterChainDefinitionMap.put("/tag/delete", "anon");
         filterChainDefinitionMap.put("/tag/add", "anon");

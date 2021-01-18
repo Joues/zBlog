@@ -1,5 +1,6 @@
 package cn.ityihang.zblog.blog.controller;
 
+import cn.ityihang.zblog.aspect.annotation.AutoLog;
 import cn.ityihang.zblog.common.result.RestResponse;
 import cn.ityihang.zblog.common.constant.CommonConstant;
 import cn.ityihang.zblog.common.param.PageParam;
