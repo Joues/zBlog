@@ -84,7 +84,8 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/new", "anon");
         filterChainDefinitionMap.put("/hot", "anon");
 
-        filterChainDefinitionMap.put("/excel/**", "anon");  // excel导入导出接口排除
+        filterChainDefinitionMap.put("/excel/exportExcel", "anon");  // excel导入导出接口排除
+        filterChainDefinitionMap.put("/excel/readExcel", "anon");  // excel导入导出接口排除
 
         filterChainDefinitionMap.put("/blogDetail/list", "anon");
         filterChainDefinitionMap.put("/blogDetail/id", "anon");

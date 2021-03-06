@@ -28,7 +28,7 @@ import java.util.LinkedHashMap;
  * @Description:
  * @Version: 1.0
  */
-@Api(value = "博客用户信息")
+@Api(tags = "博客用户信息")
 @RestController
 @RequestMapping(value = "/blogInfo")
 public class BlogUserInfoController {
