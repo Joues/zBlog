@@ -1,7 +1,7 @@
 package cn.ityihang.zblog.config.shiro;
 
 import cn.hutool.core.util.StrUtil;
-import cn.ityihang.zblog.config.JwtFilter;
+import cn.ityihang.zblog.config.jwt.JwtFilter;
 import cn.ityihang.zblog.common.constant.CommonConstant;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.mgt.DefaultSessionStorageEvaluator;
@@ -83,6 +83,9 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/deleteBatch", "anon");
         filterChainDefinitionMap.put("/new", "anon");
         filterChainDefinitionMap.put("/hot", "anon");
+
+        filterChainDefinitionMap.put("/excel/exportExcel", "anon");  // excel导入导出接口排除
+        filterChainDefinitionMap.put("/excel/readExcel", "anon");  // excel导入导出接口排除
 
         filterChainDefinitionMap.put("/blogDetail/list", "anon");
         filterChainDefinitionMap.put("/blogDetail/id", "anon");

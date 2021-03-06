@@ -1,7 +1,7 @@
 package cn.ityihang.zblog.config.shiro;
 
 import cn.hutool.core.util.StrUtil;
-import cn.ityihang.zblog.config.JwtToken;
+import cn.ityihang.zblog.config.jwt.JwtToken;
 import cn.ityihang.zblog.common.constant.CommonConstant;
 import cn.ityihang.zblog.system.entity.LoginUser;
 import cn.ityihang.zblog.system.entity.SysUser;

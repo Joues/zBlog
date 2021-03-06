@@ -11,6 +11,7 @@ import cn.ityihang.zblog.system.entity.SysUser;
 import cn.ityihang.zblog.system.service.ILoginUserService;
 import cn.ityihang.zblog.system.service.ISysLogService;
 import cn.ityihang.zblog.system.service.ISysUserService;
+import cn.ityihang.zblog.utils.JwtUtil;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import io.swagger.annotations.Api;
@@ -107,14 +108,14 @@ public class LoginController {
      * @return
      */
     @ApiOperation(value = "注销登录")
-    @RequestMapping(value = "/logout")
+    @PostMapping(value = "/logout")
     public RestResponse<Object> logout(HttpServletRequest request, HttpServletResponse response) {
         //用户退出逻辑
         String token = request.getHeader(CommonConstant.X_ACCESS_TOKEN);
         if(StrUtil.isEmpty(token)) {
             return RestResponse.failed("退出登录失败！");
         }
-        String username = cn.ityihang.zblog.utils.JwtUtil.getUsername(token);
+        String username = JwtUtil.getUsername(token);
         LoginUser sysUser = loginUserService.getUserByName(username);
         if(sysUser!=null) {
             //update-begin--Author:wangshuai  Date:20200714  for：登出日志没有记录人员
@@ -200,10 +201,10 @@ public class LoginController {
         String syspassword = SysUser.getPassword();
         String username = SysUser.getUsername();
         // 生成token
-        String token = cn.ityihang.zblog.utils.JwtUtil.sign(username, syspassword);
+        String token = JwtUtil.sign(username, syspassword);
         // 设置token缓存有效时间
         redisUtil.set(CommonConstant.PREFIX_USER_TOKEN + token, token);
-        redisUtil.expire(CommonConstant.PREFIX_USER_TOKEN + token, cn.ityihang.zblog.utils.JwtUtil.EXPIRE_TIME*2 / 1000);
+        redisUtil.expire(CommonConstant.PREFIX_USER_TOKEN + token, JwtUtil.EXPIRE_TIME*2 / 1000);
 
         // 获取用户部门信息
         JSONObject obj = new JSONObject();
