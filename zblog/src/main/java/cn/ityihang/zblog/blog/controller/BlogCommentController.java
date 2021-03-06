@@ -36,7 +36,7 @@ public class BlogCommentController {
     
     /**
      * 分页列表查询
-     * @param blog
+     * @param blogComment
      * @param pageParam
      * @param req
      * @return
