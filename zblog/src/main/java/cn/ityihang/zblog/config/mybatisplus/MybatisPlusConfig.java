@@ -1,4 +1,4 @@
-package cn.ityihang.zblog.config;
+package cn.ityihang.zblog.config.mybatisplus;
 
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import org.springframework.context.annotation.Bean;

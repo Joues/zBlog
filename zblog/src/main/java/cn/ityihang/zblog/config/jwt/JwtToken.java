@@ -1,4 +1,4 @@
-package cn.ityihang.zblog.config;
+package cn.ityihang.zblog.config.jwt;
 
 import org.apache.shiro.authc.AuthenticationToken;
 

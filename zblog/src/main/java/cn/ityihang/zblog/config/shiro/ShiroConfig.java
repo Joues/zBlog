@@ -1,7 +1,7 @@
 package cn.ityihang.zblog.config.shiro;
 
 import cn.hutool.core.util.StrUtil;
-import cn.ityihang.zblog.config.JwtFilter;
+import cn.ityihang.zblog.config.jwt.JwtFilter;
 import cn.ityihang.zblog.common.constant.CommonConstant;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.mgt.DefaultSessionStorageEvaluator;

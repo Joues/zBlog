@@ -1,4 +1,4 @@
-package cn.ityihang.zblog.config;
+package cn.ityihang.zblog.config.mybatisplus;
 
 import cn.ityihang.zblog.system.entity.SysUser;
 import cn.ityihang.zblog.utils.oConvertUtils;

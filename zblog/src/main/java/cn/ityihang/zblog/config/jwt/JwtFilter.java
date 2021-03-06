@@ -1,4 +1,4 @@
-package cn.ityihang.zblog.config;
+package cn.ityihang.zblog.config.jwt;
 
 import cn.ityihang.zblog.common.constant.CommonConstant;
 import lombok.extern.slf4j.Slf4j;
