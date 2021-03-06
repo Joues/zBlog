@@ -201,7 +201,7 @@ public class LoginController {
         String syspassword = SysUser.getPassword();
         String username = SysUser.getUsername();
         // 生成token
-        String token = cn.ityihang.zblog.utils.JwtUtil.sign(username, syspassword);
+        String token = JwtUtil.sign(username, syspassword);
         // 设置token缓存有效时间
         redisUtil.set(CommonConstant.PREFIX_USER_TOKEN + token, token);
         redisUtil.expire(CommonConstant.PREFIX_USER_TOKEN + token, JwtUtil.EXPIRE_TIME*2 / 1000);
