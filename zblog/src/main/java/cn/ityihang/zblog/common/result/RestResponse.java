@@ -1,6 +1,7 @@
 package cn.ityihang.zblog.common.result;
 
 
+import cn.ityihang.zblog.common.constant.CommonConstant;
 import cn.ityihang.zblog.constant.enums.IResultCode;
 import cn.ityihang.zblog.constant.enums.ResultCode;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -95,6 +96,13 @@ public class RestResponse<T> {
         restResponse.setMsg(msg);
         restResponse.setSuccess(success);
         return restResponse;
+    }
+
+    /**
+     * 无权限访问返回结果
+     */
+    public static RestResponse<Object> noauth(String msg) {
+        return failed(CommonConstant.SC_JEECG_NO_AUTHZ, msg);
     }
 
     @JsonIgnore
