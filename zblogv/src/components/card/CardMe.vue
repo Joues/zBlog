@@ -3,7 +3,7 @@
     <h1 class="me-author-name">yihang</h1>
     <div class="me-author-description">
       <span><i class="el-icon-location-outline"></i> &nbsp;湖北·武汉</span>
-      <span><i class="me-icon-job"></i> &nbsp;java开发工程师</span>
+      <span><i class="me-icon-job"></i> &nbsp;Java开发工程师</span>
     </div>
     <div class="me-author-tool">
       <i @click="showTool(qq)" :title="qq.title" class="me-icon-QQ"></i>
