@@ -1,6 +1,6 @@
-package cn.ityihang.zblog.utils;
+package cn.ityihang.zblog.common.utils;
 
-import cn.ityihang.zblog.common.constant.Base;
+import cn.ityihang.zblog.common.constant.CommonParam;
 import cn.ityihang.zblog.system.entity.SysUser;
 import org.apache.shiro.SecurityUtils;
 
@@ -8,7 +8,7 @@ import org.apache.shiro.SecurityUtils;
 public class UserUtils {
 
     public static SysUser getCurrentUser() {
-        SysUser user = (SysUser) SecurityUtils.getSubject().getSession().getAttribute(Base.CURRENT_USER);
+        SysUser user = (SysUser) SecurityUtils.getSubject().getSession().getAttribute(CommonParam.CURRENT_USER);
 //        SysUser user = (SysUser) SecurityUtils.getSubject().getPrincipal();
         return user;
     }

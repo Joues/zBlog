@@ -36,7 +36,7 @@ public class BlogDetailController {
 
     /**
      * 分页列表查询
-     * @param blog
+     * @param blogDetail
      * @param pageParam
      * @param req
      * @return
