@@ -51,8 +51,8 @@ public class BlogDetailController {
     }
 
     @ApiOperation(value = "根据id查询")
-    @GetMapping(value = "/id")
-    public RestResponse getBlogById(@RequestParam Integer id) {
+    @GetMapping(value = "/id/{id}")
+    public RestResponse getBlogById(@PathVariable Integer id) {
         return RestResponse.ok(blogDetailService.getById(id), "查询成功");
     }
 
