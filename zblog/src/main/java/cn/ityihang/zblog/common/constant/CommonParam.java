@@ -12,4 +12,9 @@ public class CommonParam {
     public static final String ENTITY_ISNULL = "实体不存在！";
 
     public static final String SYSUSER_ISNULL = "用户不存在！";
+
+    /**
+     * 一整年的月份数
+     */
+    public static final Integer YEAR_MONTHS = 12;
 }

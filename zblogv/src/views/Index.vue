@@ -90,7 +90,8 @@
       },
       listArchives() {
         listArchives().then((data => {
-          this.archives = data.data.records
+          this.archives = data.data
+          // console.log("返回的分类信息：" + this.archives)
         })).catch(error => {
           if (error !== 'error') {
             that.$message({type: 'error', message: '文章归档加载失败!', showClose: true})

@@ -5,7 +5,7 @@
     <div
       style="height: 40px;margin-top: 10px;z-index: 1"
       v-loading="loading"
-      element-loading-text="哎呀，稍等一下啦~"
+      element-loading-text="客官，请稍等~"
       element-loading-spinner="el-icon-loading"
       element-loading-background="rgba(245,245,245)"></div>
   </div>

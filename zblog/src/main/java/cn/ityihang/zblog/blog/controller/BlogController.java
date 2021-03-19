@@ -1,9 +1,12 @@
 package cn.ityihang.zblog.blog.controller;
 
 import cn.ityihang.zblog.aspect.annotation.AutoLog;
+import cn.ityihang.zblog.blog.vo.BlogCountVO;
+import cn.ityihang.zblog.common.constant.CommonParam;
 import cn.ityihang.zblog.common.result.RestResponse;
 import cn.ityihang.zblog.common.constant.CommonConstant;
 import cn.ityihang.zblog.common.param.PageParam;
+import cn.ityihang.zblog.common.utils.DateUtils;
 import cn.ityihang.zblog.common.utils.QueryGenerator;
 import cn.ityihang.zblog.blog.entity.Blog;
 import cn.ityihang.zblog.blog.service.IBlogService;
@@ -18,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -90,7 +94,7 @@ public class BlogController {
 
     @ApiOperation(value = "最新博客")
     @GetMapping(value = "/new")
-    public RestResponse getBlogNews(@RequestParam(defaultValue = "5") Integer sizeNumber) {
+    public RestResponse getBlogNews(@RequestParam(defaultValue = "5", required = false) Integer sizeNumber) {
         try {
             List<Map<String, Object>> blogNews = blogService.getBlogNews(sizeNumber);
             return RestResponse.ok(blogNews, CommonConstant.TODO_SUCCESS);
@@ -112,6 +116,41 @@ public class BlogController {
             log.warn("异常信息：" + e.getMessage());
             return RestResponse.failed(CommonConstant.TODO_FAILED);
         }
+    }
+
+    /**
+     * 博客分类查询，最近12个月博客的统计
+     * @return
+     */
+    @ApiOperation(value = "分类查询")
+    @GetMapping(value = "/listArchives")
+    public RestResponse getBlogList() {
+        // 统计博客系统最近12个月的博客信息
+        List<Object> oldYearMonths = DateUtils.getOldYearMonths();
+        // 分别获取最早一个年月、及最晚一个年、月
+        String endYearMonth = (String) oldYearMonths.get(0);
+        String endYear = endYearMonth.substring(0, 4);
+        String endMonth = endYearMonth.substring(5, 7);
+        // 最晚一个年、月
+        String startYearMonth = (String) oldYearMonths.get(oldYearMonths.size()-1);
+        String startYear = startYearMonth.substring(0, 4);
+        String startMonth = startYearMonth.substring(5, 7);
+
+        List<BlogCountVO> blogInfoList = new ArrayList<>();
+        for (Object oldYearMonth : oldYearMonths) {
+            // 循环获取每个年月的信息
+            String yearMonth = (String) oldYearMonth;
+            String year = yearMonth.substring(0, 4);
+            String month = yearMonth.substring(5, 7);
+            // 组装实体返回数据
+            BlogCountVO entity = new BlogCountVO();
+            entity.setYear(Integer.valueOf(year));
+            entity.setMonth(Integer.valueOf(month));
+            // Fixme 博客分类查询，最近12个月博客的统计，对每个月单独统计，待完成
+
+            blogInfoList.add(entity);
+        }
+        return RestResponse.ok(blogInfoList);
     }
 
 }

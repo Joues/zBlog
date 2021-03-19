@@ -3,7 +3,7 @@ import request from '@/request'
 
 export function getCommentsByArticle(id) {
   return request({
-    url: `/comments/article/${id}`,
+    url: `/blogDetail/id/${id}`,
     method: 'get'
   })
 }

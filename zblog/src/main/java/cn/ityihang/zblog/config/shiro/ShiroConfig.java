@@ -76,6 +76,7 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/checkCaptcha", "anon"); //登录验证码接口排除
 
         filterChainDefinitionMap.put("/list", "anon");
+        filterChainDefinitionMap.put("/listArchives", "anon");
         filterChainDefinitionMap.put("/id", "anon");
         filterChainDefinitionMap.put("/delete", "anon");
         filterChainDefinitionMap.put("/add", "anon");
