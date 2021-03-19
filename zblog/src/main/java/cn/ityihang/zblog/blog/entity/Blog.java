@@ -35,7 +35,7 @@ public class Blog implements Serializable {
      * 发布时间
      */
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Shanghai")
-    private Date createdTime;
+    private Date createTime;
 
     /**
      * 修改时间
@@ -83,5 +83,14 @@ public class Blog implements Serializable {
      */
     private Boolean isEssence;
 
+    /**
+     * 创建人
+     */
+    private String createBy;
+
+    /**
+     * 修改人
+     */
+    private String updateBy;
 
 }
