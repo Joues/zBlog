@@ -12,7 +12,7 @@ module.exports = {
         assetsPublicPath: '/',
         proxyTable: {
             '/': {
-                target: 'http://localhost:8086/api/zblog',
+                target: 'http://localhost:8086/',
                 changeOrigin: true,
                 pathRewrite: {
                     '^/': ''
@@ -56,6 +56,19 @@ module.exports = {
         assetsRoot: path.resolve(__dirname, '../dist'),
         assetsSubDirectory: 'static',
         assetsPublicPath: '/',
+        proxyTable: {
+          '/': {
+              target: 'http://localhost:8086/',
+              changeOrigin: true,
+              pathRewrite: {
+                  '^/': ''
+              }
+          },
+          '/dev/*': {
+              target: 'dev://127.0.0.1:8086',
+              dev: true
+          }
+      },
 
         /**
          * Source Maps
