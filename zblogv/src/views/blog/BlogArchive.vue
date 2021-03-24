@@ -4,7 +4,7 @@
 
       <el-aside class="me-area">
         <ul class="me-month-list">
-          <li v-for="a in archives" :key="a.year + a.month" class="me-month-item">
+          <li v-for="(a, index) in archives" :key="index" class="me-month-item">
             <el-badge :value="a.count">
               <el-button @click="changeArchive(a.year, a.month)" size="small">{{a.year +'年' + a.month + '月'}}
               </el-button>
@@ -90,14 +90,14 @@
 <style scoped>
 
   .el-container {
-    width: 640px;
+    width: 1150px;
   }
 
   .el-aside {
-    position: fixed;
+    /* position: fixed; */
     left: 200px;
-    margin-right: 50px;
-    width: 150px !important;
+    margin-right: 20px;
+    width: 250px !important;
   }
 
   .el-main {
@@ -106,7 +106,7 @@
   }
 
   .me-month-list {
-    margin-top: 10px;
+    margin-top: 30px;
     margin-bottom: 10px;
     text-align: center;
     list-style-type: none;

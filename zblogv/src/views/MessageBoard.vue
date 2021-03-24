@@ -35,7 +35,7 @@
   }
 
   .el-container {
-    width: 700px;
+    width: 1150px;
   }
 
   .me-main {

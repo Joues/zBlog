@@ -10,7 +10,7 @@ export function getCommentsByArticle(id) {
 
 export function publishComment(comment) {
   return request({
-    url: '/comments/create/change',
+    url: '/blogComment/add',
     method: 'post',
     data: comment
   })
