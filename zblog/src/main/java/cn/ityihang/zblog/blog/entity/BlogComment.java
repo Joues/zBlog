@@ -31,7 +31,7 @@ public class BlogComment implements Serializable {
      * 评论时间
      */
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Shanghai")
-    private Date time;
+    private Date createTime;
 
     /**
      * 评论内容
@@ -41,11 +41,23 @@ public class BlogComment implements Serializable {
     /**
      * 评论人
      */
-    private String name;
+    private String createBy;
 
     /**
      * 电子邮箱
      */
     @TableField("eMail")
     private String eMail;
+
+    /**
+     * 修改时间
+     */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Shanghai")
+    private Date updateTime;
+
+    /**
+     * 修改人
+     */
+    private String updateBy;
+
 }
