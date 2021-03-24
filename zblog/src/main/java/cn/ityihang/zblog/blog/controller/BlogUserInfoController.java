@@ -1,4 +1,4 @@
-package cn.ityihang.zblog.system.controller;
+package cn.ityihang.zblog.blog.controller;
 
 import cn.ityihang.zblog.blog.entity.Blog;
 import cn.ityihang.zblog.blog.entity.BlogDetail;
@@ -8,6 +8,7 @@ import cn.ityihang.zblog.blog.service.IBlogDetailService;
 import cn.ityihang.zblog.blog.service.IBlogService;
 import cn.ityihang.zblog.blog.service.ICategoryService;
 import cn.ityihang.zblog.blog.service.ITagService;
+import cn.ityihang.zblog.common.constant.CommonParam;
 import cn.ityihang.zblog.common.result.RestResponse;
 import cn.ityihang.zblog.system.entity.SysUser;
 import cn.ityihang.zblog.system.entity.SysUserDetails;
@@ -55,6 +56,9 @@ public class BlogUserInfoController {
     public RestResponse<?> getBlogById(@PathVariable Integer id) {
 //        获取博客信息
         Blog blog = blogService.getById(id);
+        if (null==blog) {
+            return RestResponse.failed(CommonParam.ENTITY_ISNULL);
+        }
 //        获取博客详情信息
         LambdaQueryWrapper<BlogDetail> blogDetailQWrapper = new LambdaQueryWrapper<>();
         blogDetailQWrapper.eq(BlogDetail::getBlogId, blog.getId());
@@ -62,6 +66,9 @@ public class BlogUserInfoController {
 //        获取用户信息
         String userId = blog.getUserId();
         SysUser sysUser = sysUserService.getById(userId);
+        if (null==sysUser) {
+            return RestResponse.failed(CommonParam.SYSUSER_ISNULL);
+        }
 //        获取用户详情信息
         LambdaQueryWrapper<SysUserDetails> userDetailQWrapper = new LambdaQueryWrapper<>();
         userDetailQWrapper.eq(SysUserDetails::getUserId, sysUser.getId());

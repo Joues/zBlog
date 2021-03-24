@@ -3,10 +3,15 @@ import { Message } from 'element-ui'
 import store from '@/store'
 import { getToken } from '@/request/token'
 
+// const service = axios.create({
+//     baseURL: process.env.BASE_API,
+//     timeout: 6000
+// })
 const service = axios.create({
-    baseURL: process.env.BASE_API,
-    timeout: 10000
+    baseURL: "/api/zblog/",
+    timeout: 6000
 })
+
 
 //request拦截器
 service.interceptors.request.use(config => {
@@ -30,6 +35,7 @@ service.interceptors.response.use(
         }
 
         const res = response.data;
+
 
         //0 为成功状态
         if (res.code !== 0) {
@@ -63,17 +69,26 @@ service.interceptors.response.use(
                 return Promise.reject('error');
             }
 
-            return Promise.reject(res.msg);
+
+            return Promise.reject(res.message);
         } else {
             return response.data;
         }
     },
     error => {
-        Message({
-            type: 'warning',
-            showClose: true,
-            message: error
-        })
+        if (error.response.status == 504 || error.response.status == 404) {
+            Message.error({message: '服务器迷路了呢⊙﹏⊙∥'});
+          } else if (error.response.status == 403) {
+            Message.error({message: '权限不足,请联系管理员!'});
+          } else if (error.response.status == 401) {
+            Message.error({message: error.response.data.message});
+          } else {
+            if (error.response.data.message) {
+              Message.error({message: error.response.data.message});
+            } else {
+              Message.error({message: '未知错误!'});
+            }
+        }
         return Promise.reject('error')
     })
 

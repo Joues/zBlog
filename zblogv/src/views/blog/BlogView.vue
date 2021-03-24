@@ -1,7 +1,7 @@
 <template>
   <div class="me-view-body" v-title :data-title="title">
     <el-container class="me-view-container">
-      <el-aside class="me-area"> 
+      <el-aside class="me-area">
         <ul class="me-operation-list">
           <li class="me-operation-item">
             <el-button type="primary" icon="el-icon-edit"></el-button>
@@ -154,7 +154,7 @@
       avatar() {
         let avatar = this.$store.state.avatar
 
-        if (avatar.length > 0) {
+        if (avatar.length() > 0) {
           return avatar
         }
         return default_avatar
@@ -175,8 +175,7 @@
         viewArticle(that.$route.params.id).then(res => {
           Object.assign(that.article, res.data)
           that.article.editor.value = res.data.body.content
-
-          that.getCommentsByArticle()
+          that.getCommentsByArticle(res.data.body.id)
         }).catch(error => {
           if (error !== 'error') {
             that.$message({type: 'error', message: '文章加载失败', showClose: true})
@@ -201,9 +200,9 @@
           }
         })
       },
-      getCommentsByArticle() {
+      getCommentsByArticle(id) {
         let that = this
-        getCommentsByArticle(that.article.id).then(data => {
+        getCommentsByArticle(id).then(data => {
           that.comments = data.data
         }).catch(error => {
           if (error !== 'error') {

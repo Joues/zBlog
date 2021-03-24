@@ -19,7 +19,7 @@ import java.util.Map;
 public interface BlogMapper extends BaseMapper<Blog> {
 
     @Select("select id,title from blog s\n" +
-            "ORDER BY ABS(NOW() - s.created_time) ASC\n" +
+            "ORDER BY ABS(NOW() - s.create_time) ASC\n" +
             "limit #{sizeNumber};")
     List<Map<String, Object>> getBlogNews(@Param("sizeNumber") Integer sizeNumber);
 
