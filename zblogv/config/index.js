@@ -12,7 +12,7 @@ module.exports = {
         assetsPublicPath: '/',
         proxyTable: {
             '/': {
-                target: 'http://localhost:8086/',
+                target: 'http://ityihang.cn:8086/',
                 changeOrigin: true,
                 pathRewrite: {
                     '^/': ''
@@ -55,10 +55,10 @@ module.exports = {
         // Paths
         assetsRoot: path.resolve(__dirname, '../dist'),
         assetsSubDirectory: 'static',
-        assetsPublicPath: '/',
+        assetsPublicPath: './',
         proxyTable: {
           '/': {
-              target: 'http://localhost:8086/',
+              target: 'http://ityihang.cn:8086/',
               changeOrigin: true,
               pathRewrite: {
                   '^/': ''

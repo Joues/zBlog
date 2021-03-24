@@ -1,8 +1,8 @@
 <template>
   <div id="login" v-title data-title="登录 - zBlog">
-    <video preload="auto" class="me-video-player" autoplay="autoplay" loop="loop">
+    <!-- <video preload="auto" class="me-video-player" autoplay="autoplay" loop="loop">
           <source src="../../static/vedio/sea.mp4" type="video/mp4">
-      </video>
+      </video> -->
 
     <div class="me-login-box me-login-box-radius">
       <h1>zBlog 登录</h1>
@@ -98,11 +98,11 @@ import {login} from '@/api/login'
         this.currdatetime = new Date().getTime();
         this.userForm.checkKey = this.currdatetime;
         getAction(`/randomImage/${this.currdatetime}`).then(res=>{
-          if(res.data.success){
-            this.randCodeImage = res.data.data
+          if(res.data){
+            this.randCodeImage = res.data
             this.requestCodeSuccess=true
           }else{
-            this.$message.error(res.data.msg)
+            this.$message.error(res.data.message)
             this.requestCodeSuccess=false
           }
         }).catch(()=>{

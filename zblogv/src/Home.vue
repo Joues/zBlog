@@ -4,11 +4,11 @@
     	
     	<base-header :activeIndex="activeIndex"></base-header>
 		  
-		  <router-view class="me-container"/>
+		<router-view class="me-container"/>
 		  
-			<base-footer v-show="footerShow"></base-footer>
+		<base-footer v-show="footerShow"></base-footer>
 		  
-		</el-container>
+	</el-container>
 		
   </div>
   
@@ -48,7 +48,6 @@ export default {
 </script>
 
 <style>
-
 .me-container{
   margin: 100px auto 140px;
 }

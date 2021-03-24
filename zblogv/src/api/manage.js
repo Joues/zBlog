@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import axios from 'axios'
+import request from '@/request'
 
 const api = {
     user: '/api/user',
@@ -40,7 +41,7 @@ export function putAction(url, parameter) {
 
 //get
 export function getAction(url, parameter) {
-    return axios({
+    return request({
         url: url,
         method: 'get',
         params: parameter

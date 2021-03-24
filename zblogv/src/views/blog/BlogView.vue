@@ -1,21 +1,25 @@
 <template>
   <div class="me-view-body" v-title :data-title="title">
     <el-container class="me-view-container">
-      <el-aside class="me-area">
+      <!-- <el-aside class="me-area">
         <ul class="me-operation-list">
           <li class="me-operation-item">
-            <el-button type="primary" icon="el-icon-edit"></el-button>
+            <el-button type="primary" size="mini" icon="el-icon-edit"></el-button>
           </li>
         </ul>
-      </el-aside>
+      </el-aside> -->
       <el-main>
 
         <div class="me-view-card">
           <h1 class="me-view-title">{{article.title}}</h1>
           <div class="me-view-author">
-            <a class="">
-              <img class="me-view-picture" :src="article.author.avatar"></img>
-            </a>
+            <!-- <a class=""> -->
+              <!-- <img class="me-view-picture" :src="article.author.avatar"></img> -->
+              <!-- <span>周逸航</span> -->
+              <div class="me-view-photo">
+                {{ article.author.avatar }}
+              </div>
+            <!-- </a> -->
             <div class="me-view-info">
               <span>{{article.author.username}}</span>
               <div class="me-view-meta">
@@ -28,7 +32,7 @@
             <el-button
               v-if="this.article.author.id == this.$store.state.id"
               @click="editArticle()"
-              style="position: absolute;left: 60%;"
+              style="position: absolute; left: 75%;"
               size="mini"
               round
               icon="el-icon-edit">编辑</el-button>
@@ -55,16 +59,19 @@
           <div class="me-view-tag">
             文章分类：
             <!--<span style="font-weight: 600">{{article.category.categoryname}}</span>-->
-            <el-button @click="tagOrCategory('category', article.category.id)" size="mini" type="primary" round plain>{{article.category.categoryname}}</el-button>
+            <el-button @click="tagOrCategory('category', article.category.id)" size="mini" type="primary" round plain style="position: absolute;vertical-align：middle;margin: 0 auto;">{{article.category.categoryname}}</el-button>
           </div>
 
           <div class="me-view-comment">
             <div class="me-view-comment-write">
               <el-row :gutter="20">
                 <el-col :span="2">
-                  <a class="">
+                  <!-- <a class="">
                     <img class="me-view-picture" :src="avatar"></img>
-                  </a>
+                  </a> -->
+                  <div class="me-view-photo">
+                    {{ article.author.avatar }}
+                  </div>
                 </el-col>
                 <el-col :span="22">
                   <el-input
@@ -80,7 +87,7 @@
 
               <el-row :gutter="20">
                 <el-col :span="2" :offset="22">
-                  <el-button type="text" @click="publishComment()">评论</el-button>
+                  <el-button type="primary" size="mini" @click="publishComment()" style="margin: 15px 35px 0 0;">评论</el-button>
                 </el-col>
               </el-row>
             </div>
@@ -154,7 +161,7 @@
       avatar() {
         let avatar = this.$store.state.avatar
 
-        if (avatar.length() > 0) {
+        if (null !== avatar) {
           return avatar
         }
         return default_avatar
@@ -236,7 +243,7 @@
   }
 
   .me-view-container {
-    width: 700px;
+    width: 1150px;
   }
 
   .el-main {
@@ -256,15 +263,35 @@
   }
 
   .me-view-picture {
-    width: 40px;
-    height: 40px;
-    border: 1px solid #ddd;
+    width: 35px;
+    height: 35px;
+    border: 0 none;
+    /* border: 1px solid #ddd; */
     border-radius: 50%;
     vertical-align: middle;
-    background-color: #0abde3;
+    /* background-color: #0abde3; */
+  }
+
+  .me-view-photo {
+    /* top: 50%; */
+    display: inline-block;
+    left: -40px;
+    transform: translateY(-40%);
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background: #0abde3;
+    font-size: 18px;
+    font-family: PingFangTC-Medium, PingFangTC;
+    font-weight: 500;
+    color: #FFFFFF;
+    line-height: 34px;
+    text-align: center;
+    cursor: pointer;
   }
 
   .me-view-info {
+    position: absolute;
     display: inline-block;
     vertical-align: middle;
     margin-left: 8px;

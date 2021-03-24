@@ -28,12 +28,12 @@
 <style>
 
   .el-footer {
-    min-width: 100%;
-    box-shadow: 0 -2px 3px hsla(0, 0%, 7%, .1), 0 0 0 1px hsla(0, 0%, 7%, .1);
     position: absolute;
     bottom: 0;
     left: 0;
     z-index: 1024;
+    min-width: 100%;
+    box-shadow: 0 -2px 3px hsla(0, 0%, 7%, .1), 0 0 0 1px hsla(0, 0%, 7%, .1);
   }
 
   .me-footer {

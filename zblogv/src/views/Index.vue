@@ -39,6 +39,7 @@
   export default {
     name: 'Index',
     created() {
+      this.someWords()
       this.getHotArtices()
       this.getNewArtices()
       this.getHotTags()
@@ -53,6 +54,9 @@
       }
     },
     methods: {
+      someWords() {
+        console.log("欲穷千里目，更上一层楼。")
+      },
       getHotArtices() {
         let that = this
         getHotArtices().then(data => {
