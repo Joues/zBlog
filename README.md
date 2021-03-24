@@ -11,5 +11,5 @@ zblog 博客
 
 联系作者：QQ：1987247505
 
-### 2021/03/24 出版发布
+### 2021/03/24 初版发布
 目前[zblog](https://ityihang.cn)项目已经部署上线，访问地址：[https://ityihang.cn](https://ityihang.cn)
