@@ -57,3 +57,18 @@ yihang:
 logging:
   level:
     cn.ityihang.zblog.*.mapper: debug
+
+# ===================================
+# 分布式文件系统FDFS配置
+# ===================================
+# 连接超时时间
+fdfs:
+  connect-timeout: 600
+  # 读取超时时间
+  so-timeout: 1500
+  # 缩略图的宽高
+  thumb-image.height: 150
+  thumb-image.width: 150
+  # tracker服务配置地址列表，替换成自己服务的IP地址，支持多个 端口：22122/23000
+  tracker-list: ityihang.cn:22122
+  pool.jmx-enabled: false
