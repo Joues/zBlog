@@ -1,7 +1,7 @@
 package cn.ityihang.zblog.blog.service.impl;
 
+import cn.ityihang.zblog.blog.entity.BlogInfo;
 import cn.ityihang.zblog.blog.mapper.BlogMapper;
-import cn.ityihang.zblog.blog.entity.Blog;
 import cn.ityihang.zblog.blog.service.IBlogService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ import java.util.*;
  * @Date: create in 2020/8/21 0:33
  */
 @Service
-public class BlogSerivceImpl extends ServiceImpl<BlogMapper, Blog> implements IBlogService {
+public class BlogSerivceImpl extends ServiceImpl<BlogMapper, BlogInfo> implements IBlogService {
 
     @Autowired
     private BlogMapper blogMapper;

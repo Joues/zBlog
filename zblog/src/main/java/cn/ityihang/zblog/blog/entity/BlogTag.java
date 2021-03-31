@@ -10,24 +10,27 @@ import lombok.EqualsAndHashCode;
  * </p>
  *
  * @author jobob
- * @since 2020-11-11
+ * @since 2020-11-09
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class Category implements Serializable {
+public class BlogTag implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * 主键id
+     */
     private Integer id;
     /**
-     * 分类名
+     * 标签名
      */
     private String name;
 
     /**
-     * 父分类id
+     * 外键（博客id）
      */
-    private Integer pid;
+    private Integer blogId;
 
     /**
      * 描述
@@ -35,9 +38,9 @@ public class Category implements Serializable {
     private String subscribe;
 
     /**
-     * 博客表外键
+     * 图标
      */
-    private Integer idBlog;
+    private String avatar;
 
 
 }

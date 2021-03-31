@@ -17,7 +17,7 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class Blog implements Serializable {
+public class BlogInfo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

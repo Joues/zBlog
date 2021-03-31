@@ -1,10 +1,10 @@
 package cn.ityihang.zblog.blog.controller;
 
 
+import cn.ityihang.zblog.blog.entity.BlogCategory;
 import cn.ityihang.zblog.common.result.RestResponse;
 import cn.ityihang.zblog.common.param.PageParam;
 import cn.ityihang.zblog.common.utils.QueryGenerator;
-import cn.ityihang.zblog.blog.entity.Category;
 import cn.ityihang.zblog.blog.service.ICategoryService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -42,10 +42,10 @@ public class CategoryController {
      */
     @ApiOperation(value = "分页列表查询")
     @GetMapping(value = "/list")
-    public RestResponse getBlogList(Category category, @Valid PageParam pageParam, HttpServletRequest req) {
-        QueryWrapper<Category> queryWrapper = QueryGenerator.initQueryWrapper(category, req.getParameterMap());
-        Page<Category> page = new Page<>(pageParam.getPageNo(), pageParam.getLimit());
-        IPage<Category> pageList = categoryService.page(page, queryWrapper);
+    public RestResponse getBlogList(BlogCategory blogCategory, @Valid PageParam pageParam, HttpServletRequest req) {
+        QueryWrapper<BlogCategory> queryWrapper = QueryGenerator.initQueryWrapper(blogCategory, req.getParameterMap());
+        Page<BlogCategory> page = new Page<>(pageParam.getPageNo(), pageParam.getLimit());
+        IPage<BlogCategory> pageList = categoryService.page(page, queryWrapper);
         return RestResponse.ok(pageList);
     }
 
@@ -71,15 +71,15 @@ public class CategoryController {
 
     @ApiOperation(value = "添加分类", notes = "添加分类")
     @PostMapping(value = "/add")
-    public RestResponse<?> addBlog(@RequestBody Category category) {
-        categoryService.save(category);
+    public RestResponse<?> addBlog(@RequestBody BlogCategory blogCategory) {
+        categoryService.save(blogCategory);
         return RestResponse.ok("添加成功！");
     }
 
     @ApiOperation(value = "修改分类信息", notes = "修改分类信息")
     @PutMapping(value = "/edit")
-    public RestResponse<?> updateBlog(@RequestBody Category category) {
-        categoryService.updateById(category);
+    public RestResponse<?> updateBlog(@RequestBody BlogCategory blogCategory) {
+        categoryService.updateById(blogCategory);
         return RestResponse.ok("编辑成功!");
     }
 }

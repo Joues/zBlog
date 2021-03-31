@@ -1,6 +1,6 @@
 package cn.ityihang.zblog.blog.vo;
 
-import cn.ityihang.zblog.blog.entity.Blog;
+import cn.ityihang.zblog.blog.entity.BlogInfo;
 import lombok.Data;
 
 import java.util.List;
@@ -14,7 +14,7 @@ import java.util.List;
 @Data
 public class BlogVO {
 //    Blog表所有字段
-    private List<Blog> records;
+    private List<BlogInfo> records;
 //    分页查询长度
     private Long size;
 //    分页查询总页数

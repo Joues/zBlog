@@ -26,26 +26,26 @@
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
         <!-- 生成映射文件的包名和位置-->
-        <sqlMapGenerator targetPackage="cn.ityihang.zblog.blog.mapper.xml" targetProject="src/main/java">
+        <sqlMapGenerator targetPackage="cn.ityihang.zblog.blogInfo.mapper.xml" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
         <!-- 生成DAO的包名和位置-->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="cn.ityihang.zblog.blog.mapper" targetProject="src/main/java">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="cn.ityihang.zblog.blogInfo.mapper" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
         <!--生成service,serviceImpl-->
-        <javaServiceGenerator targetPackage="cn.ityihang.zblog.blog.service" targetProject="src/main/java"
-                              implementationPackage="cn.ityihang.zblog.blog.service.impl">
+        <javaServiceGenerator targetPackage="cn.ityihang.zblog.blogInfo.service" targetProject="src/main/java"
+                              implementationPackage="cn.ityihang.zblog.blogInfo.service.impl">
         </javaServiceGenerator>
 
         <!--生成controller-->
-        <javaControllerGenerator targetPackage="cn.ityihang.zblog.blog.controller" targetProject="src/main/java">
+        <javaControllerGenerator targetPackage="cn.ityihang.zblog.blogInfo.controller" targetProject="src/main/java">
             <property name="superClass" value="cn.ityihang.zblog.BaseController"></property>
         </javaControllerGenerator>
 
         <!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名-->
-        <table tableName="blog" domainObjectName="Blog" enableCountByExample="false" enableUpdateByExample="false"
+        <table tableName="blogInfo" domainObjectName="Blog" enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
 
         <table tableName="blog_comment" domainObjectName="BlogComment" enableCountByExample="false" enableUpdateByExample="false"
@@ -57,10 +57,10 @@
         <table tableName="blog_poll" domainObjectName="BlogPoll" enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
 
-        <table tableName="category" domainObjectName="Category" enableCountByExample="false" enableUpdateByExample="false"
+        <table tableName="blogCategory" domainObjectName="Category" enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
 
-        <table tableName="tag" domainObjectName="Tag" enableCountByExample="false" enableUpdateByExample="false"
+        <table tableName="blogTag" domainObjectName="Tag" enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
 
         <table tableName="user" domainObjectName="User" enableCountByExample="false" enableUpdateByExample="false"

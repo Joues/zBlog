@@ -1,9 +1,9 @@
 package cn.ityihang.zblog.blog.controller;
 
-import cn.ityihang.zblog.blog.entity.Blog;
+import cn.ityihang.zblog.blog.entity.BlogInfo;
 import cn.ityihang.zblog.blog.entity.BlogDetail;
-import cn.ityihang.zblog.blog.entity.Category;
-import cn.ityihang.zblog.blog.entity.Tag;
+import cn.ityihang.zblog.blog.entity.BlogCategory;
+import cn.ityihang.zblog.blog.entity.BlogTag;
 import cn.ityihang.zblog.blog.service.IBlogDetailService;
 import cn.ityihang.zblog.blog.service.IBlogService;
 import cn.ityihang.zblog.blog.service.ICategoryService;
@@ -55,7 +55,7 @@ public class BlogUserInfoController {
     @GetMapping(value = "/{id}")
     public RestResponse<?> getBlogById(@PathVariable Integer id) {
 //        获取博客信息
-        Blog blog = blogService.getById(id);
+        BlogInfo blog = blogService.getById(id);
         if (null==blog) {
             return RestResponse.failed(CommonParam.ENTITY_ISNULL);
         }
@@ -74,13 +74,13 @@ public class BlogUserInfoController {
         userDetailQWrapper.eq(SysUserDetails::getUserId, sysUser.getId());
         SysUserDetails userDetails = sysUserDetailsService.getOne(userDetailQWrapper);
 //        获取分类信息
-        LambdaQueryWrapper<Category> categoryQWrapper = new LambdaQueryWrapper<>();
-        categoryQWrapper.eq(Category::getIdBlog, id);
-        Category categoryInfo = categoryService.getOne(categoryQWrapper);
+        LambdaQueryWrapper<BlogCategory> categoryQWrapper = new LambdaQueryWrapper<>();
+        categoryQWrapper.eq(BlogCategory::getIdBlog, id);
+        BlogCategory blogCategoryInfo = categoryService.getOne(categoryQWrapper);
 //        获取标签信息
-        LambdaQueryWrapper<Tag> tagQWrapper = new LambdaQueryWrapper<>();
-        tagQWrapper.eq(Tag::getBlogId, id);
-        Tag tagInfo = tagService.getOne(tagQWrapper);
+        LambdaQueryWrapper<BlogTag> tagQWrapper = new LambdaQueryWrapper<>();
+        tagQWrapper.eq(BlogTag::getBlogId, id);
+        BlogTag blogTagInfo = tagService.getOne(tagQWrapper);
 //        组装接口返回信息
         HashMap<String, String> author = new HashMap<>();
         author.put("avatar", userDetails.getAvator());
@@ -92,13 +92,13 @@ public class BlogUserInfoController {
         body.put("id", String.valueOf(blogDetail.getBlogId()));
 
         HashMap<String, String> category = new HashMap<>();
-        category.put("categoryname", categoryInfo.getName());
-        category.put("description", categoryInfo.getSubscribe());
-        category.put("id", String.valueOf(categoryInfo.getId()));
+        category.put("categoryname", blogCategoryInfo.getName());
+        category.put("description", blogCategoryInfo.getSubscribe());
+        category.put("id", String.valueOf(blogCategoryInfo.getId()));
 
         HashMap<String, String> tags = new HashMap<>();
-        tags.put("tagname", tagInfo.getName());
-        tags.put("id", String.valueOf(tagInfo.getId()));
+        tags.put("tagname", blogTagInfo.getName());
+        tags.put("id", String.valueOf(blogTagInfo.getId()));
 
         LinkedHashMap<String, HashMap<String, String>> blogInfo = new LinkedHashMap<>();
         blogInfo.put("author", author);

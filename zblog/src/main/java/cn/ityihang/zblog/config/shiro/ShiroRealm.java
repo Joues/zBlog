@@ -24,6 +24,8 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 
+import java.util.Set;
+
 import static cn.ityihang.zblog.system.service.impl.SysLogServiceImpl.getIpAddr;
 
 /**
@@ -71,16 +73,16 @@ public class ShiroRealm extends AuthorizingRealm {
         }
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
 
-//        // 设置用户拥有的角色集合，比如“admin,test”
-//        Set<String> roleSet = commonAPI.queryUserRoles(username);
-//        System.out.println(roleSet.toString());
-//        info.setRoles(roleSet);
+        // 设置用户拥有的角色集合，比如“admin,test”
+        Set<String> roleSet = commonAPI.queryUserRoles(username);
+        System.out.println(roleSet.toString());
+        info.setRoles(roleSet);
 
         // 设置用户拥有的权限集合，比如“sys:role:add,sys:user:add”
-//        Set<String> permissionSet = commonAPI.queryUserAuths(username);
-//        info.addStringPermissions(permissionSet);
-//        System.out.println(permissionSet);
-//        log.info("===============Shiro权限认证成功==============");
+        Set<String> permissionSet = commonAPI.queryUserAuths(username);
+        info.addStringPermissions(permissionSet);
+        System.out.println(permissionSet);
+        log.info("===============Shiro权限认证成功==============");
         return info;
     }
 

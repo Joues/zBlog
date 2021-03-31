@@ -1,6 +1,6 @@
 package cn.ityihang.zblog.blog.service;
 
-import cn.ityihang.zblog.blog.entity.Blog;
+import cn.ityihang.zblog.blog.entity.BlogInfo;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.text.ParseException;
@@ -15,7 +15,7 @@ import java.util.Map;
  * @author jobob
  * @since 2020-11-11
  */
-public interface IBlogService extends IService<Blog> {
+public interface IBlogService extends IService<BlogInfo> {
 
     /**
      * 最新博客

@@ -1,6 +1,6 @@
 package cn.ityihang.zblog.blog.mapper;
 
-import cn.ityihang.zblog.blog.entity.Category;
+import cn.ityihang.zblog.blog.entity.BlogCategory;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author jobob
  * @since 2020-11-11
  */
-public interface CategoryMapper extends BaseMapper<Category> {
+public interface CategoryMapper extends BaseMapper<BlogCategory> {
 
 }

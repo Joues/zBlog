@@ -1,14 +1,12 @@
 package cn.ityihang.zblog.blog.controller;
 
-import cn.ityihang.zblog.aspect.annotation.AutoLog;
 import cn.ityihang.zblog.blog.vo.BlogCountVO;
-import cn.ityihang.zblog.common.constant.CommonParam;
 import cn.ityihang.zblog.common.result.RestResponse;
 import cn.ityihang.zblog.common.constant.CommonConstant;
 import cn.ityihang.zblog.common.param.PageParam;
 import cn.ityihang.zblog.common.utils.DateUtils;
 import cn.ityihang.zblog.common.utils.QueryGenerator;
-import cn.ityihang.zblog.blog.entity.Blog;
+import cn.ityihang.zblog.blog.entity.BlogInfo;
 import cn.ityihang.zblog.blog.service.IBlogService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -44,17 +42,17 @@ public class BlogController {
 
     /**
      * 分页列表查询
-     * @param blog
+     * @param blogInfo
      * @param pageParam
      * @param req
      * @return
      */
     @ApiOperation(value = "分页列表查询")
     @GetMapping(value = "/list")
-    public RestResponse getBlogList(Blog blog, @Valid PageParam pageParam, HttpServletRequest req) {
-        QueryWrapper<Blog> queryWrapper = QueryGenerator.initQueryWrapper(blog, req.getParameterMap());
-        Page<Blog> page = new Page<>(pageParam.getPageNo(), pageParam.getLimit());
-        IPage<Blog> pageList = blogService.page(page, queryWrapper);
+    public RestResponse getBlogList(BlogInfo blogInfo, @Valid PageParam pageParam, HttpServletRequest req) {
+        QueryWrapper<BlogInfo> queryWrapper = QueryGenerator.initQueryWrapper(blogInfo, req.getParameterMap());
+        Page<BlogInfo> page = new Page<>(pageParam.getPageNo(), pageParam.getLimit());
+        IPage<BlogInfo> pageList = blogService.page(page, queryWrapper);
         return RestResponse.ok(pageList);
     }
 
@@ -80,15 +78,15 @@ public class BlogController {
 
     @ApiOperation(value = "添加博客", notes = "添加博客")
     @PostMapping(value = "/add")
-    public RestResponse<?> addBlog(@RequestBody Blog blog) {
-        blogService.save(blog);
+    public RestResponse<?> addBlog(@RequestBody BlogInfo blogInfo) {
+        blogService.save(blogInfo);
         return RestResponse.ok("添加成功！");
     }
 
     @ApiOperation(value = "修改博客信息", notes = "修改博客信息")
     @PutMapping(value = "/edit")
-    public RestResponse<?> updateBlog(@RequestBody Blog blog) {
-        blogService.updateById(blog);
+    public RestResponse<?> updateBlog(@RequestBody BlogInfo blogInfo) {
+        blogService.updateById(blogInfo);
         return RestResponse.ok("编辑成功!");
     }
 

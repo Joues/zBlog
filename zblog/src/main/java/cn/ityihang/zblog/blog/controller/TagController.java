@@ -1,7 +1,7 @@
 package cn.ityihang.zblog.blog.controller;
 
 
-import cn.ityihang.zblog.blog.entity.Tag;
+import cn.ityihang.zblog.blog.entity.BlogTag;
 import cn.ityihang.zblog.blog.service.ITagService;
 import cn.ityihang.zblog.common.result.RestResponse;
 import cn.ityihang.zblog.common.param.PageParam;
@@ -37,17 +37,17 @@ public class TagController {
 
     /**
      * 分页列表查询
-     * @param tag
+     * @param blogTag
      * @param pageParam
      * @param req
      * @return
      */
     @ApiOperation(value = "分页列表查询")
     @GetMapping(value = "/list")
-    public RestResponse getBlogList(Tag tag, @Valid PageParam pageParam, HttpServletRequest req) {
-        QueryWrapper<Tag> queryWrapper = QueryGenerator.initQueryWrapper(tag, req.getParameterMap());
-        Page<Tag> page = new Page<>(pageParam.getPageNo(), pageParam.getLimit());
-        IPage<Tag> pageList = tagService.page(page, queryWrapper);
+    public RestResponse getBlogList(BlogTag blogTag, @Valid PageParam pageParam, HttpServletRequest req) {
+        QueryWrapper<BlogTag> queryWrapper = QueryGenerator.initQueryWrapper(blogTag, req.getParameterMap());
+        Page<BlogTag> page = new Page<>(pageParam.getPageNo(), pageParam.getLimit());
+        IPage<BlogTag> pageList = tagService.page(page, queryWrapper);
         return RestResponse.ok(pageList);
     }
 
@@ -73,24 +73,24 @@ public class TagController {
 
     @ApiOperation(value = "添加标签", notes = "添加标签")
     @PostMapping(value = "/add")
-    public RestResponse<?> addBlog(@RequestBody Tag tag) {
-        tagService.save(tag);
+    public RestResponse<?> addBlog(@RequestBody BlogTag blogTag) {
+        tagService.save(blogTag);
         return RestResponse.ok("添加成功！");
     }
 
     @ApiOperation(value = "修改标签信息", notes = "修改标签信息")
     @PutMapping(value = "/edit")
-    public RestResponse<?> updateBlog(@RequestBody Tag tag) {
-        tagService.updateById(tag);
+    public RestResponse<?> updateBlog(@RequestBody BlogTag blogTag) {
+        tagService.updateById(blogTag);
         return RestResponse.ok("编辑成功!");
     }
     
     @ApiOperation(value = "最热标签")
     @GetMapping(value = "/hot")
     public RestResponse getBlogHots() {
-        LambdaQueryWrapper<Tag> tagLambdaQueryWrapper = new LambdaQueryWrapper<>();
-        Page<Tag> page = new Page<>(1,5);
-        IPage<Tag> pageList = tagService.page(page, tagLambdaQueryWrapper);
+        LambdaQueryWrapper<BlogTag> tagLambdaQueryWrapper = new LambdaQueryWrapper<>();
+        Page<BlogTag> page = new Page<>(1,5);
+        IPage<BlogTag> pageList = tagService.page(page, tagLambdaQueryWrapper);
         return RestResponse.ok(pageList);
     }
 }

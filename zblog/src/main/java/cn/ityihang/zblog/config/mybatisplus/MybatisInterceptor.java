@@ -9,6 +9,7 @@ import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.mapping.SqlCommandType;
 import org.apache.ibatis.plugin.*;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Field;
@@ -149,6 +150,10 @@ public class MybatisInterceptor implements Interceptor {
     private SysUser getLoginUser() {
         SysUser sysUser = null;
         try {
+            Subject subject = SecurityUtils.getSubject();
+            log.info("subject: ", subject);
+            Object principal = SecurityUtils.getSubject().getPrincipal();
+            log.info("当前登录用户信息：" + principal);
             sysUser = SecurityUtils.getSubject().getPrincipal() != null ? (SysUser) SecurityUtils.getSubject().getPrincipal() : null;
         } catch (Exception e) {
             //e.printStackTrace();

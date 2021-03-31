@@ -1,6 +1,6 @@
 package cn.ityihang.zblog.blog.service;
 
-import cn.ityihang.zblog.blog.entity.Tag;
+import cn.ityihang.zblog.blog.entity.BlogTag;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @author jobob
  * @since 2020-11-09
  */
-public interface ITagService extends IService<Tag> {
+public interface ITagService extends IService<BlogTag> {
 
 }

@@ -1,7 +1,7 @@
 package cn.ityihang.zblog.blog.mapper;
 
 
-import cn.ityihang.zblog.blog.entity.Tag;
+import cn.ityihang.zblog.blog.entity.BlogTag;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
@@ -12,6 +12,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author jobob
  * @since 2020-11-09
  */
-public interface TagMapper extends BaseMapper<Tag> {
+public interface TagMapper extends BaseMapper<BlogTag> {
 
 }

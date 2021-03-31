@@ -1,6 +1,6 @@
 package cn.ityihang.zblog.blog.mapper;
 
-import cn.ityihang.zblog.blog.entity.Blog;
+import cn.ityihang.zblog.blog.entity.BlogInfo;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -16,7 +16,7 @@ import java.util.Map;
  * @author jobob
  * @since 2020-11-11
  */
-public interface BlogMapper extends BaseMapper<Blog> {
+public interface BlogMapper extends BaseMapper<BlogInfo> {
 
     @Select("select id,title from blog s\n" +
             "ORDER BY ABS(NOW() - s.create_time) ASC\n" +
