@@ -117,7 +117,7 @@ public class LoginController {
         if(StrUtil.isEmpty(token)) {
             return RestResponse.failed("退出登录失败！");
         }
-        String username = cn.ityihang.zblog.utils.JwtUtil.getUsername(token);
+        String username = JwtUtil.getUsername(token);
         LoginUser sysUser = loginUserService.getUserByName(username);
         if(sysUser!=null) {
             //update-begin--Author:wangshuai  Date:20200714  for：登出日志没有记录人员
