@@ -1,7 +1,11 @@
 package cn.ityihang.zblog.system.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
+import java.util.Date;
 
 public class SysUserRole implements Serializable {
 
@@ -33,12 +37,16 @@ public class SysUserRole implements Serializable {
   /**
    * 创建时间
    */
-  private java.sql.Timestamp createTime;
+  @JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")
+  @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+  private Date createTime;
 
   /**
    * 修改时间
    */
-  private java.sql.Timestamp updateTime;
+  @JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")
+  @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+  private Date updateTime;
 
 
   public long getId() {
@@ -86,7 +94,7 @@ public class SysUserRole implements Serializable {
   }
 
 
-  public java.sql.Timestamp getCreateTime() {
+  public Date getCreateTime() {
     return createTime;
   }
 
@@ -95,7 +103,7 @@ public class SysUserRole implements Serializable {
   }
 
 
-  public java.sql.Timestamp getUpdateTime() {
+  public Date getUpdateTime() {
     return updateTime;
   }
 
