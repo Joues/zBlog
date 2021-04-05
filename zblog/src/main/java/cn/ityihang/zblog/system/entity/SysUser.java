@@ -29,6 +29,22 @@ public class SysUser implements Serializable {
     private Integer status;
 
     /**
+     * 创建人
+     */
+    private String createBy;
+
+    /**
+     * 修改人
+     */
+    private String updateBy;
+
+
+    /**
+     * 修改时间
+     */
+    private java.sql.Timestamp updateTime;
+
+    /**
      * md5密码盐
      */
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)

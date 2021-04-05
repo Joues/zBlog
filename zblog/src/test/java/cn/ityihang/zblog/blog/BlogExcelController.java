@@ -1,14 +1,13 @@
 package cn.ityihang.zblog.blog;
 
 
-import cn.ityihang.zblog.blog.entity.Blog;
+import cn.ityihang.zblog.blog.entity.BlogInfo;
 import cn.ityihang.zblog.blog.service.IBlogService;
 import cn.ityihang.zblog.utils.ExcelUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,15 +36,15 @@ public class BlogExcelController {
     @ApiOperation(value = "excel导入导出工具")
     @GetMapping(value = "/exportExcel")
     public String exportExcel(HttpServletResponse response) throws Exception {
-        LambdaQueryWrapper<Blog> wrapper = Wrappers.lambdaQuery();
-        wrapper.eq(Blog::getId, "1");
-        List<Blog> blogList = blogService.list(wrapper);
+        LambdaQueryWrapper<BlogInfo> wrapper = Wrappers.lambdaQuery();
+        wrapper.eq(BlogInfo::getId, "1");
+        List<BlogInfo> blogInfoList = blogService.list(wrapper);
 
         String fileName = "博客表";
 
         Map<String, Object> studentMap = new HashMap();
-        studentMap.put("entity", Blog.class);
-        studentMap.put("dataList", blogList);
+        studentMap.put("entity", BlogInfo.class);
+        studentMap.put("dataList", blogInfoList);
         studentMap.put("fileName", fileName);
 
         List<Map> mapList = new ArrayList();

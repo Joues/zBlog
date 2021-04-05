@@ -1,6 +1,7 @@
 package cn.ityihang.zblog.config.shiro;
 
 import cn.hutool.core.util.StrUtil;
+import cn.ityihang.zblog.common.api.CommonAPI;
 import cn.ityihang.zblog.config.jwt.JwtToken;
 import cn.ityihang.zblog.common.constant.CommonConstant;
 import cn.ityihang.zblog.system.entity.LoginUser;
@@ -24,6 +25,7 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import static cn.ityihang.zblog.system.service.impl.SysLogServiceImpl.getIpAddr;
@@ -37,9 +39,9 @@ import static cn.ityihang.zblog.system.service.impl.SysLogServiceImpl.getIpAddr;
 @Component
 @Slf4j
 public class ShiroRealm extends AuthorizingRealm {
-//	@Lazy
-//    @Resource
-//    private CommonAPI commonAPI;
+	@Lazy
+    @Resource
+    private CommonAPI commonAPI;
 
     @Lazy
     @Resource
@@ -74,16 +76,44 @@ public class ShiroRealm extends AuthorizingRealm {
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
 
         // 设置用户拥有的角色集合，比如“admin,test”
-        Set<String> roleSet = commonAPI.queryUserRoles(username);
+//        Set<String> roleSet = commonAPI.queryUserRoles(username);
+        Set<String> roleSet = getRolesByUserName(username);
         System.out.println(roleSet.toString());
         info.setRoles(roleSet);
 
         // 设置用户拥有的权限集合，比如“sys:role:add,sys:user:add”
-        Set<String> permissionSet = commonAPI.queryUserAuths(username);
+//        Set<String> permissionSet = commonAPI.queryUserAuths(username);
+        Set<String> permissionSet = getPermissionsByUserName(username);
         info.addStringPermissions(permissionSet);
         System.out.println(permissionSet);
         log.info("===============Shiro权限认证成功==============");
         return info;
+    }
+
+    /**
+     * 模拟从数据库中获取权限数据
+     *
+     * @param userName
+     * @return
+     */
+    private Set<String> getPermissionsByUserName(String userName) {
+        Set<String> permissions = new HashSet<>();
+        permissions.add("user:delete");
+        permissions.add("user:add");
+        return permissions;
+    }
+
+    /**
+     * 模拟从数据库中获取角色数据
+     *
+     * @param userName
+     * @return
+     */
+    private Set<String> getRolesByUserName(String userName) {
+        Set<String> roles = new HashSet<>();
+        roles.add("admin");
+        roles.add("user");
+        return roles;
     }
 
     /**

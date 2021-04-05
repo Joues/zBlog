@@ -32,7 +32,22 @@ public class BlogPoll implements Serializable {
     /**
      * 发表人
      */
-    private String createName;
+    private String createBy;
+
+    /**
+     * 修改人
+     */
+    private String updateBy;
+
+    /**
+     * 创建时间
+     */
+    private java.sql.Timestamp createTime;
+
+    /**
+     * 修改时间
+     */
+    private java.sql.Timestamp updateTime;
 
 
 }

@@ -39,5 +39,25 @@ public class BlogCategory implements Serializable {
      */
     private Integer idBlog;
 
+    /**
+     * 创建人
+     */
+    private String createBy;
+
+    /**
+     * 修改人
+     */
+    private String updateBy;
+
+    /**
+     * 创建时间
+     */
+    private java.sql.Timestamp createTime;
+
+    /**
+     * 修改时间
+     */
+    private java.sql.Timestamp updateTime;
+
 
 }
