@@ -5,6 +5,7 @@ import cn.hutool.core.util.StrUtil;
 import cn.ityihang.zblog.common.result.RestResponse;
 import cn.ityihang.zblog.common.constant.CacheConstant;
 import cn.ityihang.zblog.common.constant.CommonConstant;
+import cn.ityihang.zblog.common.utils.RedisUtil;
 import cn.ityihang.zblog.system.entity.LoginUser;
 import cn.ityihang.zblog.system.entity.SysLoginModel;
 import cn.ityihang.zblog.system.entity.SysUser;
@@ -23,7 +24,7 @@ import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import cn.ityihang.zblog.utils.RedisUtil;
+
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

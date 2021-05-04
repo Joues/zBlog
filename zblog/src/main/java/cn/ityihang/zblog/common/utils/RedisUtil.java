@@ -1,4 +1,4 @@
-package cn.ityihang.zblog.utils;
+package cn.ityihang.zblog.common.utils;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;

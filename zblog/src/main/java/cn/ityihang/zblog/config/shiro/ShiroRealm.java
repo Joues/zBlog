@@ -2,13 +2,13 @@ package cn.ityihang.zblog.config.shiro;
 
 import cn.hutool.core.util.StrUtil;
 import cn.ityihang.zblog.common.api.CommonAPI;
+import cn.ityihang.zblog.common.utils.RedisUtil;
 import cn.ityihang.zblog.config.jwt.JwtToken;
 import cn.ityihang.zblog.common.constant.CommonConstant;
 import cn.ityihang.zblog.system.entity.LoginUser;
 import cn.ityihang.zblog.system.entity.SysUser;
 import cn.ityihang.zblog.system.service.ISysUserService;
 import cn.ityihang.zblog.utils.JwtUtil;
-import cn.ityihang.zblog.utils.RedisUtil;
 import cn.ityihang.zblog.utils.SpringContextUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authc.AuthenticationException;

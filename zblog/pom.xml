@@ -218,6 +218,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
+        <finalName>zblog</finalName>
     </build>
 
 </project>
