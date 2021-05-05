@@ -23,6 +23,8 @@ public class BlogComment implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    private Long id;
+
     /**
      * 博客id（外键）
      */
@@ -48,7 +50,7 @@ public class BlogComment implements Serializable {
     /**
      * 电子邮箱
      */
-    @TableField("eMail")
+    @TableField("e_mail")
     private String eMail;
 
     /**

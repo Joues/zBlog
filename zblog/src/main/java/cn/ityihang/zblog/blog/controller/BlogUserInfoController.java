@@ -15,11 +15,14 @@ import cn.ityihang.zblog.system.entity.SysUserDetails;
 import cn.ityihang.zblog.system.service.ISysUserDetailsService;
 import cn.ityihang.zblog.system.service.ISysUserService;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
@@ -59,6 +62,18 @@ public class BlogUserInfoController {
         if (null==blog) {
             return RestResponse.failed(CommonParam.ENTITY_ISNULL);
         }
+        HashMap<String, Object> blogs = new HashMap<>();
+        blogs.put("id", blog.getId());
+        blogs.put("userId", blog.getUserId());
+        blogs.put("title", blog.getTitle());
+        blogs.put("createTime", blog.getCreateTime());
+        blogs.put("updateTime", blog.getUpdateTime());
+        blogs.put("pollCount", blog.getUpdateTime());
+        blogs.put("commentCount", blog.getCommentCount());
+        blogs.put("readCount", blog.getReadCount());
+        blogs.put("isTop", blog.getIsTop());
+        blogs.put("isEssence", blog.getIsEssence());
+
 //        获取博客详情信息
         LambdaQueryWrapper<BlogDetail> blogDetailQWrapper = new LambdaQueryWrapper<>();
         blogDetailQWrapper.eq(BlogDetail::getBlogId, blog.getId());
@@ -82,29 +97,30 @@ public class BlogUserInfoController {
         tagQWrapper.eq(BlogTag::getBlogId, id);
         BlogTag blogTagInfo = tagService.getOne(tagQWrapper);
 //        组装接口返回信息
-        HashMap<String, String> author = new HashMap<>();
+        HashMap<String, Object> author = new HashMap<>();
         author.put("avatar", userDetails.getAvator());
         author.put("id", String.valueOf(sysUser.getId()));
         author.put("nickname", userDetails.getNickname());
 
-        HashMap<String, String> body = new HashMap<>();
+        HashMap<String, Object> body = new HashMap<>();
         body.put("content", blogDetail.getContent());
         body.put("id", String.valueOf(blogDetail.getBlogId()));
 
-        HashMap<String, String> category = new HashMap<>();
+        HashMap<String, Object> category = new HashMap<>();
         category.put("categoryname", blogCategoryInfo.getName());
         category.put("description", blogCategoryInfo.getSubscribe());
         category.put("id", String.valueOf(blogCategoryInfo.getId()));
 
-        HashMap<String, String> tags = new HashMap<>();
+        HashMap<String, Object> tags = new HashMap<>();
         tags.put("tagname", blogTagInfo.getName());
         tags.put("id", String.valueOf(blogTagInfo.getId()));
 
-        LinkedHashMap<String, HashMap<String, String>> blogInfo = new LinkedHashMap<>();
+        LinkedHashMap<String, HashMap<String, Object>> blogInfo = new LinkedHashMap<>();
         blogInfo.put("author", author);
         blogInfo.put("body", body);
         blogInfo.put("category", category);
         blogInfo.put("tags", tags);
+        blogInfo.put("blog", blogs);
 //        blogInfo.put("id", String.valueOf(id));
         return RestResponse.ok(blogInfo, "查询成功");
         //TODO……待实现：根据博客id，返回对应的博客详细信息，以及博客对应的创作者信息、分类信息、标签信息

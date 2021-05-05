@@ -1,22 +1,29 @@
 package cn.ityihang.zblog.blog.controller;
 
 
+import cn.ityihang.zblog.blog.entity.BlogInfo;
+import cn.ityihang.zblog.blog.service.IBlogService;
 import cn.ityihang.zblog.common.result.RestResponse;
 import cn.ityihang.zblog.common.param.PageParam;
 import cn.ityihang.zblog.common.utils.QueryGenerator;
 import cn.ityihang.zblog.blog.entity.BlogComment;
 import cn.ityihang.zblog.blog.service.IBlogCommentService;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.conditions.update.LambdaUpdateChainWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * <p>
@@ -33,6 +40,9 @@ public class BlogCommentController {
     
     @Autowired
     IBlogCommentService blogCommentService;
+
+    @Autowired
+    IBlogService blogService;
     
     /**
      * 分页列表查询
@@ -72,7 +82,20 @@ public class BlogCommentController {
 
     @ApiOperation(value = "添加评论", notes = "添加评论")
     @PostMapping(value = "/add")
+    @Transactional(rollbackFor = Exception.class)
     public RestResponse<?> addBlog(@RequestBody BlogComment blogComment) {
+//        添加评论时需要重新统计评论的博客总评论数
+        Integer blogId = blogComment.getBlogId();
+        if (null == blogId) {
+            return RestResponse.failed("博客ID(blogId)入参不允许为空！");
+        }
+        // 根据博客ID（blogId）获取评论表中对应的评论总数
+        List<BlogComment> list = blogCommentService.list(new LambdaQueryWrapper<BlogComment>()
+                .eq(BlogComment::getBlogId, blogId).select(BlogComment::getId));
+        // 修改博客表中的评论数
+        blogService.update(new LambdaUpdateWrapper<BlogInfo>().eq(BlogInfo::getId, blogId)
+                .set(BlogInfo::getCommentCount, list.size()));
+        // 保存评论信息
         blogCommentService.save(blogComment);
         return RestResponse.ok("添加成功！");
     }
