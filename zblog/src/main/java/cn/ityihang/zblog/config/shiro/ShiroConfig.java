@@ -124,6 +124,7 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/blogComment/edit", "anon");
         filterChainDefinitionMap.put("/blogComment/deleteBatch", "anon");
 
+        filterChainDefinitionMap.put("/register", "anon"); //添加用戶接口
         filterChainDefinitionMap.put("/user/register", "anon"); //添加用戶接口
         filterChainDefinitionMap.put("/user/userInfo", "anon"); //获取用户信息接口
 
