@@ -8,6 +8,7 @@ import cn.ityihang.zblog.system.service.ISysUserService;
 import cn.ityihang.zblog.utils.PasswordUtil;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -16,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -57,7 +59,16 @@ public class SysUserController {
 //        String selectedDeparts = jsonObject.getString("selecteddeparts");
         try {
             SysUser user = JSON.parseObject(jsonObject.toJSONString(), SysUser.class);
-            user.setCreateTime(new Date());//设置创建时间
+            String username = user.getUsername().trim();
+            LambdaQueryWrapper<SysUser> wrapper = new LambdaQueryWrapper<>();
+            wrapper.eq(SysUser::getUsername, username).select(SysUser::getId);
+            List<SysUser> list = sysUserService.list(wrapper);
+            if (list.size() > 0) {
+                result.setMsg("用户名已存在！");
+                return result;
+            }
+            //设置创建时间
+            user.setCreateTime(new Date());
             String salt = randomGen(8);
             user.setSalt(salt);
             String passwordEncode = PasswordUtil.encrypt(user.getUsername(), user.getPassword(), user.getSalt());

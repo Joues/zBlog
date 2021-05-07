@@ -21,6 +21,8 @@ public class SysUser implements Serializable {
 
     private String username;
 
+    private String realname;
+
     private java.lang.String password;
 
     @ApiModelProperty("数据软删除标识")

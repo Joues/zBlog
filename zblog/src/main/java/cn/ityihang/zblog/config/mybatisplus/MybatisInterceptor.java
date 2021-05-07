@@ -153,6 +153,7 @@ public class MybatisInterceptor implements Interceptor {
             Subject subject = SecurityUtils.getSubject();
             log.info("subject: ", subject);
             Object principal = SecurityUtils.getSubject().getPrincipal();
+            SysUser currentUser = (SysUser) SecurityUtils.getSubject().getPrincipal();
             log.info("当前登录用户信息：" + principal);
             sysUser = SecurityUtils.getSubject().getPrincipal() != null ? (SysUser) SecurityUtils.getSubject().getPrincipal() : null;
         } catch (Exception e) {
