@@ -120,7 +120,7 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/blogComment/list", "anon");
         filterChainDefinitionMap.put("/blogComment/id", "anon");
         filterChainDefinitionMap.put("/blogComment/delete", "anon");
-        filterChainDefinitionMap.put("/blogComment/add", "anon");
+//        filterChainDefinitionMap.put("/blogComment/add", "anon");
         filterChainDefinitionMap.put("/blogComment/edit", "anon");
         filterChainDefinitionMap.put("/blogComment/deleteBatch", "anon");
 
