@@ -13,3 +13,5 @@ zblog 博客
 
 ### 2021/03/24 初版发布
 目前[zblog](https://ityihang.cn)项目已经部署上线，访问地址：[https://ityihang.cn](https://ityihang.cn)
+
+注：本项目前端基于：http://blog.shiminghui.top/ 改版

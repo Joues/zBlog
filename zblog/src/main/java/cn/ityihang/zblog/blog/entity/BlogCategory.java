@@ -34,14 +34,15 @@ public class BlogCategory implements Serializable {
     private Integer pid;
 
     /**
+     * 博客类别图标
+     */
+    private String avatar;
+
+    /**
      * 描述
      */
     private String subscribe;
 
-    /**
-     * 博客表外键
-     */
-    private Integer idBlog;
 
     /**
      * 创建人

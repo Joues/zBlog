@@ -90,11 +90,11 @@ public class BlogUserInfoController {
         SysUserDetails userDetails = sysUserDetailsService.getOne(userDetailQWrapper);
 //        获取分类信息
         LambdaQueryWrapper<BlogCategory> categoryQWrapper = new LambdaQueryWrapper<>();
-        categoryQWrapper.eq(BlogCategory::getIdBlog, id);
+        categoryQWrapper.eq(BlogCategory::getId, blog.getClassId());
         BlogCategory blogCategoryInfo = categoryService.getOne(categoryQWrapper);
 //        获取标签信息
         LambdaQueryWrapper<BlogTag> tagQWrapper = new LambdaQueryWrapper<>();
-        tagQWrapper.eq(BlogTag::getBlogId, id);
+        tagQWrapper.eq(BlogTag::getId, blog.getTagId());
         BlogTag blogTagInfo = tagService.getOne(tagQWrapper);
 //        组装接口返回信息
         HashMap<String, Object> author = new HashMap<>();

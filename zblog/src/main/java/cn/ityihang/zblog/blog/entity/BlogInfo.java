@@ -77,6 +77,11 @@ public class BlogInfo implements Serializable {
     private Integer classId;
 
     /**
+     * 标签ID（外键）
+     */
+    private Integer tagId;
+
+    /**
      * 是否置顶
      */
     private Boolean isTop;

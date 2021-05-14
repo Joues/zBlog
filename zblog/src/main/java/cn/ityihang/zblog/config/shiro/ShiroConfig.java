@@ -103,6 +103,7 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/blogPoll/deleteBatch", "anon");
 
         filterChainDefinitionMap.put("/category/list", "anon");
+        filterChainDefinitionMap.put("/category/detail", "anon");
         filterChainDefinitionMap.put("/category/id", "anon");
         filterChainDefinitionMap.put("/category/delete", "anon");
         filterChainDefinitionMap.put("/category/add", "anon");

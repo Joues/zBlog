@@ -32,11 +32,6 @@ public class BlogTag implements Serializable {
     private String name;
 
     /**
-     * 外键（博客id）
-     */
-    private Integer blogId;
-
-    /**
      * 描述
      */
     private String subscribe;
