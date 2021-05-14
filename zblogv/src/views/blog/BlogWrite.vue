@@ -144,7 +144,7 @@
     },
     computed: {
       title (){
-        return '写文章 - For Fun'
+        return '写文章 - 一行博客'
       }
     },
     methods: {

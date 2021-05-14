@@ -2,14 +2,14 @@ import request from '@/request'
 
 export function getAllTags() {
     return request({
-        url: '/tags',
+        url: '/tag',
         method: 'get',
     })
 }
 
 export function getAllTagsDetail() {
     return request({
-        url: '/tags/detail',
+        url: '/tag/list',
         method: 'get',
     })
 }
@@ -23,14 +23,14 @@ export function getHotTags() {
 
 export function getTag(id) {
     return request({
-        url: `/tags/${id}`,
+        url: `/tag/${id}`,
         method: 'get',
     })
 }
 
 export function getTagDetail(id) {
     return request({
-        url: `/tags/detail/${id}`,
+        url: `/tag/list/${id}`,
         method: 'get',
     })
 }

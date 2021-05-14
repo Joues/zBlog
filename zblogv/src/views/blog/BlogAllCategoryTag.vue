@@ -9,12 +9,12 @@
                 <div class="me-allct-content">
                   <a class="me-allct-info">
                     <img class="me-allct-img" :src="c.avatar?c.avatar:defaultAvatar"/>
-                    <h4 class="me-allct-name">{{c.categoryname}}</h4>
-                    <p class="me-allct-description">{{c.description}}</p>
+                    <h4 class="me-allct-name">{{c.name}}</h4>
+                    <p class="me-allct-description">{{c.subscribe}}</p>
                   </a>
 
                   <div class="me-allct-meta">
-                    <span>{{c.articles}} 文章</span>
+                    <span>{{c.idBlog}} 文章</span>
                   </div>
                 </div>
               </li>
@@ -26,7 +26,7 @@
                 <div class="me-allct-content">
                   <a class="me-allct-info">
                     <img class="me-allct-img" :src="t.avatar?t.avatar:defaultAvatar"/>
-                    <h4 class="me-allct-name">{{t.tagname}}</h4>
+                    <h4 class="me-allct-name">{{t.name}}</h4>
                   </a>
 
                   <div class="me-allct-meta">
@@ -72,9 +72,9 @@
       },
       categoryTagTitle (){
         if(this.currentActiveName == 'category'){
-          return '文章分类 - For Fun'
+          return '文章分类 - 一行博客'
         }
-        return '标签 - For Fun'
+        return '标签 - 一行博客'
       }
     },
     methods: {
@@ -84,7 +84,8 @@
       getCategorys() {
         let that = this
         getAllCategorysDetail().then(data => {
-          that.categorys = data.data
+          that.categorys = data.data.records
+          console.log(that.categorys);
         }).catch(error => {
           if (error !== 'error') {
             that.$message({type: 'error', message: '文章分类加载失败', showClose: true})
@@ -94,7 +95,7 @@
       getTags() {
         let that = this
         getAllTagsDetail().then(data => {
-          that.tags = data.data
+          that.tags = data.data.records
         }).catch(error => {
           if (error !== 'error') {
             that.$message({type: 'error', message: '标签加载失败', showClose: true})

@@ -40,7 +40,7 @@
           <template v-else>
             <el-submenu index>
               <template slot="title">
-                <!-- <img class="me-header-picture" :src="user.avatar"/> -->
+                <!-- <img class="me-header-picture" :src="user.avatar"/> -->欢迎您，{{user.username}}
               </template>
               <el-menu-item index @click="logout"><i class="el-icon-back"></i>退出</el-menu-item>
             </el-submenu>
@@ -67,20 +67,27 @@
     },
     computed: {
       user() {
-        let login = this.$store.state.username.length != 0
-        // let avatar = this.$store.state.avatar
+        let login = this.$store.state.username != null
+        let avatar = this.$store.state.avatar
         let token = this.$store.state.token
+        let username = this.$store.state.username
         return {
           // login, avatar
-          login,token
+          login,token,username
         }
       }
     },
     methods: {
       logout() {
         let that = this
-        this.$store.dispatch('logout').then(() => {
-          this.$router.push({path: '/'})
+        this.$store.dispatch('logout').then(response => {
+          if(response.code === 0) {
+            that.$message({message: response.data, type: 'success', showClose: true});
+            this.$router.push({path: '/'})
+            // location.reload
+          } else {
+            that.$message({message: response.msg, type: 'error', showClose: true});
+          }
         }).catch((error) => {
           if (error !== 'error') {
             that.$message({message: error, type: 'error', showClose: true});

@@ -64,6 +64,7 @@
 
 <script>
   import {publishComment} from '@/api/comment'
+  import { ACCESS_TOKEN } from "@/store/mutation-types"
 
   export default {
     name: "CommentItem",
@@ -105,6 +106,11 @@
         let that = this
         if (!that.reply.content) {
           return;
+        }
+
+        const token = Vue.ls.get(ACCESS_TOKEN)
+        if (!token) {
+          that.$message({type: 'warn', message: '请先登录再评论！', showClose: true})
         }
 
         publishComment(that.reply).then(data => {

@@ -1,7 +1,9 @@
+import Vue from 'vue'
 import axios from 'axios'
 import { Message } from 'element-ui'
 import store from '@/store'
 import { getToken } from '@/request/token'
+import { ACCESS_TOKEN } from "@/store/mutation-types"
 
 // const service = axios.create({
 //     baseURL: process.env.BASE_API,
@@ -15,14 +17,13 @@ const service = axios.create({
 
 //request拦截器
 service.interceptors.request.use(config => {
-
-    if (store.state.token) {
-        config.headers['X-Access-Token'] = getToken()
+    const token = Vue.ls.get(ACCESS_TOKEN)
+    if (token) {
+      config.headers[ 'X-Access-Token' ] = token // 让每个请求携带自定义 token 请根据实际情况自行修改
     }
     return config
-}, error => {
-
-    Promise.reject(error)
+  },(error) => {
+    return Promise.reject(error)
 })
 
 // respone拦截器
@@ -70,7 +71,7 @@ service.interceptors.response.use(
             }
 
 
-            return Promise.reject(res.message);
+            return Promise.reject(res.msg);
         } else {
             return response.data;
         }

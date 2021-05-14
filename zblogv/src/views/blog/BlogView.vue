@@ -17,7 +17,7 @@
               <!-- <img class="me-view-picture" :src="article.author.avatar"></img> -->
               <!-- <span>周逸航</span> -->
               <div class="me-view-photo">
-                {{ article.author.avatar }}
+                {{ article.author.avatar === null ? article.author.nickname[0] : article.author.avatar }}
               </div>
             <!-- </a> -->
             <div class="me-view-info">
@@ -69,8 +69,9 @@
                   <!-- <a class="">
                     <img class="me-view-picture" :src="avatar"></img>
                   </a> -->
+                  <!-- 评论人为当前登录用户，若当前登录用户为空则显示一个固定的头像 -->
                   <div class="me-view-photo">
-                    {{ article.author.avatar }}
+                    {{ this.$store.state.avatar === null ? this.$store.state.nickname[0] : this.$store.state.avatar }}
                   </div>
                 </el-col>
                 <el-col :span="22">
@@ -85,9 +86,13 @@
                 </el-col>
               </el-row>
 
-              <el-row :gutter="20">
+              <el-row :gutter="20" >
                 <el-col :span="2" :offset="22">
-                  <el-button type="primary" size="mini" @click="publishComment()" style="margin: 15px 35px 0 0;">评论</el-button>
+                  <el-button type="primary" size="mini" 
+                    @click="publishComment()" 
+                    style="margin: 15px 35px 0 0;" 
+                    v-if="this.article.author.id == this.$store.state.id"
+                  >评论</el-button>
                 </el-col>
               </el-row>
             </div>
@@ -126,6 +131,8 @@
   export default {
     name: 'BlogView',
     created() {
+      this.article.author.id
+      console.log("states.id: "+ this.$store.state.id);
       this.getArticle()
     },
     watch: {
@@ -134,11 +141,12 @@
     data() {
       return {
         article: {
-          id: '',
+          id: 0,
           title: '',
           commentCounts: 0,
           viewCounts: 0,
           summary: '',
+          email: '',
           author: {},
           tags: [],
           category:{},
@@ -152,7 +160,9 @@
         },
         comments: [],
         comment: {
-          article: {},
+          // article: {},
+          blogId: 0,
+          email: '',
           content: ''
         }
       }
@@ -160,7 +170,7 @@
     computed: {
       avatar() {
         let avatar = this.$store.state.avatar
-
+        console.log("this.$storm.state.avatar + " + avatar);
         if (null !== avatar) {
           return avatar
         }
@@ -181,7 +191,14 @@
         let that = this
         viewArticle(that.$route.params.id).then(res => {
           Object.assign(that.article, res.data)
+          that.article.id = that.$route.params.id
+          that.article.title = res.data.blog.title
+          that.article.author.avatar = res.data.author.avatar
+          that.article.author.username = res.data.author.nickname
+          that.article.author.nickname = res.data.author.nickname
           that.article.editor.value = res.data.body.content
+          that.article.viewCounts = res.data.blog.readCount
+          that.article.commentCounts = res.data.blog.commentCount
           that.getCommentsByArticle(res.data.body.id)
         }).catch(error => {
           if (error !== 'error') {
@@ -194,7 +211,8 @@
         if (!that.comment.content) {
           return;
         }
-        that.comment.article.id = that.article.id
+        that.comment.blogId = that.article.id
+        that.comment.email = that.article.email
 
         publishComment(that.comment).then(data => {
           that.$message({type: 'success', message: '评论成功', showClose: true})
@@ -288,6 +306,7 @@
     line-height: 34px;
     text-align: center;
     cursor: pointer;
+    margin-top: 20px;
   }
 
   .me-view-info {
@@ -297,9 +316,27 @@
     margin-left: 8px;
   }
 
+  .me-view-info span {
+    font-size: 14 px;
+  }
+
   .me-view-meta {
     font-size: 12px;
     color: #969696;
+  }
+
+  .me-view-content {
+    width: 100%;
+    height: 100%; 
+    padding: 8px 25px 15px 25px;
+    /* margin-left: 15px; */
+    overflow-y: auto;
+    box-sizing: border-box;
+    overflow-x: hidden; 
+  }  
+
+  .me-view-content p {
+    padding: 8px 0px 15px 25px
   }
 
   .me-view-end {
@@ -328,6 +365,7 @@
 
   .me-view-comment-write {
     margin-top: 20px;
+    margin-bottom: 25px;
   }
 
   .me-view-comment-text {

@@ -17,7 +17,7 @@
         </el-form-item>
 
         <el-form-item prop="captcha">
-          <el-input placeholder="验证码" style="width: 180px" v-model="userForm.captcha"></el-input>
+          <el-input placeholder="验证码" style="width: 180px" v-model="userForm.captcha" @keyup.enter.native="login('userForm')"></el-input>
           <img class="me-login-img" v-if="requestCodeSuccess" :src="randCodeImage" @click="refreshImage"/>
           <img class="me-login-img" v-else src="../../static/user/checkcode.png" @click="refreshImage"/>
         </el-form-item>
@@ -28,7 +28,7 @@
       </el-form>
 
       <div class="me-login-design">
-        <p>Designed by
+        <p>Powered by
           <strong>
             <router-link to="/" class="me-login-design-color">it yihang</router-link>
           </strong>
@@ -53,6 +53,7 @@ import {login} from '@/api/login'
           captcha: '',
           checkKey: '',
         },
+        success: false,
         requestCodeSuccess: false,
         currdatetime:'',
         randCodeImage:'',
@@ -82,12 +83,18 @@ import {login} from '@/api/login'
 
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            that.$store.dispatch('login', that.userForm).then(() => {
-              that.$router.go(-1)
-            }).catch((error) => {
-              if (error !== 'error') {
-                that.$message({message: error, type: 'error', showClose: true});
+            that.$store.dispatch('login', that.userForm).then(response => {
+              // 验证成功，需要跳转页面；但是同时也要记录状态管理，当前用户的登录信息
+              if(response.code === 0) {
+                that.$message({message: response.msg, type: 'success', showClose: true});
+                that.$router.go(-1)
+              } else {
+                that.$message({message: response.msg, type: 'error', showClose: true});
               }
+            }).catch((error) => {
+              // if (error !== 'error') {
+                that.$message({message: error, type: 'error', showClose: true});
+              // }
             })
           } else {
             return false;

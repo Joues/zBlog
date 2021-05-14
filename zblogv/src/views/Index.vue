@@ -1,5 +1,5 @@
 <template>
-  <div v-title data-title="zBlogv For You">
+  <div v-title data-title="一行博客">
     <el-container>
 
       <el-main class="me-articles">
@@ -63,7 +63,7 @@
           that.hotArticles = data.data
         }).catch(error => {
           if (error !== 'error') {
-            that.$message({type: 'error', message: '最热文章加载失败!', showClose: true})
+            this.$message({type: 'error', message: '最热文章加载失败!', showClose: true})
           }
 
         })
@@ -75,7 +75,7 @@
           that.newArticles = data.data
         }).catch(error => {
           if (error !== 'error') {
-            that.$message({type: 'error', message: '最新文章加载失败!', showClose: true})
+            this.$message({type: 'error', message: '最新文章加载失败!', showClose: true})
           }
 
         })
@@ -87,7 +87,7 @@
           that.hotTags = data.data.records
         }).catch(error => {
           if (error !== 'error') {
-            that.$message({type: 'error', message: '最热标签加载失败!', showClose: true})
+            this.$message({type: 'error', message: '最热标签加载失败!', showClose: true})
           }
 
         })
@@ -98,7 +98,7 @@
           // console.log("返回的分类信息：" + this.archives)
         })).catch(error => {
           if (error !== 'error') {
-            that.$message({type: 'error', message: '文章归档加载失败!', showClose: true})
+            this.$message({type: 'error', message: '文章归档加载失败!', showClose: true})
           }
         })
       }
