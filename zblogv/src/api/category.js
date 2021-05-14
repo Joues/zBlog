@@ -2,7 +2,7 @@ import request from '@/request'
 
 export function getAllCategorys() {
   return request({
-    url: '/category',
+    url: '/category/list',
     method: 'get',
   })
 }
@@ -23,7 +23,10 @@ export function getCategory(id) {
 
 export function getCategoryDetail(id) {
   return request({
-    url: `/category/list/${id}`,
+    url: `/category/id`,
     method: 'get',
+    params: {
+      id: id,
+    }
   })
 }

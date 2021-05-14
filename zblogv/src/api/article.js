@@ -6,12 +6,15 @@ export function getArticles(query, page) {
         url: '/list',
         method: 'get',
         params: {
-            pageNumber: page.pageNumber,
-            pageSize: page.pageSize,
-            name: page.name,
-            sort: page.sort,
-            year: query.year,
-            month: query.month,
+            pageNo: page.pageNumber,
+            limit: page.pageSize,
+            // name: page.name,
+            order: page.sort,
+            // year: query.year,
+            // month: query.month,
+            createTime_begin: query.year + "-" + query.month,
+            createTime_end: query.year + "-" + query.month,
+            column: query.createTime,
             tagId: query.tagId,
             categoryId: query.categoryId
         }

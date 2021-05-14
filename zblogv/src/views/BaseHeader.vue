@@ -17,8 +17,13 @@
           <el-menu-item index="/archives">文章归档</el-menu-item>
           <el-menu-item index="/log">日志</el-menu-item>
           <el-menu-item index="/messageBoard">留言板</el-menu-item>
+          <el-submenu index="/">
+            <template slot="title">我的工作台</template>
+            <!-- <el-menu-item index="/"><a href="https://boot.ityihang.cn" target="_blank">开发平台</a></el-menu-item> -->
+            <el-menu-item index="/"><a href="https://boot.ityihang.cn" target="_blank">开发平台</a></el-menu-item>
+          </el-submenu>
 
-          <el-col :span="4" :offset="4">
+          <el-col :span="4" :offset="8">
             <el-menu-item index="/write"><i class="el-icon-edit"></i>写文章</el-menu-item>
           </el-col>
 

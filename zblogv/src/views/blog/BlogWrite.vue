@@ -45,7 +45,7 @@
           </el-form-item>
           <el-form-item label="文章分类" prop="category">
             <el-select v-model="articleForm.category" value-key="id" placeholder="请选择文章分类">
-              <el-option v-for="c in categorys" :key="c.id" :label="c.categoryname" :value="c"></el-option>
+              <el-option v-for="c in categorys" :key="c.id" :label="c.name" :value="c"></el-option>
             </el-select>
           </el-form-item>
 
@@ -246,7 +246,7 @@
       getCategorysAndTags() {
         let that = this
         getAllCategorys().then(data => {
-          that.categorys = data.data
+          that.categorys = data.data.records
         }).catch(error => {
           if (error !== 'error') {
             that.$message({type: 'error', message: '文章分类加载失败', showClose: true})
@@ -254,7 +254,7 @@
         })
 
         getAllTags().then(data => {
-          that.tags = data.data
+          that.tags = data.data.records
         }).catch(error => {
           if (error !== 'error') {
             that.$message({type: 'error', message: '标签加载失败', showClose: true})

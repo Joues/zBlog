@@ -57,10 +57,11 @@
         loading: false,
         noData: false,
         innerPage: {
-          pageSize: 5,
+          pageSize: 10,
           pageNumber: 1,
           name: 'a.createDate',
-          sort: 'desc'
+          sort: 'desc',
+          createTime: 'createTime',
         },
         articles: []
       }

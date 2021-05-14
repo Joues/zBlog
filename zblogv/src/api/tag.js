@@ -2,7 +2,7 @@ import request from '@/request'
 
 export function getAllTags() {
     return request({
-        url: '/tag',
+        url: '/tag/list',
         method: 'get',
     })
 }
@@ -30,7 +30,10 @@ export function getTag(id) {
 
 export function getTagDetail(id) {
     return request({
-        url: `/tag/list/${id}`,
+        url: `/tag/id`,
         method: 'get',
+        params: {
+            id: id,
+        }
     })
 }
