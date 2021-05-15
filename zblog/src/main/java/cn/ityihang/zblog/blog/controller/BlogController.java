@@ -8,6 +8,7 @@ import cn.ityihang.zblog.common.utils.DateUtils;
 import cn.ityihang.zblog.common.utils.QueryGenerator;
 import cn.ityihang.zblog.blog.entity.BlogInfo;
 import cn.ityihang.zblog.blog.service.IBlogService;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -142,10 +143,13 @@ public class BlogController {
             String month = yearMonth.substring(5, 7);
             // 组装实体返回数据
             BlogCountVO entity = new BlogCountVO();
-            entity.setYear(Integer.valueOf(year));
-            entity.setMonth(Integer.valueOf(month));
+            entity.setYear(year);
+            entity.setMonth(month);
             // Fixme 博客分类查询，最近12个月博客的统计，对每个月单独统计，待完成
-
+            List<BlogInfo> blogList = blogService.list(new LambdaQueryWrapper<BlogInfo>()
+                    .apply("DATE_FORMAT( create_time, '%Y%m' ) = DATE_FORMAT( '" + yearMonth + "-01' , '%Y%m' )")
+                    .select(BlogInfo::getId));
+            entity.setCount(blogList.size());
             blogInfoList.add(entity);
         }
         return RestResponse.ok(blogInfoList);

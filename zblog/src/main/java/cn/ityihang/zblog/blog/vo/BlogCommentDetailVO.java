@@ -1,29 +1,21 @@
-package cn.ityihang.zblog.blog.entity;
+package cn.ityihang.zblog.blog.vo;
 
 import com.baomidou.mybatisplus.annotation.TableField;
-import java.io.Serializable;
-import java.util.Date;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import org.jeecgframework.poi.excel.annotation.Excel;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.util.List;
+
 /**
- * <p>
- * 
- * </p>
- *
- * @author jobob
- * @since 2020-11-11
+ * @Author: yihang
+ * @Date: 2021/5/14 22:01
+ * @Description:
+ * @Version: 1.0
  */
 @Data
-@EqualsAndHashCode(callSuper = false)
-public class BlogComment implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-
+public class BlogCommentDetailVO {
     private Long id;
 
     /**
@@ -35,6 +27,7 @@ public class BlogComment implements Serializable {
      * 是否含有子节点
      */
     private Long hasChild;
+
 
     /**
      * 博客id（外键）
@@ -79,4 +72,7 @@ public class BlogComment implements Serializable {
      */
     private String updateBy;
 
+    private BlogAuthorVO author;
+
+    private List<BlogCommentDetailVO> childrens;
 }

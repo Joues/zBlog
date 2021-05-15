@@ -1,7 +1,10 @@
 package cn.ityihang.zblog.blog.service;
 
 import cn.ityihang.zblog.blog.entity.BlogComment;
+import cn.ityihang.zblog.blog.vo.BlogCommentDetailVO;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +16,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IBlogCommentService extends IService<BlogComment> {
 
+    List<BlogCommentDetailVO> listWithTree(Integer bid);
 }

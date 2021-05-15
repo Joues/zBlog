@@ -436,7 +436,7 @@ public class DateUtils {
         List<Object> OldYearMonths = new ArrayList<>();
         LocalDate today = LocalDate.now();
         for(long i = 1L;i <= 12L; i++){
-            LocalDate localDate = today.minusMonths(i);
+            LocalDate localDate = today.minusMonths(i - 1);
             String ss = localDate.toString().substring(0,7);
             OldYearMonths.add(ss);
         }

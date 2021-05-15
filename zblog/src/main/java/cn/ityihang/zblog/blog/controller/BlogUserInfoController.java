@@ -122,6 +122,10 @@ public class BlogUserInfoController {
         blogInfo.put("tags", tags);
         blogInfo.put("blog", blogs);
 //        blogInfo.put("id", String.valueOf(id));
+        // 记录返回博客的浏览量+1
+        Long readCount = blog.getReadCount();
+        blog.setReadCount(++readCount);
+        blogService.updateById(blog);
         return RestResponse.ok(blogInfo, "查询成功");
         //TODO……待实现：根据博客id，返回对应的博客详细信息，以及博客对应的创作者信息、分类信息、标签信息
     }

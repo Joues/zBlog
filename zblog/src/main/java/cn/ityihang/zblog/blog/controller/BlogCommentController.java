@@ -3,6 +3,7 @@ package cn.ityihang.zblog.blog.controller;
 
 import cn.ityihang.zblog.blog.entity.BlogInfo;
 import cn.ityihang.zblog.blog.service.IBlogService;
+import cn.ityihang.zblog.blog.vo.BlogCommentDetailVO;
 import cn.ityihang.zblog.common.result.RestResponse;
 import cn.ityihang.zblog.common.param.PageParam;
 import cn.ityihang.zblog.common.utils.QueryGenerator;
@@ -105,5 +106,12 @@ public class BlogCommentController {
     public RestResponse<?> updateBlog(@RequestBody BlogComment blogComment) {
         blogCommentService.updateById(blogComment);
         return RestResponse.ok("编辑成功!");
+    }
+
+    @ApiOperation(value = "根据博客id查询相关评论信息")
+    @GetMapping(value = "/bid")
+    public RestResponse getCommentByBid(@RequestParam Integer bid) {
+        List<BlogCommentDetailVO> commentDetail = blogCommentService.listWithTree(bid);
+        return RestResponse.ok(commentDetail, "查询成功");
     }
 }

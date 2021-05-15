@@ -23,6 +23,8 @@ public class SysUser implements Serializable {
 
     private String realname;
 
+    private String avatar;
+
     private java.lang.String password;
 
     @ApiModelProperty("数据软删除标识")
@@ -106,5 +108,51 @@ public class SysUser implements Serializable {
         this.status = status;
     }
 
+    public String getRealname() {
+        return realname;
+    }
 
+    public void setRealname(String realname) {
+        this.realname = realname;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public String getCreateBy() {
+        return createBy;
+    }
+
+    public void setCreateBy(String createBy) {
+        this.createBy = createBy;
+    }
+
+    public String getUpdateBy() {
+        return updateBy;
+    }
+
+    public void setUpdateBy(String updateBy) {
+        this.updateBy = updateBy;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
 }

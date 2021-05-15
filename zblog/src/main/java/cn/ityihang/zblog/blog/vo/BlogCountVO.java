@@ -20,7 +20,7 @@ public class BlogCountVO {
     /**
      * 月份
      */
-    private Integer month;
+    private String month;
 
     /**
      * 简述
@@ -45,5 +45,5 @@ public class BlogCountVO {
     /**
      * 年份
      */
-    private Integer year;
+    private String year;
 }
