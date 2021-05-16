@@ -1,6 +1,8 @@
 package cn.ityihang.zblog.blog.service;
 
 import cn.ityihang.zblog.blog.entity.BlogDetail;
+import cn.ityihang.zblog.blog.entity.BlogInfo;
+import cn.ityihang.zblog.blog.vo.BlogPublishVO;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -13,4 +15,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IBlogDetailService extends IService<BlogDetail> {
 
+    BlogInfo publishBlog(BlogPublishVO publishVO);
 }

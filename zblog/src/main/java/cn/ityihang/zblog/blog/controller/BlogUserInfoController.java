@@ -56,7 +56,7 @@ public class BlogUserInfoController {
      */
     @ApiOperation(value = "根据id查询")
     @GetMapping(value = "/{id}")
-    public RestResponse<?> getBlogById(@PathVariable Integer id) {
+    public RestResponse<?> getBlogById(@PathVariable String id) {
 //        获取博客信息
         BlogInfo blog = blogService.getById(id);
         if (null==blog) {
@@ -68,11 +68,13 @@ public class BlogUserInfoController {
         blogs.put("title", blog.getTitle());
         blogs.put("createTime", blog.getCreateTime());
         blogs.put("updateTime", blog.getUpdateTime());
+        blogs.put("summary", blog.getSummary());
         blogs.put("pollCount", blog.getUpdateTime());
         blogs.put("commentCount", blog.getCommentCount());
         blogs.put("readCount", blog.getReadCount());
         blogs.put("isTop", blog.getIsTop());
         blogs.put("isEssence", blog.getIsEssence());
+        blogs.put("classId", blog.getClassId());
 
 //        获取博客详情信息
         LambdaQueryWrapper<BlogDetail> blogDetailQWrapper = new LambdaQueryWrapper<>();
@@ -104,6 +106,7 @@ public class BlogUserInfoController {
 
         HashMap<String, Object> body = new HashMap<>();
         body.put("content", blogDetail.getContent());
+        body.put("contentHtml", blogDetail.getContentHtml());
         body.put("id", String.valueOf(blogDetail.getBlogId()));
 
         HashMap<String, Object> category = new HashMap<>();

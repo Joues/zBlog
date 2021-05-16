@@ -39,7 +39,7 @@ public class BlogComment implements Serializable {
     /**
      * 博客id（外键）
      */
-    private Integer blogId;
+    private String blogId;
 
     /**
      * 开始时间

@@ -16,5 +16,5 @@ import java.util.List;
  */
 public interface IBlogCommentService extends IService<BlogComment> {
 
-    List<BlogCommentDetailVO> listWithTree(Integer bid);
+    List<BlogCommentDetailVO> listWithTree(String bid);
 }

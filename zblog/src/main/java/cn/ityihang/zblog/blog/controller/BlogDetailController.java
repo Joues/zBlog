@@ -1,6 +1,8 @@
 package cn.ityihang.zblog.blog.controller;
 
 
+import cn.ityihang.zblog.blog.entity.BlogInfo;
+import cn.ityihang.zblog.blog.vo.BlogPublishVO;
 import cn.ityihang.zblog.common.result.RestResponse;
 import cn.ityihang.zblog.common.param.PageParam;
 import cn.ityihang.zblog.common.utils.QueryGenerator;
@@ -52,7 +54,7 @@ public class BlogDetailController {
 
     @ApiOperation(value = "根据id查询")
     @GetMapping(value = "/id/{id}")
-    public RestResponse getBlogById(@PathVariable Integer id) {
+    public RestResponse getBlogById(@PathVariable String id) {
         return RestResponse.ok(blogDetailService.getById(id), "查询成功");
     }
 
@@ -82,5 +84,12 @@ public class BlogDetailController {
     public RestResponse<?> updateBlog(@RequestBody BlogDetail blogDetail) {
         blogDetailService.updateById(blogDetail);
         return RestResponse.ok("编辑成功!");
+    }
+
+    @ApiOperation(value = "发布博客信息", notes = "发布博客信息")
+    @PostMapping(value = "/publish")
+    public RestResponse<?> publishBlog(@RequestBody BlogPublishVO publishVO) {
+        BlogInfo blogInfo = blogDetailService.publishBlog(publishVO);
+        return RestResponse.ok(blogInfo, "添加成功！");
     }
 }

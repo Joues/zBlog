@@ -1,10 +1,21 @@
 package cn.ityihang.zblog.blog.service.impl;
 
+import cn.hutool.core.util.StrUtil;
 import cn.ityihang.zblog.blog.entity.BlogDetail;
+import cn.ityihang.zblog.blog.entity.BlogInfo;
+import cn.ityihang.zblog.blog.entity.BlogTag;
 import cn.ityihang.zblog.blog.mapper.BlogDetailMapper;
+import cn.ityihang.zblog.blog.mapper.BlogMapper;
 import cn.ityihang.zblog.blog.service.IBlogDetailService;
+import cn.ityihang.zblog.blog.vo.BlogPublishVO;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * <p>
@@ -17,4 +28,33 @@ import org.springframework.stereotype.Service;
 @Service
 public class BlogDetailServiceImpl extends ServiceImpl<BlogDetailMapper, BlogDetail> implements IBlogDetailService {
 
+    @Autowired
+    BlogDetailMapper blogDetailMapper;
+
+    @Autowired
+    BlogMapper blogMapper;
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public BlogInfo publishBlog(BlogPublishVO publishVO) {
+        // 1. 保存博客基础信息
+        BlogInfo blogInfo = new BlogInfo();
+        blogInfo.setTitle(publishVO.getTitle());
+        blogInfo.setSummary(publishVO.getSummary());
+        blogInfo.setUserId(publishVO.getUserId());
+        blogInfo.setClassId(publishVO.getCategory());
+        List<BlogTag> tags = publishVO.getTags();
+        if (tags != null && tags.size()>0) {
+            Set<Integer> tagIds = tags.stream().map(BlogTag::getId).collect(Collectors.toSet());
+            String tagId = StrUtil.join(",", tagIds);
+            blogInfo.setTagId(tagId);
+        }
+        blogMapper.insert(blogInfo);
+        // 2. 保存博客详细信息
+        BlogDetail blogDetail = publishVO.getBlogDetail();
+        blogDetail.setBlogId(blogInfo.getId());
+        blogDetailMapper.insert(blogDetail);
+
+        return blogInfo;
+    }
 }

@@ -52,6 +52,7 @@ public class BlogController {
     @GetMapping(value = "/list")
     public RestResponse getBlogList(BlogInfo blogInfo, @Valid PageParam pageParam, HttpServletRequest req) {
         QueryWrapper<BlogInfo> queryWrapper = QueryGenerator.initQueryWrapper(blogInfo, req.getParameterMap());
+        queryWrapper.lambda().orderByDesc(BlogInfo::getCreateTime);
         Page<BlogInfo> page = new Page<>(pageParam.getPageNo(), pageParam.getLimit());
         IPage<BlogInfo> pageList = blogService.page(page, queryWrapper);
         return RestResponse.ok(pageList);

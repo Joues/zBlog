@@ -4,6 +4,7 @@ package cn.ityihang.zblog.blog.controller;
 import cn.ityihang.zblog.blog.entity.BlogInfo;
 import cn.ityihang.zblog.blog.service.IBlogService;
 import cn.ityihang.zblog.blog.vo.BlogCommentDetailVO;
+import cn.ityihang.zblog.common.constant.CommonConstant;
 import cn.ityihang.zblog.common.result.RestResponse;
 import cn.ityihang.zblog.common.param.PageParam;
 import cn.ityihang.zblog.common.utils.QueryGenerator;
@@ -86,16 +87,23 @@ public class BlogCommentController {
     @Transactional(rollbackFor = Exception.class)
     public RestResponse<?> addBlog(@RequestBody BlogComment blogComment) {
 //        添加评论时需要重新统计评论的博客总评论数
-        Integer blogId = blogComment.getBlogId();
+        String blogId = blogComment.getBlogId();
+        Long pid = blogComment.getPid();
         if (null == blogId) {
             return RestResponse.failed("博客ID(blogId)入参不允许为空！");
+        }
+        if (null != pid) {
+            BlogComment comment = new BlogComment();
+            comment.setId(pid);
+            comment.setHasChild((long) CommonConstant.OPERATE_TYPE_1);
+            blogCommentService.updateById(comment);
         }
         // 根据博客ID（blogId）获取评论表中对应的评论总数
         List<BlogComment> list = blogCommentService.list(new LambdaQueryWrapper<BlogComment>()
                 .eq(BlogComment::getBlogId, blogId).select(BlogComment::getId));
         // 修改博客表中的评论数
         blogService.update(new LambdaUpdateWrapper<BlogInfo>().eq(BlogInfo::getId, blogId)
-                .set(BlogInfo::getCommentCount, list.size()));
+                .set(BlogInfo::getCommentCount, list.size()+1));
         // 保存评论信息
         blogCommentService.save(blogComment);
         return RestResponse.ok("添加成功！");
@@ -110,7 +118,7 @@ public class BlogCommentController {
 
     @ApiOperation(value = "根据博客id查询相关评论信息")
     @GetMapping(value = "/bid")
-    public RestResponse getCommentByBid(@RequestParam Integer bid) {
+    public RestResponse getCommentByBid(@RequestParam String bid) {
         List<BlogCommentDetailVO> commentDetail = blogCommentService.listWithTree(bid);
         return RestResponse.ok(commentDetail, "查询成功");
     }

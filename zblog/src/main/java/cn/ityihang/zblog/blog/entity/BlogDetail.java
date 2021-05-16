@@ -25,12 +25,17 @@ public class BlogDetail implements Serializable {
     /**
      * 外键
      */
-    private Integer blogId;
+    private Long blogId;
 
     /**
      * 博客
      */
     private String content;
+
+    /**
+     * 博客内容HTML
+     */
+    private String contentHtml;
 
     /**
      * 创建人

@@ -20,7 +20,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * <p>
@@ -40,11 +42,12 @@ public class BlogCommentServiceImpl extends ServiceImpl<BlogCommentMapper, BlogC
     SysUserMapper userMapper;
 
     @Override
-    public List<BlogCommentDetailVO> listWithTree(Integer bid) {
+    public List<BlogCommentDetailVO> listWithTree(String bid) {
         List<BlogComment> commentList = blogCommentMapper.selectList(
                 new LambdaQueryWrapper<BlogComment>().eq(BlogComment::getBlogId, bid));
         List<BlogCommentDetailVO> commentDetail = new ArrayList<>();
         if (commentList!=null && commentList.size()>0) {
+            commentList = commentList.stream().sorted(Comparator.comparing(BlogComment::getCreateTime).reversed()).collect(Collectors.toList());
             commentDetail = commentDetailVOList(commentList);
         }
         return commentDetail;

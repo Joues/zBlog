@@ -1,7 +1,11 @@
 package cn.ityihang.zblog.blog.vo;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import lombok.Data;
 import org.jeecgframework.poi.excel.annotation.Excel;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -16,6 +20,8 @@ import java.util.List;
  */
 @Data
 public class BlogCommentDetailVO {
+    @TableId(value = "id", type = IdType.ID_WORKER)
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long id;
 
     /**
