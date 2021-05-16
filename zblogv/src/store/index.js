@@ -2,7 +2,7 @@ import Vuex from 'vuex'
 import Vue from 'vue'
 import { getToken, setToken, removeToken, getUserinfos, setUserinfos, removeUserinfos } from '@/request/token'
 import { login, getUserInfo, logout, register } from '@/api/login'
-import { ACCESS_TOKEN,USER_NAME,USER_INFO } from "@/store/mutation-types"
+import { ACCESS_TOKEN, USER_NAME, USER_INFO } from "@/store/mutation-types"
 
 Vue.use(Vuex);
 
@@ -55,13 +55,12 @@ export default new Vuex.Store({
             return new Promise((resolve, reject) => {
                 getUserInfo().then(data => {
                     if (data.data) {
+                        const userInfo = JSON.stringify(data.data)
                         commit('SET_ACCOUNT', data.data.username)
-                        commit('SET_NAME', data.data.nickname)
+                        commit('SET_NAME', data.data.realname)
                         commit('SET_AVATAR', data.data.avatar)
                         commit('SET_ID', data.data.id)
                         commit('SET_USERINFO', data.data)
-                        console.log("222222", JSON.stringify(data.data))
-                        const userInfo = JSON.stringify(data.data)
                         setUserinfos(userInfo)
                         Vue.ls.set(USER_NAME, userInfo.username, 7 * 24 * 60 * 60 * 1000)
                         Vue.ls.set(USER_INFO, userInfo, 7 * 24 * 60 * 60 * 1000)

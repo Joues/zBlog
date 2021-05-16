@@ -3,7 +3,8 @@
     <div class="me-article-header">
 
       <a @click="view(id)" class="me-article-title">{{title}}</a>
-      <el-button v-if="weight > 0" class="me-article-icon" type="text">置顶</el-button>
+      <el-button v-if="isTop" class="me-article-icon" type="text">置顶</el-button>
+      <span v-if="isEssence" style="color: red;font-size:14px">【热门】</span>
       <span class="me-pull-right me-article-count">
 	    	<i class="me-icon-comment"></i>&nbsp;{{commentCount}}
 	    </span>
@@ -18,13 +19,13 @@
     <div class="me-article-footer">
 	  	<span class="me-article-author">
 	    	<!-- <i class="me-icon-author"></i>&nbsp;{{author.username}} -->
-	    	<i class="me-icon-author"></i>&nbsp;周逸航
+	    	<i class="me-icon-author"></i>&nbsp;{{createBy}}
 	    </span>
 
       <el-tag v-for="t in tags" :key="t.tagname" size="mini" type="success">{{t.tagname}}</el-tag>
 
       <span class="me-pull-right me-article-count">
-	    	<i class="el-icon-time"></i>&nbsp;{{createdTime | format}}
+	    	<i class="el-icon-time"></i>&nbsp;{{createTime | format}}
 	    </span>
 
     </div>
@@ -38,14 +39,15 @@
     name: 'ArticleItem',
     props: {
       id: String,
-      weight: Number,
+      isTop: Boolean,
+      isEssence: Boolean,
       title: String,
       commentCount: Number,
       readCount: Number,
       summary: String,
-      author: Object,
+      createBy: String,
       tags: Array,
-      createdTime: String
+      createTime: String
     },
     data() {
       return {}

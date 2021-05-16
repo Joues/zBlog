@@ -2,13 +2,13 @@
   <el-header class="me-area">
     <el-row class="me-header">
 
-      <el-col :span="4" class="me-header-left">
+      <el-col :span="3" class="me-header-left">
         <router-link to="/" class="me-title">
           <img src="../assets/img/banner.png"/>
         </router-link>
       </el-col>
 
-      <el-col v-if="!simple" :span="16">
+      <el-col v-if="!simple" :span="14">
         <el-menu :router=true menu-trigger="click" active-text-color="#0abde3" :default-active="activeIndex"
                  mode="horizontal">
           <el-menu-item index="/">首页</el-menu-item>
@@ -22,13 +22,19 @@
             <!-- <el-menu-item index="/"><a href="https://boot.ityihang.cn" target="_blank">开发平台</a></el-menu-item> -->
             <el-menu-item index="/"><a href="https://boot.ityihang.cn" target="_blank">开发平台</a></el-menu-item>
           </el-submenu>
-
-          <el-col :span="4" :offset="8">
-            <el-menu-item index="/write"><i class="el-icon-edit"></i>写文章</el-menu-item>
-          </el-col>
-
         </el-menu>
       </el-col>
+
+      <el-col v-if="!simple" :span="3" >
+        <el-menu :router=true menu-trigger="click" active-text-color="#0abde3" :default-active="activeIndex"
+                 mode="horizontal">
+            <el-menu-item index="/write"><i class="el-icon-edit"></i>写文章</el-menu-item>
+        </el-menu>
+      </el-col>
+
+      <template v-else>
+        <slot></slot>
+      </template>
 
       <el-col :span="4">
          <el-menu :router=true menu-trigger="click" mode="horizontal" active-text-color="#0abde3">

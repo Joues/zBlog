@@ -8,7 +8,7 @@
         <span class="me-view-nickname">{{comment.author.nickname}}</span>
         <div class="me-view-meta">
           <span>{{rootCommentCounts - index}}楼</span>
-          <span>{{comment.createDate | format}}</span>
+          <span>{{comment.createTime | format}}</span>
         </div>
       </div>
     </div>
@@ -26,14 +26,15 @@
       <div class="me-reply-list">
         <div class="me-reply-item" v-for="c in comment.childrens" :key="c.id">
           <div style="font-size: 14px">
-            <span class="me-reply-user">{{c.author.nickname}}:&nbsp;&nbsp;</span>
+            <span class="me-reply-user">{{c.author.nickname}} |</span>
+            <span class="me-reply-user">{{c.createTime | format}}:&nbsp;&nbsp;</span>
 
             <span v-if="c.level == 2" class="me-reply-user">@{{c.toUser.nickname}} </span>
 
             <span>{{c.content}}</span>
           </div>
           <div class="me-view-meta">
-            <span style="padding-right: 10px">{{c.createDate | format}}</span>
+            <span style="padding-right: 10px">{{c.createTime | format}}</span>
             <a class="me-view-comment-tool" @click="showComment(c.id, c.author)">
               <i class="me-icon-comment"></i>&nbsp;回复
             </a>
@@ -68,8 +69,9 @@
 
   export default {
     name: "CommentItem",
+    inject: ['reload'],
     props: {
-      articleId: Number,
+      articleId: String,
       comment: Object,
       index: Number,
       rootCommentCounts: Number
@@ -108,7 +110,7 @@
           return;
         }
 
-        const token = Vue.ls.get(ACCESS_TOKEN)
+        const token = this.$store.state.token
         if (!token) {
           that.$message({type: 'warn', message: '请先登录再评论！', showClose: true})
         }
@@ -121,6 +123,7 @@
           that.comment.childrens.unshift(data.data)
           that.$emit('commentCountsIncrement')
           that.showComment(that.commentShowIndex)
+          this.reload()
         }).catch(error => {
           if (error !== 'error') {
             that.$message({type: 'error', message: '评论失败', showClose: true})
@@ -130,13 +133,10 @@
       },
       getEmptyReply() {
         return {
-          article: {
-            id: this.articleId
-          },
-          parent: {
-            id: this.comment.id
-          },
-          toUser: '',
+          blogId: this.articleId,
+          pid: this.comment.id,
+          // toUser: '',
+          // hasCild: 1,
           content: ''
         }
       }

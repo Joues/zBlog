@@ -10,11 +10,11 @@ export function getArticles(query, page) {
             limit: page.pageSize,
             // name: page.name,
             order: page.sort,
+            column: page.createTime,
             // year: query.year,
             // month: query.month,
-            createTime_begin: query.year + "-" + query.month,
-            createTime_end: query.year + "-" + query.month,
-            column: query.createTime,
+            createTime_begin: query.year + "-" + query.month + "-01",
+            createTime_end: query.year + "-" + query.month + "-31",
             tagId: query.tagId,
             categoryId: query.categoryId
         }
@@ -59,7 +59,7 @@ export function getArticlesByTag(id) {
 
 export function publishArticle(article) {
     return request({
-        url: '/articles/publish',
+        url: '/blogDetail/publish',
         method: 'post',
         data: article
     })
@@ -74,7 +74,7 @@ export function listArchives() {
 
 export function getArticleById(id) {
     return request({
-        url: `/articles/${id}`,
+        url: `/blogInfo/${id}`,
         method: 'get'
     })
 }

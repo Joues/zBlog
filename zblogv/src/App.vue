@@ -9,7 +9,12 @@
 import GoTop from '@/components/gotop/GoTop'
 export default {
   name: 'App',
-  components: { GoTop }
+  components: { GoTop },
+  provide (){
+     return {
+       reload:this.reload
+     }
+  },
 }
 </script>
 

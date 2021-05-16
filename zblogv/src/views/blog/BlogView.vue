@@ -32,7 +32,7 @@
             <el-button
               v-if="this.article.author.id == this.$store.state.id"
               @click="editArticle()"
-              style="position: absolute; left: 75%;"
+              style="position: absolute; left: 80%;"
               size="mini"
               round
               icon="el-icon-edit">编辑</el-button>
@@ -133,6 +133,7 @@
     created() {
       this.article.author.id
       console.log("states.id: "+ this.$store.state.id);
+      console.log("states.nickname: "+ this.$store.state.nickname);
       this.getArticle()
     },
     watch: {

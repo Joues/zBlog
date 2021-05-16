@@ -3,7 +3,7 @@
     <el-container>
       <base-header :simple=true>
         <el-col :span="4" :offset="2">
-          <div class="me-write-info">写文章</div>
+            <div class="me-write-info">写文章</div>
         </el-col>
         <el-col :span="4" :offset="6">
           <div class="me-write-btn">
@@ -154,6 +154,10 @@
 
           Object.assign(that.articleForm, data.data)
           that.articleForm.editor.value = data.data.body.content
+          that.articleForm.editor.ref.d_render = data.data.body.contentHtml
+          that.articleForm.title = data.data.blog.title
+          that.articleForm.summary = data.data.blog.summary
+          that.articleForm.category.id = data.data.blog.classId
 
           let tags = this.articleForm.tags.map(function (item) {
             return item.id;
@@ -201,9 +205,10 @@
               id: this.articleForm.id,
               title: this.articleForm.title,
               summary: this.articleForm.summary,
-              category: this.articleForm.category,
+              category: this.articleForm.category.id,
               tags: tags,
-              body: {
+              userId: this.$store.state.id,
+              blogDetail: {
                 content: this.articleForm.editor.value,
                 contentHtml: this.articleForm.editor.ref.d_render
               }
@@ -220,7 +225,7 @@
             publishArticle(article).then((data) => {
               loading.close();
               that.$message({message: '发布成功啦', type: 'success', showClose: true})
-              that.$router.push({path: `/view/${data.data.articleId}`})
+              that.$router.push({path: `/view/${data.data.id}`})
 
             }).catch((error) => {
               loading.close();
