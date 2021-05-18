@@ -5,7 +5,7 @@ import Home from '@/Home'
 import Login from '@/views/Login'
 import Register from '@/views/Register'
 import Log from '@/views/Log'
-import MessageBoard from '@/views/MessageBoard'
+import OnlineRoom from '@/views/OnlineRoom'
 import BlogWrite from '@/views/blog/BlogWrite'
 import BlogView from '@/views/blog/BlogView'
 import BlogAllCategoryTag from '@/views/blog/BlogAllCategoryTag'
@@ -45,8 +45,8 @@ const router = new Router({
                     component: r => require.ensure([], () => r(require('@/views/blog/BlogArchive')), 'archives')
                 },
                 {
-                    path: '/messageBoard',
-                    component: r => require.ensure([], () => r(require('@/views/MessageBoard')), 'messageboard')
+                    path: '/OnlineRoom',
+                    component: r => require.ensure([], () => r(require('@/views/OnlineRoom')), 'messageboard')
                 },
                 {
                     path: '/view/:id',

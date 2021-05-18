@@ -32,7 +32,7 @@
             <el-button
               v-if="this.article.author.id == this.$store.state.id"
               @click="editArticle()"
-              style="position: absolute; left: 80%;"
+              style="position: relative; left: 85%;"
               size="mini"
               round
               icon="el-icon-edit">编辑</el-button>
@@ -71,7 +71,8 @@
                   </a> -->
                   <!-- 评论人为当前登录用户，若当前登录用户为空则显示一个固定的头像 -->
                   <div class="me-view-photo">
-                    {{ this.$store.state.avatar === null ? this.$store.state.nickname[0] : this.$store.state.avatar }}
+                    <!-- {{ this.$store.state.avatar === null ? this.$store.state.nickname[0] : this.$store.state.avatar }} -->
+                    <img class="me-view-picture" :src="this.$store.state.avatar === null ? this.$store.state.nickname[0] : this.$store.state.avatar"></img>
                   </div>
                 </el-col>
                 <el-col :span="22">
@@ -276,7 +277,7 @@
   }
 
   .me-view-author {
-    /*margin: 30px 0;*/
+    margin: 20px 0;
     margin-top: 30px;
     vertical-align: middle;
   }

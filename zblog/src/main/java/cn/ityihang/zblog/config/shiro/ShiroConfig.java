@@ -128,7 +128,7 @@ public class ShiroConfig {
 
         filterChainDefinitionMap.put("/register", "anon"); //添加用戶接口
         filterChainDefinitionMap.put("/user/register", "anon"); //添加用戶接口
-        filterChainDefinitionMap.put("/user/userInfo", "anon"); //获取用户信息接口
+//        filterChainDefinitionMap.put("/user/userInfo", "anon"); //获取用户信息接口
 
         filterChainDefinitionMap.put("/blogInfo/*", "anon"); //获取用户信息接口
 

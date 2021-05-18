@@ -16,7 +16,7 @@
           <el-menu-item index="/tag/all">标签</el-menu-item>
           <el-menu-item index="/archives">文章归档</el-menu-item>
           <el-menu-item index="/log">日志</el-menu-item>
-          <el-menu-item index="/messageBoard">留言板</el-menu-item>
+          <el-menu-item index="/OnlineRoom">聊天室</el-menu-item>
           <el-submenu index="/">
             <template slot="title">我的工作台</template>
             <!-- <el-menu-item index="/"><a href="https://boot.ityihang.cn" target="_blank">开发平台</a></el-menu-item> -->
@@ -51,7 +51,7 @@
           <template v-else>
             <el-submenu index>
               <template slot="title">
-                <!-- <img class="me-header-picture" :src="user.avatar"/> -->欢迎您，{{user.username}}
+                <!-- <img class="me-header-picture" :src="user.avatar"/> -->欢迎您，{{user.nickname}}
               </template>
               <el-menu-item index @click="logout"><i class="el-icon-back"></i>退出</el-menu-item>
             </el-submenu>
@@ -82,9 +82,10 @@
         let avatar = this.$store.state.avatar
         let token = this.$store.state.token
         let username = this.$store.state.username
+        let nickname = this.$store.state.nickname
         return {
           // login, avatar
-          login,token,username
+          login,token,username,nickname
         }
       }
     },

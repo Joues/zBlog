@@ -22,9 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
+import java.util.*;
 
 /**
  * @Author: yihang
@@ -95,14 +93,15 @@ public class BlogUserInfoController {
         categoryQWrapper.eq(BlogCategory::getId, blog.getClassId());
         BlogCategory blogCategoryInfo = categoryService.getOne(categoryQWrapper);
 //        获取标签信息
+        List<String> tagId = Arrays.asList(blog.getTagId().split(","));
         LambdaQueryWrapper<BlogTag> tagQWrapper = new LambdaQueryWrapper<>();
-        tagQWrapper.eq(BlogTag::getId, blog.getTagId());
-        BlogTag blogTagInfo = tagService.getOne(tagQWrapper);
+        tagQWrapper.in(BlogTag::getId, tagId);
+        List<BlogTag> blogTagInfo = tagService.list(tagQWrapper);
 //        组装接口返回信息
         HashMap<String, Object> author = new HashMap<>();
         author.put("avatar", userDetails.getAvator());
         author.put("id", String.valueOf(sysUser.getId()));
-        author.put("nickname", userDetails.getNickname());
+        author.put("nickname", sysUser.getRealname());
 
         HashMap<String, Object> body = new HashMap<>();
         body.put("content", blogDetail.getContent());
@@ -114,11 +113,15 @@ public class BlogUserInfoController {
         category.put("description", blogCategoryInfo.getSubscribe());
         category.put("id", String.valueOf(blogCategoryInfo.getId()));
 
-        HashMap<String, Object> tags = new HashMap<>();
-        tags.put("tagname", blogTagInfo.getName());
-        tags.put("id", String.valueOf(blogTagInfo.getId()));
+        List<Object> tags = new ArrayList<>();
+        for (BlogTag blogTag : blogTagInfo) {
+            HashMap<String, Object> tag = new HashMap<>();
+            tag.put("tagname", blogTag.getName());
+            tag.put("id", String.valueOf(blogTag.getId()));
+            tags.add(tag);
+        }
 
-        LinkedHashMap<String, HashMap<String, Object>> blogInfo = new LinkedHashMap<>();
+        LinkedHashMap<String, Object> blogInfo = new LinkedHashMap<>();
         blogInfo.put("author", author);
         blogInfo.put("body", body);
         blogInfo.put("category", category);

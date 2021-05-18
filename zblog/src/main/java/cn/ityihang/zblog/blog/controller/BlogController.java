@@ -1,6 +1,9 @@
 package cn.ityihang.zblog.blog.controller;
 
+import cn.ityihang.zblog.blog.entity.BlogTag;
+import cn.ityihang.zblog.blog.service.ITagService;
 import cn.ityihang.zblog.blog.vo.BlogCountVO;
+import cn.ityihang.zblog.blog.vo.BlogTagInfoVO;
 import cn.ityihang.zblog.common.result.RestResponse;
 import cn.ityihang.zblog.common.constant.CommonConstant;
 import cn.ityihang.zblog.common.param.PageParam;
@@ -8,6 +11,8 @@ import cn.ityihang.zblog.common.utils.DateUtils;
 import cn.ityihang.zblog.common.utils.QueryGenerator;
 import cn.ityihang.zblog.blog.entity.BlogInfo;
 import cn.ityihang.zblog.blog.service.IBlogService;
+import cn.ityihang.zblog.system.entity.SysUser;
+import cn.ityihang.zblog.system.service.ISysUserService;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -15,6 +20,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -40,6 +46,12 @@ public class BlogController {
     @Autowired
     IBlogService blogService;
 
+    @Autowired
+    ITagService tagService;
+
+    @Autowired
+    ISysUserService userService;
+
 
     /**
      * 分页列表查询
@@ -52,9 +64,17 @@ public class BlogController {
     @GetMapping(value = "/list")
     public RestResponse getBlogList(BlogInfo blogInfo, @Valid PageParam pageParam, HttpServletRequest req) {
         QueryWrapper<BlogInfo> queryWrapper = QueryGenerator.initQueryWrapper(blogInfo, req.getParameterMap());
-        queryWrapper.lambda().orderByDesc(BlogInfo::getCreateTime);
+        queryWrapper.orderByDesc("is_top = 1")
+                .orderByDesc("is_essence = 1")
+                .orderByDesc("create_time");
         Page<BlogInfo> page = new Page<>(pageParam.getPageNo(), pageParam.getLimit());
-        IPage<BlogInfo> pageList = blogService.page(page, queryWrapper);
+        // 自定义getBlogList接口
+        IPage<BlogTagInfoVO> pageList = blogService.getBlogList(page, queryWrapper);
+        List<BlogTagInfoVO> records = pageList.getRecords();
+        for (BlogTagInfoVO record : records) {
+            List<String> tag = Arrays.asList(record.getTagId().split(","));
+            record.setTags(tagService.list(new LambdaQueryWrapper<BlogTag>().in(BlogTag::getId, tag)));
+        }
         return RestResponse.ok(pageList);
     }
 

@@ -37,7 +37,7 @@ public class BlogDetailServiceImpl extends ServiceImpl<BlogDetailMapper, BlogDet
     @Override
     @Transactional(rollbackFor = Exception.class)
     public BlogInfo publishBlog(BlogPublishVO publishVO) {
-        // 1. 保存博客基础信息
+        // 先查询是否存在该博客，存在即为编辑，不存在就保存
         BlogInfo blogInfo = new BlogInfo();
         blogInfo.setTitle(publishVO.getTitle());
         blogInfo.setSummary(publishVO.getSummary());
@@ -49,11 +49,18 @@ public class BlogDetailServiceImpl extends ServiceImpl<BlogDetailMapper, BlogDet
             String tagId = StrUtil.join(",", tagIds);
             blogInfo.setTagId(tagId);
         }
-        blogMapper.insert(blogInfo);
-        // 2. 保存博客详细信息
-        BlogDetail blogDetail = publishVO.getBlogDetail();
-        blogDetail.setBlogId(blogInfo.getId());
-        blogDetailMapper.insert(blogDetail);
+        BlogInfo blog = blogMapper.selectById(publishVO.getId());
+        if (null != blog) {
+            blogMapper.updateById(blogInfo);
+            blogDetailMapper.updateById(publishVO.getBlogDetail());
+        } else {
+            // 1. 保存博客基础信息
+            blogMapper.insert(blogInfo);
+            // 2. 保存博客详细信息
+            BlogDetail blogDetail = publishVO.getBlogDetail();
+            blogDetail.setBlogId(blogInfo.getId());
+            blogDetailMapper.insert(blogDetail);
+        }
 
         return blogInfo;
     }

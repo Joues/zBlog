@@ -3,6 +3,10 @@ package cn.ityihang.zblog.blog.service.impl;
 import cn.ityihang.zblog.blog.entity.BlogInfo;
 import cn.ityihang.zblog.blog.mapper.BlogMapper;
 import cn.ityihang.zblog.blog.service.IBlogService;
+import cn.ityihang.zblog.blog.vo.BlogTagInfoVO;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,6 +48,11 @@ public class BlogSerivceImpl extends ServiceImpl<BlogMapper, BlogInfo> implement
     @Override
     public List<Map<String, Object>> getBlogHots(Integer sizeNumber) {
         return blogMapper.getBlogHts(sizeNumber);
+    }
+
+    @Override
+    public IPage<BlogTagInfoVO> getBlogList(Page<BlogInfo> page, QueryWrapper<BlogInfo> queryWrapper) {
+        return blogMapper.findByPage(page, queryWrapper);
     }
 
 

@@ -51,7 +51,7 @@
 
           <el-form-item label="文章标签" prop="tags">
             <el-checkbox-group v-model="articleForm.tags">
-              <el-checkbox v-for="t in tags" :key="t.id" :label="t.id" name="tags">{{t.tagname}}</el-checkbox>
+              <el-checkbox v-for="t in tags" :key="t.id" :label="t.id" name="tags">{{t.name}}</el-checkbox>
             </el-checkbox-group>
           </el-form-item>
         </el-form>
@@ -157,7 +157,9 @@
           that.articleForm.editor.ref.d_render = data.data.body.contentHtml
           that.articleForm.title = data.data.blog.title
           that.articleForm.summary = data.data.blog.summary
-          that.articleForm.category.id = data.data.blog.classId
+          that.articleForm.category.id = Number(data.data.blog.classId)
+          that.articleForm.id = data.data.blot.id
+          that.articleForm.tags = data.data.tags
 
           let tags = this.articleForm.tags.map(function (item) {
             return item.id;
@@ -209,6 +211,7 @@
               tags: tags,
               userId: this.$store.state.id,
               blogDetail: {
+                id: this.articleForm.editor.id,
                 content: this.articleForm.editor.value,
                 contentHtml: this.articleForm.editor.ref.d_render
               }
@@ -315,7 +318,7 @@
   }
 
   .me-write-box {
-    max-width: 700px;
+    max-width: 1150px;
     margin: 80px auto 0;
   }
 

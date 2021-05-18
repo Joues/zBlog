@@ -19,10 +19,10 @@
     <div class="me-article-footer">
 	  	<span class="me-article-author">
 	    	<!-- <i class="me-icon-author"></i>&nbsp;{{author.username}} -->
-	    	<i class="me-icon-author"></i>&nbsp;{{createBy}}
+	    	<i class="me-icon-author"></i>&nbsp;{{realname}}
 	    </span>
 
-      <el-tag v-for="t in tags" :key="t.tagname" size="mini" type="success">{{t.tagname}}</el-tag>
+      <el-tag v-for="t in tags" :key="t.id" size="mini" type="success">{{t.name}}</el-tag>
 
       <span class="me-pull-right me-article-count">
 	    	<i class="el-icon-time"></i>&nbsp;{{createTime | format}}
@@ -46,6 +46,7 @@
       readCount: Number,
       summary: String,
       createBy: String,
+      realname: String,
       tags: Array,
       createTime: String
     },

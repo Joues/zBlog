@@ -90,6 +90,6 @@ public class BlogDetailController {
     @PostMapping(value = "/publish")
     public RestResponse<?> publishBlog(@RequestBody BlogPublishVO publishVO) {
         BlogInfo blogInfo = blogDetailService.publishBlog(publishVO);
-        return RestResponse.ok(blogInfo, "添加成功！");
+        return RestResponse.ok(blogInfo, "发布成功！");
     }
 }
