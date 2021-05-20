@@ -75,6 +75,7 @@
             that.$store.dispatch('register', that.userForm).then(() => {
               that.$message({message: '注册成功 快写文章吧', type: 'success', showClose: true});
               that.$router.push({path: '/'})
+              this.$store.dispatch('connect');
             }).catch((error) => {
               if (error !== 'error') {
                 that.$message({message: error, type: 'error', showClose: true});

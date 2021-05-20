@@ -29,6 +29,13 @@ const router = new Router({
             },
         },
         {
+            path: '/OnlineRoom',
+            component: r => require.ensure([], () => r(require('@/views/OnlineRoom')), 'onlineroom'),
+            meta: {
+                requireLogin: true
+            },
+        },
+        {
             path: '',
             name: 'Home',
             component: Home,
@@ -44,10 +51,7 @@ const router = new Router({
                     path: '/archives/:year?/:month?',
                     component: r => require.ensure([], () => r(require('@/views/blog/BlogArchive')), 'archives')
                 },
-                {
-                    path: '/OnlineRoom',
-                    component: r => require.ensure([], () => r(require('@/views/OnlineRoom')), 'messageboard')
-                },
+                
                 {
                     path: '/view/:id',
                     component: r => require.ensure([], () => r(require('@/views/blog/BlogView')), 'blogview')

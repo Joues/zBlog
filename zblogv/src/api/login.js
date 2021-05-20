@@ -37,10 +37,10 @@ export function getUserInfo() {
     })
 }
 
-export function register(username, nickname, password) {
+export function register(username, realname, password) {
     const data = {
         username,
-        nickname,
+        realname,
         password
     }
     return request({

@@ -1,5 +1,6 @@
 import Vuex from 'vuex'
 import Vue from 'vue'
+import { Notification } from 'element-ui';
 import { getToken, setToken, removeToken, getUserinfos, setUserinfos, removeUserinfos } from '@/request/token'
 import { login, getUserInfo, logout, register } from '@/api/login'
 import { getAction } from '@/api/manage'
@@ -58,12 +59,12 @@ const store = new Vuex.Store({
             state.currentSession = currentSession;
         },
         addMessage(state, msg) {
-            let mss = state.sessions[state.currentHr.username + '#' + msg.to];
+            let mss = state.sessions[state.Userinfo.username + '#' + msg.to];
             if (!mss) {
                 // state.sessions[state.currentHr.username+'#'+msg.to] = [];
-                Vue.set(state.sessions, state.currentHr.username + '#' + msg.to, []);
+                Vue.set(state.sessions, state.Userinfo.username + '#' + msg.to, []);
             }
-            state.sessions[state.currentHr.username + '#' + msg.to].push({
+            state.sessions[state.Userinfo.username + '#' + msg.to].push({
                 content: msg.content,
                 date: new Date(),
                 self: !msg.notSelf
@@ -81,6 +82,39 @@ const store = new Vuex.Store({
         }
     },
     actions: {
+        connect(context) {
+            console.log("context:", context);
+            context.state.stomp = Stomp.over(new SockJS('/ws/ep'));
+            console.log("context.state.stomp:", context.state.stomp);
+            context.state.stomp.connect({}, success => {
+                console.log("successmsg: ", success);
+                context.state.stomp.subscribe('/user/queue/chat', msg => {
+                    console.log("msg: ", msg);
+                    let receiveMsg = JSON.parse(msg.body);
+                    if (!context.state.currentSession || receiveMsg.from != context.state.currentSession.username) {
+                        Notification.info({
+                            title: '【' + receiveMsg.fromNickname + '】发来一条消息',
+                            message: receiveMsg.content.length > 10 ? receiveMsg.content.substr(0, 10) : receiveMsg.content,
+                            position: 'bottom-right'
+                        })
+                        Vue.set(context.state.isDot, context.state.Userinfo.username + '#' + receiveMsg.from, true);
+                    }
+                    receiveMsg.notSelf = true;
+                    receiveMsg.to = receiveMsg.from;
+                    context.commit('addMessage', receiveMsg);
+                })
+            }, error => {
+                console.log("msg: ", error);
+            })
+        },
+        initData(context) {
+            context.commit('INIT_DATA')
+            getAction("/user/usr").then(resp => {
+                if (resp) {
+                    context.commit('INIT_HR', resp.data.records);
+                }
+            })
+        },
         login({ commit }, user) {
             return new Promise((resolve, reject) => {
                 login(user.username, user.password, user.captcha, user.checkKey).then(response => {
@@ -106,7 +140,7 @@ const store = new Vuex.Store({
                         commit('SET_AVATAR', data.data.avatar)
                         commit('SET_ID', data.data.id)
                         commit('SET_USERINFO', data.data)
-                        // this.$store.commit('INIT_CURRENTHR', data.data);
+                            // this.$store.commit('INIT_CURRENTHR', data.data);
                         setUserinfos(userInfo)
                         Vue.ls.set(USER_NAME, userInfo.username, 7 * 24 * 60 * 60 * 1000)
                         Vue.ls.set(USER_INFO, userInfo, 7 * 24 * 60 * 60 * 1000)
@@ -181,44 +215,15 @@ const store = new Vuex.Store({
                 })
             })
         },
-        connect(context) {
-            context.state.stomp = Stomp.over(new SockJS('/ws/ep'));
-            context.state.stomp.connect({}, success => {
-                context.state.stomp.subscribe('/user/queue/chat', msg => {
-                    let receiveMsg = JSON.parse(msg.body);
-                    if (!context.state.currentSession || receiveMsg.from != context.state.currentSession.username) {
-                        Notification.info({
-                            title: '【' + receiveMsg.fromNickname + '】发来一条消息',
-                            message: receiveMsg.content.length > 10 ? receiveMsg.content.substr(0, 10) : receiveMsg.content,
-                            position: 'bottom-right'
-                        })
-                        Vue.set(context.state.isDot, context.state.currentHr.username + '#' + receiveMsg.from, true);
-                    }
-                    receiveMsg.notSelf = true;
-                    receiveMsg.to = receiveMsg.from;
-                    context.commit('addMessage', receiveMsg);
-                })
-            }, error => {
-
-            })
-        },
-        initData(context) {
-            context.commit('INIT_DATA')
-            getAction("/user/list").then(resp => {
-                if (resp) {
-                    context.commit('INIT_HR', resp.data.records);
-                }
-            })
-        }
     }
 })
 
-store.watch(function (state) {
+store.watch(function(state) {
     return state.sessions
-}, function (val) {
+}, function(val) {
     localStorage.setItem('vue-chat-session', JSON.stringify(val));
 }, {
-    deep: true/*这个貌似是开启watch监测的判断,官方说明也比较模糊*/
+    deep: true /*这个貌似是开启watch监测的判断,官方说明也比较模糊*/
 })
 
 

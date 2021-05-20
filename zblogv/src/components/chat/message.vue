@@ -1,7 +1,7 @@
 <template>
     <div id="message" v-scroll-bottom="sessions">
         <ul v-if="currentSession">
-            <li v-for="entry in sessions[user.nickname+'#'+currentSession.nickname]">
+            <li v-for="entry in sessions[user.username+'#'+currentSession.username]">
                 <p class="time">
                     <span>{{entry.date | format}}</span>
                 </p>

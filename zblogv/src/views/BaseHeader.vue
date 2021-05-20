@@ -15,8 +15,8 @@
           <el-menu-item index="/category/all">文章分类</el-menu-item>
           <el-menu-item index="/tag/all">标签</el-menu-item>
           <el-menu-item index="/archives">文章归档</el-menu-item>
-          <el-menu-item index="/log">日志</el-menu-item>
           <el-menu-item index="/OnlineRoom">聊天室</el-menu-item>
+          <el-menu-item index="/log">日志</el-menu-item>
           <el-submenu index="/">
             <template slot="title">我的工作台</template>
             <!-- <el-menu-item index="/"><a href="https://boot.ityihang.cn" target="_blank">开发平台</a></el-menu-item> -->

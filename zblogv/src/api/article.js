@@ -13,8 +13,8 @@ export function getArticles(query, page) {
             column: page.createTime,
             // year: query.year,
             // month: query.month,
-            createTime_begin: query.year + "-" + query.month + "-01",
-            createTime_end: query.year + "-" + query.month + "-31",
+            createTime_begin: query.createTime_begin,
+            createTime_end: query.createTime_end,
             tagId: query.tagId,
             categoryId: query.categoryId
         }

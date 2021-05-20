@@ -88,6 +88,7 @@ import {login} from '@/api/login'
               if(response.code === 0) {
                 that.$message({message: response.msg, type: 'success', showClose: true});
                 that.$router.go(-1)
+                this.$store.dispatch('connect');
               } else {
                 that.$message({message: response.msg, type: 'error', showClose: true});
               }
