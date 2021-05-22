@@ -35,8 +35,7 @@
                     msgObj.fromNickname = this.$store.state.nickname;
                     msgObj.to = this.currentSession.username;
                     msgObj.content = this.content;
-                    console.log(msgObj);
-                    this.$store.state.stomp.send('/ws/chat', {}, JSON.stringify(msgObj));
+                    this.$store.state.stomp.send('/ws/queue', {}, JSON.stringify(msgObj));
                     this.$store.commit('addMessage', msgObj);
                     this.content = '';
                 }

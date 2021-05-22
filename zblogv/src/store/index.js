@@ -83,13 +83,23 @@ const store = new Vuex.Store({
     },
     actions: {
         connect(context) {
-            console.log("context:", context);
             context.state.stomp = Stomp.over(new SockJS('/ws/ep'));
-            console.log("context.state.stomp:", context.state.stomp);
-            context.state.stomp.connect({}, success => {
-                console.log("successmsg: ", success);
+            context.state.stomp.connect({"X-Access-Token": context.state.token}, success => {
                 context.state.stomp.subscribe('/user/queue/chat', msg => {
-                    console.log("msg: ", msg);
+                    let receiveMsg = JSON.parse(msg.body);
+                    if (!context.state.currentSession || receiveMsg.from != context.state.currentSession.username) {
+                        Notification.info({
+                            title: '【' + receiveMsg.fromNickname + '】发来一条消息',
+                            message: receiveMsg.content.length > 10 ? receiveMsg.content.substr(0, 10) : receiveMsg.content,
+                            position: 'bottom-right'
+                        })
+                        Vue.set(context.state.isDot, context.state.Userinfo.username + '#' + receiveMsg.from, true);
+                    }
+                    receiveMsg.notSelf = true;
+                    receiveMsg.to = receiveMsg.from;
+                    context.commit('addMessage', receiveMsg);
+                });
+                context.state.stomp.subscribe('/topic/chat', msg => {
                     let receiveMsg = JSON.parse(msg.body);
                     if (!context.state.currentSession || receiveMsg.from != context.state.currentSession.username) {
                         Notification.info({
@@ -104,7 +114,7 @@ const store = new Vuex.Store({
                     context.commit('addMessage', receiveMsg);
                 })
             }, error => {
-                console.log("msg: ", error);
+                console.log("errormsg: ", error);
             })
         },
         initData(context) {

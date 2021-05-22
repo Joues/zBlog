@@ -77,9 +77,6 @@
         let that = this
         that.loading = true
 
-        console.log("11111", that.query);
-        console.log("11111", that.query.year);
-        console.log("11111", that.query.month);
         getArticles(that.query, that.innerPage).then(data => {
 
           let newArticles = data.data.records

@@ -1,5 +1,8 @@
 <template>
     <div id="message" v-scroll-bottom="sessions">
+        <!-- <div class="userinfo" v-if="this.currentSession">
+            <p>{{ this.currentSession.realname }}</p>
+        </div> -->
         <ul v-if="currentSession">
             <li v-for="entry in sessions[user.username+'#'+currentSession.username]">
                 <p class="time">

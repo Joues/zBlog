@@ -29,12 +29,9 @@
         ]),
         created: function () {
             let aa = window.localStorage.getItem("user")
-            console.log("user信息：" + this.user);
-            console.log("user信息：" + aa);
         },
         methods: {
             changeCurrentSession (currentSession) {
-                console.log("currentSession: ", currentSession);
                 this.$store.commit('changeCurrentSession', currentSession)
             }
         }

@@ -11,7 +11,7 @@ import { ACCESS_TOKEN } from "@/store/mutation-types"
 // })
 const service = axios.create({
     baseURL: "/api/zblog/",
-    timeout: 6000
+    timeout: 9000
 })
 
 

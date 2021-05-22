@@ -6,24 +6,24 @@ const path = require('path')
 let proxyObj = {};
 const CompressionPlugin = require("compression-webpack-plugin");
 proxyObj['/ws'] = {
-  ws: true,
-  target: "ws://localhost:8086/api/zblog"
+    ws: true,
+    target: "ws://localhost:8086/api/zblog",
 };
 proxyObj['/'] = {
-  ws: false,
-  target: 'http://localhost:8086',
-  changeOrigin: true,
-  pathRewrite: {
-    '^/': ''
-  }
+    ws: false,
+    target: 'http://127.0.0.1:8086',
+    changeOrigin: true,
+    pathRewrite: {
+        '^/': ''
+    }
 }
 module.exports = {
     dev: {
-
+        
         // Paths
         assetsSubDirectory: 'static',
         assetsPublicPath: '/',
-        proxy: proxyObj,
+        proxyTable: proxyObj,
         // proxyTable: {
             // '/': {
             //     target: 'http://ityihang.cn:8086/',
@@ -109,17 +109,17 @@ module.exports = {
         bundleAnalyzerReport: process.env.npm_config_report
     },
 
-  configureWebpack: config => {
-    if (process.env.NODE_ENV === 'production') {
-      return {
-        plugins: [
-          new CompressionPlugin({
-            test: /\.js$|\.html$|\.css/,
-            threshold: 1024,
-            deleteOriginalAssets: false
-          })
-        ]
-      }
+    configureWebpack: config => {
+        if (process.env.NODE_ENV === 'production') {
+            return {
+                plugins: [
+                    new CompressionPlugin({
+                        test: /\.js$|\.html$|\.css/,
+                        threshold: 1024,
+                        deleteOriginalAssets: false
+                    })
+                ]
+            }
+        }
     }
-  }
 }
