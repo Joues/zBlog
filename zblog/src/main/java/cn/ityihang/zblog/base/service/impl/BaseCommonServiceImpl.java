@@ -7,6 +7,7 @@ import cn.ityihang.zblog.system.entity.SysLog;
 import cn.ityihang.zblog.utils.IPUtils;
 import cn.ityihang.zblog.utils.SpringContextUtils;
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
 @Service
+@Slf4j
 public class BaseCommonServiceImpl implements BaseCommonService {
 
     @Resource
@@ -29,7 +31,13 @@ public class BaseCommonServiceImpl implements BaseCommonService {
         if(StringUtils.isEmpty(sysLog.getId())){
             sysLog.setId(String.valueOf(IdWorker.getId()));
         }
-        baseCommonMapper.insert(sysLog);
+        //保存日志（异常捕获处理，防止数据太大存储失败，导致业务失败）JT-238
+        try {
+            baseCommonMapper.saveLog(sysLog);
+        } catch (Exception e) {
+            log.warn(" LogContent length : "+sysLog.getLogContent().length());
+            log.warn(e.getMessage());
+        }
     }
 
     @Override

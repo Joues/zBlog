@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.annotation.SqlParser;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Param;
 
-public interface BaseCommonMapper extends BaseMapper<SysLog> {
+public interface BaseCommonMapper {
 
     /**
      * 保存日志

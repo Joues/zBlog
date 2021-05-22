@@ -67,7 +67,7 @@ public class LoginController {
             return result;
         }
         String lowerCaseCaptcha = captcha.toLowerCase();
-        String realKey = cn.ityihang.zblog.utils.MD5Util.MD5Encode(lowerCaseCaptcha+user.getCheckKey(), "utf-8");
+        String realKey = MD5Util.MD5Encode(lowerCaseCaptcha+user.getCheckKey(), "utf-8");
         Object checkCode = redisUtil.get(realKey);
         if(checkCode==null || !checkCode.equals(lowerCaseCaptcha)) {
             result.setMsg("验证码错误");

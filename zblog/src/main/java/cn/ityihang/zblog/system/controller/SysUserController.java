@@ -62,6 +62,24 @@ public class SysUserController {
     }
 
     /**
+     * 分页列表查询
+     * @param sysUser
+     * @param pageParam
+     * @param req
+     * @return
+     */
+    @ApiOperation(value = "分页列表查询")
+    @GetMapping(value = "/usr")
+    public RestResponse getUsersList(SysUser sysUser, @Valid PageParam pageParam, HttpServletRequest req) {
+        QueryWrapper<SysUser> queryWrapper = QueryGenerator.initQueryWrapper(sysUser, req.getParameterMap());
+        SysUser curUser = (SysUser) userInfo().getData();
+        queryWrapper.lambda().notIn(SysUser::getUsername,curUser.getUsername());
+        Page<SysUser> page = new Page<>(pageParam.getPageNo(), pageParam.getLimit());
+        IPage<SysUser> pageList = sysUserService.page(page, queryWrapper);
+        return RestResponse.ok(pageList);
+    }
+
+    /**
      * 随机数
      * @param place 定义随机数的位数
      */

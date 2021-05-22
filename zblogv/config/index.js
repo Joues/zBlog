@@ -3,26 +3,43 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
 
 const path = require('path')
-
+let proxyObj = {};
+const CompressionPlugin = require("compression-webpack-plugin");
+proxyObj['/ws'] = {
+  ws: true,
+  target: "ws://localhost:8086/api/zblog"
+};
+proxyObj['/'] = {
+  ws: false,
+  target: 'http://localhost:8086',
+  changeOrigin: true,
+  pathRewrite: {
+    '^/': ''
+  }
+}
 module.exports = {
     dev: {
 
         // Paths
         assetsSubDirectory: 'static',
         assetsPublicPath: '/',
-        proxyTable: {
-            '/': {
-                target: 'http://ityihang.cn:8086/',
-                changeOrigin: true,
-                pathRewrite: {
-                    '^/': ''
-                }
-            },
-            '/dev/*': {
-                target: 'dev://127.0.0.1:8086',
-                dev: true
-            }
-        },
+        proxy: proxyObj,
+        // proxyTable: {
+            // '/': {
+            //     target: 'http://ityihang.cn:8086/',
+            //     changeOrigin: true,
+            //     pathRewrite: {
+            //         '^/': ''
+            //     }
+            // },
+            // '/': {
+            //     target: 'http://127.0.0.1:8086/',
+            //     changeOrigin: true,
+            //     pathRewrite: {
+            //         '^/': ''
+            //     }
+            // }
+        // },
 
         // Various Dev Server settings
         host: 'localhost', // can be overwritten by process.env.HOST
@@ -90,5 +107,19 @@ module.exports = {
         // `npm run build --report`
         // Set to `true` or `false` to always turn it on or off
         bundleAnalyzerReport: process.env.npm_config_report
+    },
+
+  configureWebpack: config => {
+    if (process.env.NODE_ENV === 'production') {
+      return {
+        plugins: [
+          new CompressionPlugin({
+            test: /\.js$|\.html$|\.css/,
+            threshold: 1024,
+            deleteOriginalAssets: false
+          })
+        ]
+      }
     }
+  }
 }

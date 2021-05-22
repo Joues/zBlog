@@ -1,10 +1,12 @@
 package cn.ityihang.zblog.system.service.impl;
 
 import cn.hutool.core.util.StrUtil;
+import cn.ityihang.zblog.base.mapper.BaseCommonMapper;
 import cn.ityihang.zblog.system.entity.SysLog;
 import cn.ityihang.zblog.system.mapper.SysLogMapper;
 import cn.ityihang.zblog.system.entity.LoginUser;
 import cn.ityihang.zblog.system.service.ISysLogService;
+import cn.ityihang.zblog.utils.IPUtils;
 import cn.ityihang.zblog.utils.SpringContextUtils;
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -28,6 +30,9 @@ public class SysLogServiceImpl extends ServiceImpl<SysLogMapper, SysLog> impleme
 
     @Autowired
     SysLogMapper sysLogMapper;
+
+    @Autowired
+    BaseCommonMapper baseCommonMapper;
 
     private static final Logger logger = LoggerFactory.getLogger(SysLog.class);
     
@@ -67,7 +72,7 @@ public class SysLogServiceImpl extends ServiceImpl<SysLogMapper, SysLog> impleme
             //获取request
             HttpServletRequest request = SpringContextUtils.getHttpServletRequest();
             //设置IP地址
-            sysLog.setIp(getIpAddr(request));
+            sysLog.setIp(IPUtils.getIpAddr(request));
         } catch (Exception e) {
             sysLog.setIp("127.0.0.1");
         }
@@ -84,8 +89,13 @@ public class SysLogServiceImpl extends ServiceImpl<SysLogMapper, SysLog> impleme
             sysLog.setUsername(user.getRealname());
         }
         sysLog.setCreateTime(new Date());
-        //保存系统日志
-        sysLogMapper.insert(sysLog);
+        //保存日志（异常捕获处理，防止数据太大存储失败，导致业务失败）JT-238
+        try {
+            baseCommonMapper.saveLog(sysLog);
+        } catch (Exception e) {
+            log.warn(" LogContent length : "+sysLog.getLogContent().length());
+            log.warn(e.getMessage());
+        }
     }
 
     /**

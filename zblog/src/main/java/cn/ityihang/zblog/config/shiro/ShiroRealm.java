@@ -3,14 +3,15 @@ package cn.ityihang.zblog.config.shiro;
 import cn.hutool.core.util.StrUtil;
 import cn.ityihang.zblog.common.api.CommonAPI;
 import cn.ityihang.zblog.common.utils.RedisUtil;
-import cn.ityihang.zblog.config.jwt.JwtToken;
 import cn.ityihang.zblog.common.constant.CommonConstant;
+import cn.ityihang.zblog.config.jwt.JwtToken;
 import cn.ityihang.zblog.system.entity.LoginUser;
 import cn.ityihang.zblog.system.entity.SysUser;
 import cn.ityihang.zblog.system.service.ISysUserService;
 import cn.ityihang.zblog.utils.JwtUtil;
 import cn.ityihang.zblog.utils.SpringContextUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -134,6 +135,7 @@ public class ShiroRealm extends AuthorizingRealm {
         }
         // 校验token有效性
         SysUser loginUser = this.checkUserTokenIsEffect(token);
+        SecurityUtils.getSubject().getSession().setAttribute("user", loginUser);
         return new SimpleAuthenticationInfo(loginUser, token, getName());
     }
 

@@ -1,8 +1,8 @@
 package cn.ityihang.zblog.config.shiro;
 
 import cn.hutool.core.util.StrUtil;
-import cn.ityihang.zblog.config.jwt.JwtFilter;
 import cn.ityihang.zblog.common.constant.CommonConstant;
+import cn.ityihang.zblog.config.jwt.JwtFilter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.mgt.DefaultSessionStorageEvaluator;
 import org.apache.shiro.mgt.DefaultSubjectDAO;
@@ -11,6 +11,7 @@ import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
+import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 import org.crazycake.shiro.IRedisManager;
 import org.crazycake.shiro.RedisCacheManager;
 import org.crazycake.shiro.RedisClusterManager;
@@ -84,6 +85,9 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/deleteBatch", "anon");
         filterChainDefinitionMap.put("/new", "anon");
         filterChainDefinitionMap.put("/hot", "anon");
+
+        // websocket接口
+        filterChainDefinitionMap.put("/ws/ep/**", "anon");
 
         filterChainDefinitionMap.put("/excel/exportExcel", "anon");  // excel导入导出接口排除
         filterChainDefinitionMap.put("/excel/readExcel", "anon");  // excel导入导出接口排除
@@ -283,6 +287,14 @@ public class ShiroConfig {
         //自定义缓存实现,使用redis
         securityManager.setCacheManager(redisCacheManager());
         return securityManager;
+    }
+
+    @Bean
+    public DefaultWebSessionManager sessionManager() {
+        DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();
+        // 去掉shiro登录时url里的JSESSIONID
+        sessionManager.setSessionIdUrlRewritingEnabled(false);
+        return sessionManager;
     }
 
     /**
