@@ -84,7 +84,7 @@ public class BlogUserInfoController {
         if (null==sysUser) {
             return RestResponse.failed(CommonParam.SYSUSER_ISNULL);
         }
-//        获取用户详情信息
+//        获取用户详情信息 
         LambdaQueryWrapper<SysUserDetails> userDetailQWrapper = new LambdaQueryWrapper<>();
         userDetailQWrapper.eq(SysUserDetails::getUserId, sysUser.getId());
         SysUserDetails userDetails = sysUserDetailsService.getOne(userDetailQWrapper);

@@ -3,8 +3,10 @@ package cn.ityihang.zblog.base.mapper;
 import cn.ityihang.zblog.system.entity.SysLog;
 import com.baomidou.mybatisplus.annotation.SqlParser;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+@Mapper
 public interface BaseCommonMapper {
 
     /**

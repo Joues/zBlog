@@ -12,6 +12,7 @@
     <artifactId>zblog</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>zblog</name>
+    <packaging>war</packaging>
     <description>Demo project for Spring Boot</description>
 
     <properties>
@@ -208,6 +209,14 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-websocket</artifactId>
+        </dependency>
+
+        <!-- 排除内置tomcat容器，导出成war包可以让外部容器运行spring-boot项目-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <!-- provided表明该包只在编译和测试的时候用 -->
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 

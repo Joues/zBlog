@@ -120,7 +120,7 @@ public class BlogController {
             return RestResponse.ok(blogNews, CommonConstant.TODO_SUCCESS);
         } catch (Exception e) {
             e.printStackTrace();
-            log.warn("异常信息：" + e.getMessage());
+            log.warn("异常信息：{}", e.getMessage());
             return RestResponse.failed(CommonConstant.TODO_FAILED);
         }
     }
@@ -133,7 +133,7 @@ public class BlogController {
             return RestResponse.ok(blogNews, CommonConstant.TODO_SUCCESS);
         } catch (Exception e) {
             e.printStackTrace();
-            log.warn("异常信息：" + e.getMessage());
+            log.warn("异常信息：{}", e.getMessage());
             return RestResponse.failed(CommonConstant.TODO_FAILED);
         }
     }

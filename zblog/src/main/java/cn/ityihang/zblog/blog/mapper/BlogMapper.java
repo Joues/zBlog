@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Constants;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
@@ -21,6 +22,7 @@ import java.util.Map;
  * @author jobob
  * @since 2020-11-11
  */
+@Mapper
 public interface BlogMapper extends BaseMapper<BlogInfo> {
 
     @Select("select id,title from blog_info s\n" +

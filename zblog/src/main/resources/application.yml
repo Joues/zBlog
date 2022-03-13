@@ -1,21 +1,15 @@
 #服务端配置
 server:
   port: 8086
-#生产环境配置
-#  profiles:
-#    active: dev
-
   servlet:
     context-path: /api/zblog  #添加接口api
 
 
 #数据库配置
 spring:
-  datasource:
-    type: com.alibaba.druid.pool.DruidDataSource
-    username: root
-    password: 123456
-    url: jdbc:mysql://localhost:3306/zblog?useUnicode=true&characterEncoding=utf8
+  #生产环境配置
+  profiles:
+    active: dev
 
 #开启热部署
     devtools:
@@ -28,24 +22,22 @@ spring:
   cache:
     #redis 配置
     redis:
+      database: 1
       host: localhost
       port: 6379
-#      password: 123456
+      password: ''
       lettuce:
         pool:
-          max-active: 100
-          min-idle: 5
-          max-wait: 5000
-          max-idle: 10
-      database: 1
-
-#  profiles:
-#    active: dev
+          max-active: 8   #最大连接数据库连接数,设 0 为没有限制
+          max-idle: 8     #最大等待连接中的数量,设 0 为没有限制
+          max-wait: -1ms  #最大建立连接等待时间。如果超过此时间将接到异常。设为-1表示无限制。
+          min-idle: 0     #最小等待连接中的数量,设 0 为没有限制
+        shutdown-timeout: 100ms
 
 mybatis-plus:
-  mapper-locations: classpath:/mapper/*Mapper.xml,classpath*:cn/ityihang/zblog/**/xml/*Mapper.xml
+  mapper-locations: classpath:/resources/mapper/*Mapper.xml
   #实体扫描，多个package用逗号或者分号分隔
-  typeAliasesPackage: cn.ityihang.zblog.blog.entity
+  typeAliasesPackage: cn.ityihang.zblog.**.entity
 #  configuration:
 #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
@@ -70,5 +62,5 @@ fdfs:
   thumb-image.height: 150
   thumb-image.width: 150
   # tracker服务配置地址列表，替换成自己服务的IP地址，支持多个 端口：22122/23000
-  tracker-list: ityihang.cn:22122
+  tracker-list: localhost:22122
   pool.jmx-enabled: false

@@ -1,4 +1,4 @@
-package cn.ityihang.zblog.constant.enums;
+package cn.ityihang.zblog.constant;
 
 /**
  * @author yihang

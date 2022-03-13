@@ -2,6 +2,7 @@ package cn.ityihang.zblog.system.mapper;
 
 import cn.ityihang.zblog.system.entity.SysLog;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * @Author: yihang
@@ -9,5 +10,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @Description:
  * @Version: 1.0
  */
+@Mapper
 public interface SysLogMapper extends BaseMapper<SysLog> {
 }

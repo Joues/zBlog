@@ -2,7 +2,7 @@ package cn.ityihang.zblog.common.result;
 
 
 import cn.ityihang.zblog.common.constant.CommonConstant;
-import cn.ityihang.zblog.constant.enums.IResultCode;
+import cn.ityihang.zblog.constant.IResultCode;
 import cn.ityihang.zblog.constant.enums.ResultCode;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -65,7 +65,7 @@ public class RestResponse<T> {
         return restResult(null, resultCode.getCode(), resultCode.getMsg(),false);
     }
 
-    public static <T> RestResponse<T> failed(IResultCode resultCode,String message) {
+    public static <T> RestResponse<T> failed(IResultCode resultCode, String message) {
         return restResult(null, resultCode.getCode(), message,false);
     }
 

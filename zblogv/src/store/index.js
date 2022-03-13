@@ -84,7 +84,7 @@ const store = new Vuex.Store({
     actions: {
         connect(context) {
             context.state.stomp = Stomp.over(new SockJS('/ws/ep'));
-            context.state.stomp.connect({"X-Access-Token": context.state.token}, success => {
+            context.state.stomp.connect({ "X-Access-Token": context.state.token }, success => {
                 context.state.stomp.subscribe('/user/queue/chat', msg => {
                     let receiveMsg = JSON.parse(msg.body);
                     if (!context.state.currentSession || receiveMsg.from != context.state.currentSession.username) {

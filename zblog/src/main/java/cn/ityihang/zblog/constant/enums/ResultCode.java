@@ -1,5 +1,6 @@
 package cn.ityihang.zblog.constant.enums;
 
+import cn.ityihang.zblog.constant.IResultCode;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -13,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @Getter
 @AllArgsConstructor
-public enum ResultCode implements IResultCode{
+public enum ResultCode implements IResultCode {
     /**
      * 成功
      */
